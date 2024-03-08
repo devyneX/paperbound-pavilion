@@ -1,0 +1,27 @@
+services:
+
+  db:
+    image: postgres:16.2-alpine
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: paperbound-pavillion
+      POSTGRES_USER: paperbound-pavillion
+      POSTGRES_PASSWORD: paper1234
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.2-alpine
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/var/lib/redis
+
+volumes:
+  postgresql-data:
+    driver: local
+  redis-data:
+    driver: local
