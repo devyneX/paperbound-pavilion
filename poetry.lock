@@ -57,6 +57,27 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-countries"
+version = "7.5.1"
+description = "Provides a country field for Django models."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-countries-7.5.1.tar.gz", hash = "sha256:22915d9b9403932b731622619940a54894a3eb0da9a374e7249c8fc453c122d7"},
+    {file = "django_countries-7.5.1-py3-none-any.whl", hash = "sha256:2df707aca7a5e677254bed116cf6021a136ebaccd5c2f46860abd6452bb45521"},
+]
+
+[package.dependencies]
+asgiref = "*"
+typing-extensions = "*"
+
+[package.extras]
+dev = ["black", "django", "djangorestframework", "graphene-django", "pytest", "pytest-django", "tox"]
+maintainer = ["django", "transifex-client", "zest.releaser[recommended]"]
+pyuca = ["pyuca"]
+test = ["djangorestframework", "graphene-django", "pytest", "pytest-cov", "pytest-django"]
+
+[[package]]
 name = "django-split-settings"
 version = "1.2.0"
 description = "Organize Django settings into multiple files and directories. Easily override and modify settings. Use wildcards and optional settings files."
@@ -379,4 +400,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "5fe5c2783b64daf250ac92e287bcd89345a3dcda18bd7351f633509b84bf0b15"
+content-hash = "891bb6aa09e2cc637660aaccc844728f04ce73a2e61a9d194f53a04761ccd27a"
