@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from src.accounts.models import User
@@ -6,7 +7,10 @@ from src.core.models import BaseModel
 
 
 class Review(BaseModel):
-    ratings = models.IntegerField(max=5)
+    ratings = models.IntegerField(
+        validators=[MaxValueValidator(5),
+                    MinValueValidator(1)]
+    )
     comments = models.TextField()
     user = models.ForeignKey(
         User,
