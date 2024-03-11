@@ -8,9 +8,10 @@ from .utils import GenreChoices
 
 class Author(BaseModel):
     name = models.CharField(max_length=255)
-    image = models.ImageField(
-        upload_to='authors/images/', null=True, blank=True
-    )
+
+    # image = models.ImageField(
+    #     upload_to='authors/images/', null=True, blank=True
+    # )
 
     def __str__(self):
         return self.name
