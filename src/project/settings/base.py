@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     # local apps
     'src.accounts',
     'src.books',
+    'src.shopping',
 ]
 
 MIDDLEWARE = [

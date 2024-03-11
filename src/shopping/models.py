@@ -1,7 +1,7 @@
 from django.db import models
 
-from accounts.models import Address, User
-from books.models import Book
+from src.accounts.models import Address, User
+from src.books.models import Book
 from src.core.models import BaseModel
 
 

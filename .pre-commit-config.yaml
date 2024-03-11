@@ -19,6 +19,8 @@ repos:
     rev: 'v1.8.0'
     hooks:
     -   id: mypy
+        additional_dependencies: [ types-requests, types-PyYAML, types-toml ]
+
   - repo: https://github.com/google/yapf
     rev: 'v0.40.2'
     hooks:
