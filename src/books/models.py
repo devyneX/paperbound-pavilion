@@ -1,9 +1,8 @@
 from django.db import models
-from languages.fields import LanguageField
 
-from core.models import BaseModel
+from src.core.models import BaseModel
 
-from .utils import GenreChoices
+from .choices import GenreChoices, LanguageChoices
 
 
 class Author(BaseModel):
@@ -36,9 +35,8 @@ class Book(BaseModel):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.IntegerField()
-    language = LanguageField()
+    language = models.CharField(max_length=3, choices=LanguageChoices)
     genre = models.CharField(max_length=20, choices=GenreChoices.choices)
-    cover = models.ImageField(upload_to='books/covers/', null=True, blank=True)
     author = models.ForeignKey(
         Author,
         on_delete=models.CASCADE,

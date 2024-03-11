@@ -1,8 +1,8 @@
-from accounts.models import Address, User
-from books.models import Book
 from django.db import models
 
-from core.models import BaseModel
+from accounts.models import Address, User
+from books.models import Book
+from src.core.models import BaseModel
 
 
 class Order(BaseModel):

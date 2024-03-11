@@ -78,16 +78,6 @@ pyuca = ["pyuca"]
 test = ["djangorestframework", "graphene-django", "pytest", "pytest-cov", "pytest-django"]
 
 [[package]]
-name = "django-language-field"
-version = "0.0.3"
-description = "A pluggable django app that provides a comprehensive language choices field"
-optional = false
-python-versions = "*"
-files = [
-    {file = "django-language-field-0.0.3.tar.gz", hash = "sha256:8836a6a1345d8e0f2181ab39a49ced7f810c69eb717948a45daf0779182fe8dc"},
-]
-
-[[package]]
 name = "django-split-settings"
 version = "1.2.0"
 description = "Organize Django settings into multiple files and directories. Easily override and modify settings. Use wildcards and optional settings files."
@@ -410,4 +400,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "39055adfc03d67095d113a3ace1c88a7f947fe4d793958d411c8cd7453967ff1"
+content-hash = "891bb6aa09e2cc637660aaccc844728f04ce73a2e61a9d194f53a04761ccd27a"
