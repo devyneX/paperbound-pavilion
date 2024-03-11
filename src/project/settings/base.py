@@ -17,8 +17,8 @@ INSTALLED_APPS = [
     'languages',
 
     # local apps
-    'accounts',
-    'books',
+    'src.accounts',
+    'src.books',
 ]
 
 MIDDLEWARE = [
