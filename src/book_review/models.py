@@ -6,7 +6,7 @@ from src.core.models import BaseModel
 
 
 class Review(BaseModel):
-    ratings = models.IntegerField()
+    ratings = models.IntegerField(max=5)
     comments = models.TextField()
     user = models.ForeignKey(
         User,
