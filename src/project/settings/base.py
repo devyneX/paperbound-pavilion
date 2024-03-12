@@ -20,7 +20,8 @@ INSTALLED_APPS = [
     'src.accounts',
     'src.books',
     'src.shopping',
-    'src.book_review'
+    'src.book_review',
+    'src.store_admin'
 ]
 
 MIDDLEWARE = [

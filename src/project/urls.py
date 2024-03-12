@@ -19,11 +19,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from src.accounts.urls import urlpatterns
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include(urlpatterns))
+    path('djadmin/', admin.site.urls),
+    path('accounts/', include('src.accounts.urls')),
+    path('admin/', include('src.store_admin.urls')),
 ]
 
 if settings.DEBUG:
