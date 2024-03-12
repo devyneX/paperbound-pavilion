@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -20,3 +20,7 @@ class RegisterView(CreateView):
         # Hash the password before saving
         form.instance.set_password(form.cleaned_data['password'])
         return super().form_valid(form)
+
+
+class Logout(LogoutView):
+    next_page = reverse_lazy('login')
