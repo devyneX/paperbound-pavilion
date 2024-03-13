@@ -21,11 +21,13 @@ from django.urls import include, path
 
 from src.accounts import urls as accounts_urls
 from src.shopping import urls as shopping_urls
+from src.store_admin import urls as admin_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include(accounts_urls)),
     path('shopping/', include(shopping_urls)),
+    path('admin/', include(admin_urls)),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,29 @@
+<form class="p-4" method="POST" action="{{ action_url }}">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">
+            {{ field.label }}
+        </label>
+        {% if field.field.widget.input_type == 'text' or field.field.widget.input_type == 'number' %}
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id_for_label }}" value="{{ field.value|default_if_none:'' }}">
+        {% elif field.field.widget.input_type == 'select' %}
+            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="{{ field.name }}" id="{{ field.id_for_label }}">
+                {% for choice in field.field.choices %}
+                    <option value="{{ choice.0 }}" {% if choice.0 == field.value %} selected {% endif %}>{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+        {% else %}
+            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="{{ field.name }}" id="{{ field.id_for_label }}">{{ field.value|default_if_none:'' }}</textarea>
+        {% endif %}
+        {% if field.errors %}
+            <p class="text-red-500 text-xs italic mt-1">{{ field.errors|join:", " }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+    <div class="flex items-center justify-between">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            {{ submit_text }}
+        </button>
+    </div>
+</form>

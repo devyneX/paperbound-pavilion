@@ -1,0 +1,17 @@
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    # path('login/', views.AdminLogin.as_view(), name='admin-login'),
+    path('dashboard/', views.AdminDashboard.as_view(), name='admin-dashboard'),
+    path('books/', views.BooksList.as_view(), name='admin-books'),
+    path(
+        'books/create/', views.BooksCreate.as_view(), name='admin-book-create'
+    ),
+    path(
+        'books/update/<int:pk>',
+        views.BooksUpdate.as_view(),
+        name='admin-book-update'
+    ),
+]
