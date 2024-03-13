@@ -5,7 +5,7 @@ from src.books.choices import GenreChoices, LanguageChoices
 from src.books.models import Author, Book, Publisher
 from src.core.mixins import SuperuserRequiredMixin
 
-from .forms import AuthorCreateForm, BookCreateForm
+from .forms import AuthorCreateForm, BookCreateForm, PublisherCreateForm
 
 
 class AdminDashboard(TemplateView):
@@ -54,13 +54,13 @@ class BooksUpdate(SuperuserRequiredMixin, UpdateView):
         return context
 
 
-class AuthorList(SuperuserRequiredMixin, ListView):
+class AuthorsList(SuperuserRequiredMixin, ListView):
     model = Author
     template_name = 'store_admin/authors.html'
     paginate_by = 20
 
 
-class AuthorCreate(SuperuserRequiredMixin, CreateView):
+class AuthorsCreate(SuperuserRequiredMixin, CreateView):
     model = Author
     form_class = AuthorCreateForm
     template_name = 'store_admin/author-create.html'
@@ -72,3 +72,23 @@ class AuthorsUpdate(SuperuserRequiredMixin, UpdateView):
     form_class = AuthorCreateForm
     template_name = 'store_admin/author-update.html'
     success_url = reverse_lazy('admin-authors')
+
+
+class PublishersList(SuperuserRequiredMixin, ListView):
+    model = Publisher
+    template_name = 'store_admin/publishers.html'
+    paginate_by = 20
+
+
+class PublishersCreate(SuperuserRequiredMixin, CreateView):
+    model = Publisher
+    form_class = PublisherCreateForm
+    template_name = 'store_admin/publisher-create.html'
+    success_url = reverse_lazy('admin-publishers')
+
+
+class PublishersUpdate(SuperuserRequiredMixin, UpdateView):
+    model = Publisher
+    form_class = PublisherCreateForm
+    template_name = 'store_admin/publisher-update.html'
+    success_url = reverse_lazy('admin-publishers')

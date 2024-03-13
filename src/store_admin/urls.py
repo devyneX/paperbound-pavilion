@@ -18,10 +18,10 @@ urlpatterns = [
     ),
 
     # PUBLISHER PATHS
-    path('authors/', views.AuthorList.as_view(), name='admin-authors'),
+    path('authors/', views.AuthorsList.as_view(), name='admin-authors'),
     path(
         'authors/create/',
-        views.AuthorCreate.as_view(),
+        views.AuthorsCreate.as_view(),
         name='admin-author-create'
     ),
     path(
@@ -31,13 +31,17 @@ urlpatterns = [
     ),
 
     # AUTHOR PATHS
-    # path('books/', views.BooksList.as_view(), name='admin-books'),
-    # path(
-    #     'books/create/', views.BooksCreate.as_view(), name='admin-book-create' # noqa
-    # ),
-    # path(
-    #     'books/update/<int:pk>',
-    #     views.BooksUpdate.as_view(),
-    #     name='admin-book-update'
-    # ),
+    path(
+        'publishers/', views.PublishersList.as_view(), name='admin-publishers'
+    ),
+    path(
+        'publishers/create/',
+        views.PublishersCreate.as_view(),
+        name='admin-publisher-create'
+    ),
+    path(
+        'publishers/update/<int:pk>',
+        views.PublishersUpdate.as_view(),
+        name='admin-publisher-update'
+    ),
 ]
