@@ -1,10 +1,27 @@
-{% extends 'base.html' %}
+{% extends 'store_admin/admin_base.html' %}
 
-{% block title %}Admin Dashboard {% endblock %}
-
+{% block title %}Books List{% endblock %}
+{% block header %} Books {% endblock %}
 
 {% block content %}
-
-hi
-
-{% endblock content %}
+<div class="container mx-auto p-4">
+    <h2 class="text-3xl font-semibold mb-4">Books List</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {% for book in object_list %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-4">
+                <h3 class="text-xl font-semibold mb-2">{{ book.title }}</h3>
+                <p class="text-gray-600 mb-2"><strong>Author:</strong> {{ book.author }}</p>
+                <p class="text-gray-600 mb-2"><strong>Language:</strong> {{ book.get_language_display }}</p>
+                <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ book.get_genre_display }}</p>
+                <p class="text-gray-600 mb-2"><strong>Publisher:</strong> {{ book.publisher }}</p>
+            </div>
+            <div class="bg-gray-100 px-4 py-2 flex justify-end">
+                <a href=""
+                    class="text-blue-600 hover:text-blue-900 font-semibold">Edit</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

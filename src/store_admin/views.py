@@ -11,3 +11,4 @@ class AdminDashboard(TemplateView):
 class BooksList(SuperuserRequiredMixin, ListView):
     model = Book
     template_name = 'store_admin/books.html'
+    paginate_by = 20
