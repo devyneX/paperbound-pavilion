@@ -1,0 +1,6 @@
+<h2>Book Reviews</h2>
+<ul>
+    {% for review in reviews %}
+        <li>{{ review.books.title }}: {{ review.comments }} (Ratings: {{ review.ratings }})</li>
+    {% endfor %}
+</ul>

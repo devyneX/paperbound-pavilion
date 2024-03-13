@@ -20,10 +20,14 @@ from django.contrib import admin
 from django.urls import include, path
 
 from src.accounts.urls import urlpatterns
+from src.book_review.urls import reviewurlpatterns
+from src.books.urls import booksurlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include(urlpatterns))
+    path('accounts/', include(urlpatterns)),
+    path('', include(booksurlpatterns)),
+    path('reviews/', include(reviewurlpatterns))
 ]
 
 if settings.DEBUG:
