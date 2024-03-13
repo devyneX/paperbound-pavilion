@@ -8,6 +8,7 @@ from src.core.models import BaseModel
 class Order(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    books = models.ManyToManyField(Book, through='OrderBook')
 
     def total_price(self):
         return sum([book.price for book in self.orderbooks.all()])
