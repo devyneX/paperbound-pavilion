@@ -6,19 +6,25 @@
 
 {% block content %}
 <div class="container mx-auto p-4">
-    <h2 class="text-3xl font-semibold mb-4">Books List</h2>
+    <div class="flex gap-4 mb-2">
+        <h2 class="text-3xl font-semibold mb-4">Books List</h2>
+        <a href="{% url 'admin-book-create' %}"
+            class="group relative flex justify-center items-center px-4 border border-transparent text-sm text-center font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            create new book
+        </a>
+    </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {% for book in object_list %}
         <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
             <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
                 <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
-                <a href=""
+                <a href="{% url 'admin-book-update' book.id %}"
                     class="text-blue-600 hover:text-blue-900 font-semibold">Edit</a>
             </div>
             <div class="p-4">
                 <p class="text-gray-600 mb-2"><strong>Author:</strong> {{ book.author }}</p>
-                <p class="text-gray-600 mb-2"><strong>Language:</strong> {{ book.language }}</p>
-                <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ book.genre }}</p>
+                <p class="text-gray-600 mb-2"><strong>Language:</strong> {{ book.get_language_display }}</p>
+                <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ book.get_genre_display }}</p>
                 <p class="text-gray-600 mb-2"><strong>Publisher:</strong> {{ book.publisher }}</p>
             </div>
         </div>
