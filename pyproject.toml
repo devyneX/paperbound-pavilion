@@ -17,6 +17,7 @@ django-countries = "^7.5.1"
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.6.2"
 django-stubs = "^4.2.7"
+autoflake = "^2.3.1"
 
 [tool.isort]
 line_length = 79
