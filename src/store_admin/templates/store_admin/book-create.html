@@ -1,0 +1,137 @@
+{% extends 'store_admin/admin_base.html' %}
+
+{% block title %}Create Book{%endblock %} 
+{% block header %} Create a book {% endblock %} 
+{% block content %}
+<div class="container mx-auto p-4">
+  <h2 class="text-3xl font-semibold mb-4">Create Book</h2>
+  <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
+    <form class="p-4" method="POST" action="{% url 'admin-book-create' %}">
+      {% csrf_token %}
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+          Title
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="title"
+          type="text"
+          placeholder="Title"
+          name="title"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="description"
+        >
+          Description
+        </label>
+        <textarea
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="description"
+          placeholder="Description"
+          name="description"
+        ></textarea>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
+          Price
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="price"
+          type="text"
+          placeholder="Price"
+          name="price"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="quantity"
+        >
+          Quantity
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="quantity"
+          type="text"
+          placeholder="Quantity"
+          name="quantity"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="language"
+        >
+          Language
+        </label>
+        <select
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="language"
+          name="language"
+        >
+          {% for choice in language_choices %}
+          <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="genre">
+          Genre
+        </label>
+        <select
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="genre"
+          name="genre"
+        >
+          {% for choice in genre_choices %}
+          <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="author">
+          Author
+        </label>
+        <select
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="author"
+          name="author"
+        >
+          {% for author in authors %}
+          <option value="{{ author.id }}">{{ author.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="publisher"
+        >
+          Publisher
+        </label>
+        <select
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="publisher"
+          name="publisher"
+        >
+          {% for publisher in publishers %}
+          <option value="{{ publisher.id }}">{{ publisher.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="flex items-center justify-between">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Create
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

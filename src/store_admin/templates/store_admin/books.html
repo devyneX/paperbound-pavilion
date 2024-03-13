@@ -5,7 +5,13 @@
 
 {% block content %}
 <div class="container mx-auto p-4">
-    <h2 class="text-3xl font-semibold mb-4">Books List</h2>
+    <div class="flex gap-4">
+        <h2 class="text-3xl font-semibold mb-4">Books List</h2>
+        <a href="{% url 'admin-book-create' %}"
+            class="group relative flex justify-center items-center px-4 border border-transparent text-sm text-center font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            create new book
+        </a>
+    </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {% for book in object_list %}
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
