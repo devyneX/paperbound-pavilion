@@ -5,9 +5,20 @@ from src.books.models import Book
 from src.core.models import BaseModel
 
 
+class OrderStatusChoices(models.TextChoices):
+    PENDING = 'PENDING', 'Pending'
+    PROCESSING = 'PROCESSING', 'Processing'
+    SHIPPED = 'SHIPPED', 'Shipped'
+    DELIVERED = 'DELIVERED', 'Delivered'
+    CANCELLED = 'CANCELLED', 'Cancelled'
+
+
 class Order(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    status = models.CharField(
+        models.CharField(max_length=20, choices=OrderStatusChoices.choices)
+    )
     books = models.ManyToManyField(Book, through='OrderBook')
 
     def total_price(self):
