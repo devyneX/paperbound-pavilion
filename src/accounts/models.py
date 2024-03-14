@@ -17,6 +17,6 @@ class Address(BaseModel):
     house = models.CharField()
     street = models.CharField()
     city = models.CharField()
-    state = models.CharField()
+    state = models.CharField(null=True, blank=True)
     country = CountryField()
     post_code = models.CharField()
