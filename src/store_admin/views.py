@@ -4,18 +4,41 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, TemplateView, UpdateView
 
+from src.accounts.models import User
 from src.books.choices import GenreChoices, LanguageChoices
 from src.books.models import Author, Book, Publisher
 from src.core.mixins import SuperuserRequiredMixin
 from src.shopping.models import Order, OrderBook
 
 from .forms import (
-    AuthorCreateForm, BookCreateForm, OrderCreateForm, PublisherCreateForm
+    AuthorCreateForm, BookCreateForm, OrderCreateForm, PublisherCreateForm,
+    UserCreateForm
 )
 
 
 class AdminDashboard(TemplateView):
     template_name = 'store_admin/dashboard.html'
+
+
+# USER VIEWS
+class UsersList(SuperuserRequiredMixin, ListView):
+    model = User
+    template_name = 'store_admin/users.html'
+    paginate_by = 20
+
+
+class UsersCreate(SuperuserRequiredMixin, CreateView):
+    model = User
+    form_class = UserCreateForm
+    template_name = 'store_admin/user-create.html'
+    success_url = reverse_lazy('admin-users')
+
+
+class UsersUpdate(SuperuserRequiredMixin, UpdateView):
+    model = User
+    form_class = UserCreateForm
+    template_name = 'store_admin/user-update.html'
+    success_url = reverse_lazy('admin-users')
 
 
 # BOOK VIEWS
