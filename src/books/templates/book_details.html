@@ -16,6 +16,11 @@
       {% for r in reviews %}
         {{r.user.username}}
         <p> Ratings: {{r.ratings}} </p>
+
+        {% for i in r.range %}
+          {{i}}
+        {% endfor %}
+
         <p>{{r.comments}}</p>
       {% endfor %}
       <brr><hr>

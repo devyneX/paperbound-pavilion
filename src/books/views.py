@@ -31,6 +31,8 @@ class BookDetailView(DetailView):
 
     def get(self, request, pk):
         book = get_object_or_404(Book, pk=pk)
-        reviews = Review.objects.filter(books__id=pk)
+        reviews = Review.objects.filter(books__id=pk).values()
+        for review in reviews:
+            review['range'] = range(review['ratings'])
         context = {'book': book, 'reviews': reviews[:3]}
         return render(request, self.template_name, context)
