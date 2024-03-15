@@ -1,6 +1,8 @@
 from django.apps import apps
 from django.contrib.auth.models import User
+from django.contrib.postgres.search import SearchVector
 from django.shortcuts import get_object_or_404, render
+from django.views import View
 from django.views.generic import DetailView, ListView
 
 from .models import Book
@@ -34,3 +36,62 @@ class BookDetailView(DetailView):
         review = Review.objects.filter(pk=pk)
         context = {'book': book, 'review': review[:3]}
         return render(request, self.template_name, context)
+
+
+class BookSearch(View):
+
+    def get(self, request, *args, **kwargs):
+        books = Book.objects.all()
+
+        # Search by author name using full-text search
+        author_query = request.GET.get('author')
+        if author_query:
+            books = books.annotate(
+                author_search=SearchVector('author__name'),
+            ).filter(author_search=author_query)
+
+        # Search by book name using full-text search
+        book_name_query = request.GET.get('book_name')
+        if book_name_query:
+            books = books.annotate(book_name_search=SearchVector('name'),
+                                   ).filter(book_name_search=book_name_query)
+
+        # Search by publisher name using full-text search
+        publisher_query = request.GET.get('publisher')
+        if publisher_query:
+            books = books.annotate(
+                publisher_search=SearchVector('publisher__name'),
+            ).filter(publisher_search=publisher_query)
+
+        # Filter by price range
+        min_price = request.GET.get('min_price')
+        max_price = request.GET.get('max_price')
+        if min_price is not None and max_price is not None:
+            books = books.filter(price__range=(min_price, max_price))
+
+        # Filter by publication date range
+        # start_date = request.GET.get('start_date')
+        # end_date = request.GET.get('end_date')
+        # if start_date and end_date:
+        #     books = books.filter(
+        #         publication_date__range=(start_date, end_date)
+        #     )
+
+        # Filter by book genre
+        genre = request.GET.get('genre')
+        if genre:
+            books = books.filter(genre=genre)
+
+        # Filter by book language
+        language = request.GET.get('language')
+        if language:
+            books = books.filter(language=language)
+
+        # Filter by publisher name
+        publisher = request.GET.get('publisher')
+        if publisher:
+            books = books.filter(publisher__name=publisher)
+
+        # import pdb
+        # pdb.set_trace()
+        return render(request, 'book_search_result.html', {'books': books})

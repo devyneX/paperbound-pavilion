@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Search Result{% endblock %}
+
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <div class="flex gap-4 mb-2">
+        <h2 class="text-3xl font-semibold mb-4">Search results</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {% for book in books %}
+        <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
+            <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
+                <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
+                <a href="{% url 'admin-book-update' book.id %}"
+                    class="text-blue-600 hover:text-blue-900 font-semibold">Edit</a>
+            </div>
+            <div class="p-4">
+                <p class="text-gray-600 mb-2"><strong>Author:</strong> {{ book.author }}</p>
+                <p class="text-gray-600 mb-2"><strong>Language:</strong> {{ book.get_language_display }}</p>
+                <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ book.get_genre_display }}</p>
+                <p class="text-gray-600 mb-2"><strong>Publisher:</strong> {{ book.publisher }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
