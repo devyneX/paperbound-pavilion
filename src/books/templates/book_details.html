@@ -19,7 +19,7 @@
         <p>{{r.comments}}</p>
       {% endfor %}
       <brr><hr>
-      <a href="{% url 'create_review' pk=book.pk %}"> Add a review</a>
+      <a href="{% url 'create_review' pk=book.id %}"> Add a review</a>
     </div>
   </div>
 </div>
