@@ -13,7 +13,7 @@
       {%else %}
       <p class="text-red-700 mb-2"> Not Available</p>z
       {% endif %}
-      <a href="{% url 'book' book.pk %}" class="btn btn-outline-success" role="button">View</a>
+      <a href="{% url 'book-detail' book.pk %}" class="btn btn-outline-success" role="button">View</a>
     </div>
     {% endfor %}
   </div>
