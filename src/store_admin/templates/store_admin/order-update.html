@@ -1,0 +1,198 @@
+{% extends 'store_admin/admin_base.html' %}
+
+{% block title %}Update Book{%endblock %} 
+{% block header %} Update a book {% endblock %} 
+
+{% block content %}
+    <form class="p-4" method="post">
+        {% csrf_token %}
+        
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="user">
+                User:
+            </label>
+            <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="user" id="user">
+                <option value="">{{ object.user.id }} : {{ object.user.first_name }} {{ object.user.last_name }}</option>
+                <!-- {% for user in users %}
+                    <option value="{{ user.id }}">{{ object }}</option>
+                {% endfor %} -->
+            </select>
+        </div>
+        
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
+                Address:
+            </label>
+            <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="address" id="address">
+                <option value="">{{ object.address.id }} : {{ object.address }}</option>
+            </select>
+        </div>
+        
+
+        <div id="books-section">
+            {% if object.books.all %}
+            
+            {% for order_book in object.orderbooks.all %}
+                <div class="mb-4 book-section">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="book1">
+                        Select Book:
+                    </label>
+                    <div class="flex gap-4">
+                        <select data-index="{{ forloop.counter0 }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline book-dropdown" id="book1">
+                            <option value=""> {{ order_book.book }}</option>
+                            {% for book in books %}
+                                <option value="{{ book.id }}">{{ book }}</option>
+                            {% endfor %}
+                        </select>
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="quantity1">
+                            Quantity:
+                        </label>
+                        <input data-index="{{ forloop.counter0 }}" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline quantity-field" id="quantity1" min="1" value="{{ order_book.quantity }}">   
+                    </div>
+                    
+                    <!-- <button type="button" class="remove-book-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Remove Book</button> -->
+                </div>
+            {% endfor %}
+            
+            {% else %}
+            <div class="mb-4 book-section">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="book1">
+                    Select Book:
+                </label>
+                <div class="flex gap-4">
+                    <select data-index="0" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline book-dropdown" id="book1">
+                        <option value="">Select Book</option>
+                        {% for book in books %}
+                            <option value="{{ book.id }}">{{ book }}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="quantity1">
+                        Quantity:
+                    </label>
+                    <input data-index="0" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline quantity-field" id="quantity1" min="1">   
+                </div>
+                
+                <!-- <button type="button" class="remove-book-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Remove Book</button> -->
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- this hidden input contains a 2d array of all books and their quantities -->
+        <input type="hidden" name="books" class="book-id" value="{% if object.books.all %} 
+            [{% for order_book in object.orderbooks.all %}
+                [{{order_book.book.id}}, {{order_book.quantity}}]{% if not forloop.last %}, {% endif %}
+            {% endfor %}]
+        {% else %} [] {% endif %}" id="books-list">
+
+        <button type="button" id="add-book-button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4">Add Another Book</button>
+    
+        <!-- Other form fields go here -->
+        
+        <div class="flex items-center justify-between">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Update Order
+            </button>
+        </div>
+    </form>
+
+    
+
+    
+
+
+    
+    <script>
+        // const userSelect = document.getElementById('user');
+        // const addressSelect = document.getElementById('address');
+        // const addresses = JSON.parse('{{ addresses_json|escapejs }}');
+    
+        // userSelect.addEventListener('change', function() {
+        //     const selectedUserId = userSelect.value;
+        //     addressSelect.innerHTML = '<option value="">Select Address</option>';
+        //     addresses[selectedUserId].forEach(function(address) {
+        //         const option = document.createElement('option');
+        //         option.value = address.id;
+        //         option.textContent = `${address.house}, ${address.street}, ${address.country}`;
+        //         addressSelect.appendChild(option);
+        //     });
+        // });
+        // const existing_books = JSON.parse('{%for added_book in object.books.all%}{{added_book.id}}{%endfor%}');
+        // // const data = JSON.parse(``);
+
+        // console.log("existing books ", existing_books);
+    
+    
+        const booksSection = document.getElementById('books-section');
+        const addBookButton = document.getElementById('add-book-button');
+        const booksList = document.getElementById('books-list');
+
+        let bookCount = Math.max(JSON.parse("{{object.books.all | length}}"), 1);
+        console.log("bookcount ", bookCount);
+            
+        function removeBook(bookSection) {
+            booksSection.removeChild(bookSection);
+        }
+    
+        function addBook() {
+            bookCount++;
+    
+            
+            const newBookSection = document.createElement('div');
+            newBookSection.classList.add('mb-4', 'book-section');
+            newBookSection.innerHTML = `
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="book${bookCount}">
+                    Select Book:
+                </label>
+                <div class="flex gap-4">
+                    <select data-index="${bookCount-1}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline book-dropdown" id="book${bookCount}">
+                        <option value="">Select Book</option>
+                        {% for book in books %}
+                            <option value="{{ book.id }}">{{ book }}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="quantity${bookCount}">
+                        Quantity:
+                    </label>
+                    <input data-index="${bookCount-1}" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline quantity-field" id="quantity${bookCount}" min="1">
+                    <button type="button" class="remove-book-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Remove</button>    
+                </div>
+                `;
+            
+            booksSection.appendChild(newBookSection);
+            const removeBookButton = newBookSection.querySelector('.remove-book-button');
+            removeBookButton.addEventListener('click', () => removeBook(newBookSection));
+        }
+    
+        addBookButton.addEventListener('click', addBook);
+
+
+
+        booksSection.addEventListener('change', function(event) {
+            const target = event.target;
+            const index = target.dataset.index;
+
+            const currData = JSON.parse(booksList.value);
+            
+
+            if (target.classList.contains('book-dropdown')) {
+                const bookId = target.value;
+                const bookSection = target.closest('.book-section');
+
+                if (index < currData.length) currData[index][0] = bookId;
+                else currData.push([bookId, 0]);
+
+            } else if (target.classList.contains('quantity-field')) {
+                const quantity = target.value;
+                const bookSection = target.closest('.book-section');
+
+                if (index < currData.length) currData[index][1] = quantity;
+                else currData.push([-1, quantity]);
+            }
+            
+            console.log(index);
+            console.log(currData);
+            booksList.value = JSON.stringify(currData);
+        });
+    </script>
+{% endblock content %}
+

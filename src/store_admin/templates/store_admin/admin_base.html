@@ -6,7 +6,9 @@
         <a href="#" class="text-white font-bold text-lg"> {% block header %}Admin {% endblock %} </a>
         <div>
             <a href="{% url 'admin-books' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Books</a>
-            <a href="#" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Orders</a>
+            <a href="{% url 'admin-authors' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Authors</a>
+            <a href="{% url 'admin-publishers' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Publishers</a>
+            <a href="{% url 'admin-orders' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Orders</a>
         </div>
     </div>
 </div>

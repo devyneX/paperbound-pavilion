@@ -8,11 +8,13 @@
         {% if field.field.widget.input_type == 'text' or field.field.widget.input_type == 'number' %}
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id_for_label }}" value="{{ field.value|default_if_none:'' }}">
         {% elif field.field.widget.input_type == 'select' %}
-            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="{{ field.name }}" id="{{ field.id_for_label }}">
+            {% if field.field.choices %}
+            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="{{ field.name }}" id="{{ field.id_for_label }}" {% if field.field.widget.allow_multiple_selected %} multiple {% endif %}>
                 {% for choice in field.field.choices %}
-                    <option value="{{ choice.0 }}" {% if choice.0 == field.value %} selected {% endif %}>{{ choice.1 }}</option>
+                    <option value="{{ choice.0 }}" {% if choice.0 in field.value %} selected {% endif %}>{{ choice.1 }}</option>
                 {% endfor %}
             </select>
+            {% endif %}
         {% else %}
             <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="{{ field.name }}" id="{{ field.id_for_label }}">{{ field.value|default_if_none:'' }}</textarea>
         {% endif %}

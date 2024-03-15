@@ -17,6 +17,13 @@ class Address(BaseModel):
     house = models.CharField()
     street = models.CharField()
     city = models.CharField()
-    state = models.CharField(null=True, blank=True)
-    country = CountryField()
+    state = models.CharField()
+    country = models.CharField(
+        max_length=200,
+        null=True,
+        choices=CountryField().choices + [('', 'Select Country')]
+    )
     post_code = models.CharField()
+
+    def __str__(self):
+        return f'{self.house}, {self.street}, {self.get_country_display()}'
