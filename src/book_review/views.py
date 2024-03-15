@@ -1,4 +1,3 @@
-from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
@@ -10,21 +9,16 @@ class ReviewCreateView(CreateView):
     model = Review
     form_class = ReviewForm
     template_name = 'create_review.html'
-    success_url = reverse_lazy('book_list.html')
-
-    def get(
-        self, request: HttpRequest, pk, *args: str, **kwargs
-    ) -> HttpResponse:
-        self.book = Book.objects.filter(pk=pk)
-        return super().get(request, *args, **kwargs)
+    success_url = reverse_lazy('book-list')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        form.instance.books = Book.objects.get(pk=self.kwargs.get('pk'))
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['book'] = self.book
+        context['book'] = Book.objects.get(pk=self.kwargs.get('pk'))
         return context
 
 
