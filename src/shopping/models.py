@@ -8,6 +8,7 @@ from src.core.models import BaseModel
 class OrderStatusChoices(models.TextChoices):
     PENDING = 'PENDING', 'Pending'
     PROCESSING = 'PROCESSING', 'Processing'
+    CONFIRMED = 'CONFIRMED', 'Confirmed'
     SHIPPED = 'SHIPPED', 'Shipped'
     DELIVERED = 'DELIVERED', 'Delivered'
     CANCELLED = 'CANCELLED', 'Cancelled'
@@ -24,7 +25,9 @@ class Order(BaseModel):
     books = models.ManyToManyField(Book, through='OrderBook')
 
     def total_price(self):
-        return sum([book.price for book in self.orderbooks.all()])
+        return self.orderbooks.filter(out_of_stock=False).aggregate(
+            total_price=models.Sum(models.F('quantity') * models.F('price'))
+        )['total_price']
 
 
 class OrderBook(BaseModel):
@@ -42,3 +45,23 @@ class OrderBook(BaseModel):
     )
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    out_of_stock = models.BooleanField(default=False)
+
+
+class PaymentStatusChoices(models.TextChoices):
+    PENDING = 'PENDING', 'Pending'
+    SUCCESS = 'SUCCESS', 'Success'
+    FAILED = 'FAILED', 'Failed'
+    CANCELLED = 'CANCELLED', 'Cancelled'
+
+
+class Transaction(BaseModel):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    transaction_id = models.CharField(max_length=50, primary_key=True)
+    bank_tran_id = models.CharField(max_length=50, null=True, blank=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    store_amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True
+    )
+    currency = models.CharField(max_length=5)
+    status = models.CharField(max_length=10, choices=PaymentStatusChoices)
