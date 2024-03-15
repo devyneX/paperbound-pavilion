@@ -20,7 +20,7 @@ def add_to_cart(request, book_id):
     return redirect('shopping:checkout')
 
 
-def checkout(request):
+def cart_detail(request):
     cart = request.session.get('cart', {})
     books = Book.objects.filter(id__in=cart.keys())
 
@@ -38,7 +38,7 @@ def checkout(request):
         total += book.price * cart[str(book.pk)]
 
     return render(
-        request, 'shopping/checkout.html', {
+        request, 'shopping/cart-detail.html', {
             'books': book_list,
             'total': total
         }
