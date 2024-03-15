@@ -20,6 +20,8 @@ from django.contrib import admin
 from django.urls import include, path
 
 from src.accounts import urls as accounts_urls
+from src.book_review.urls import reviewurlpatterns
+from src.books.urls import booksurlpatterns
 from src.shopping import urls as shopping_urls
 from src.store_admin import urls as admin_urls
 
@@ -28,6 +30,8 @@ urlpatterns = [
     path('accounts/', include(accounts_urls)),
     path('shopping/', include(shopping_urls)),
     path('admin/', include(admin_urls)),
+    path('books/', include(booksurlpatterns)),
+    path('reviews/', include(reviewurlpatterns))
 ]
 
 if settings.DEBUG:

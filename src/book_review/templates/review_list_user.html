@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Review{% endblock %}
+
+{% block content %}
+<h2>User Reviews</h2>
+<ul>
+    {% for review in reviews %}
+        <li>{{ review.user.username }}: {{ review.comments }} (Ratings: {{ review.ratings }})</li>
+    {% endfor %}
+</ul>
+{% endblock %}
