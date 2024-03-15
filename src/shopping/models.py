@@ -17,7 +17,9 @@ class Order(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
     status = models.CharField(
-        models.CharField(max_length=20, choices=OrderStatusChoices.choices)
+        max_length=20,
+        choices=OrderStatusChoices.choices,
+        default=OrderStatusChoices.PENDING
     )
     books = models.ManyToManyField(Book, through='OrderBook')
 
