@@ -6,6 +6,17 @@ urlpatterns = [
     # path('login/', views.AdminLogin.as_view(), name='admin-login'),
     path('', views.AdminDashboard.as_view(), name='admin-dashboard'),
 
+    # USER PATHS
+    path('users/', views.UsersList.as_view(), name='admin-users'),
+    path(
+        'users/create/', views.UsersCreate.as_view(), name='admin-user-create'
+    ),
+    path(
+        'users/update/<int:pk>',
+        views.UsersUpdate.as_view(),
+        name='admin-user-update'
+    ),
+
     # BOOK PATHS
     path('books/', views.BooksList.as_view(), name='admin-books'),
     path(

@@ -3,8 +3,9 @@
 {% block navbar %}
 <div class="bg-cyan-500 p-4">
     <div class="container mx-auto flex justify-between items-center">
-        <a href="#" class="text-white font-bold text-lg"> {% block header %}Admin {% endblock %} </a>
+        <a href="/admin" class="text-white font-bold text-lg"> {% block header %}Admin {% endblock %} </a>
         <div>
+            <a href="{% url 'admin-users' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Users</a>
             <a href="{% url 'admin-books' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Books</a>
             <a href="{% url 'admin-authors' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Authors</a>
             <a href="{% url 'admin-publishers' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Publishers</a>
