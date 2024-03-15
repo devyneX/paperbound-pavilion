@@ -1,7 +1,20 @@
-from django.shortcuts import get_object_or_404, render  # noqa
+from django.apps import apps
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import DetailView, ListView
 
 from .models import Book
+
+Review = apps.get_model('book_review', 'Review')
+
+
+def get_username_by_id(user_id):
+    try:
+        user = User.objects.get(id=user_id)
+        username = user.username
+        return username
+    except User.DoesNotExist:
+        return None
 
 
 class BookListView(ListView):
@@ -18,5 +31,6 @@ class BookDetailView(DetailView):
 
     def get(self, request, pk):
         book = get_object_or_404(Book, pk=pk)
-        context = {'book': book}
+        review = Review.objects.filter(pk=pk)
+        context = {'book': book, 'review': review[:3]}
         return render(request, self.template_name, context)

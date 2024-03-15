@@ -7,8 +7,19 @@
       <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ book.title }}</h2>
       <h3 class="text-sm text-gray-600 mb-2">{{ book.author }}</h3>
       <p class="text-sm text-gray-700 mb-2"><strong>Genre:</strong> {{ book.genre }}</p>
+      <p class="text-sm text-gray-700 mb-2"><strong>Language:</strong> {{ book.language }}</p>
       <p class="text-sm text-gray-700 mb-2"><strong>Description:</strong> {{ book.description }}</p>
+      <p class="text-sm text-gray-700 mb-2"><strong>Publisher:</strong> {{ book.publisher }}</p>
       <p class="text-sm text-gray-700 mb-2"><strong>Price:</strong> {{ book.price }}</p>
+      <a href="#" class="btn btn-outline-success" role="button">Buy Now</a>
+      <hr><br>
+      {% for r in review %}
+        {{r.user.username}}
+        <p> Ratings: {{r.ratings}} </p>
+        <p>{{r.comments}}</p>
+      {% endfor %}
+      <brr><hr>
+      <a href="{% url 'create_review' pk=book.pk %}"> Add a review</a>
     </div>
   </div>
 </div>

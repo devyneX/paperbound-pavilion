@@ -6,20 +6,9 @@
 {{ user.is_authenticated }}
 <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
-        <form class="mt-8 space-y-6" method="POST" action="{% url 'create_review' %}">
-            <div>
-                <label for="book" class="sr-only">Book</label>
-                <select id="book" name="books" autocomplete="book" required
-                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
-                    <option value="" disabled selected>Select a book</option>
-                    {% for book in books %}
-                        <option value="{{ book.id }}">{{ book.title }}</option>
-                    {% endfor %}
-                </select>
-                {% if form.errors.book %}
-                    <p class="text-red-500 text-xs italic">{{ form.errors.book }}</p>
-                {% endif %}
-            </div>
+        <form class="mt-8 space-y-6" method="POST" action="{% url 'create_review' pk=book.pk %}>    ">
+
+            
             {% csrf_token %}
             <div class="rounded-md shadow-sm -space-y-px">
                 <div>
