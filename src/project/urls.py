@@ -26,8 +26,8 @@ from src.books.urls import booksurlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include(urlpatterns)),
-    path('', include(booksurlpatterns)),
-    path('', include(reviewurlpatterns))
+    path('books/', include(booksurlpatterns)),
+    path('reviews/', include(reviewurlpatterns))
 ]
 
 if settings.DEBUG:
