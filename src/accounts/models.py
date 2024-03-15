@@ -17,11 +17,9 @@ class Address(BaseModel):
     house = models.CharField()
     street = models.CharField()
     city = models.CharField()
-    state = models.CharField()
+    state = models.CharField(blank=True, null=True)
     country = models.CharField(
-        max_length=200,
-        null=True,
-        choices=CountryField().choices + [('', 'Select Country')]
+        max_length=200, null=True, choices=CountryField().choices
     )
     post_code = models.CharField()
 
