@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+  <div class="flex justify-center items-start m-10">
+    
+    <div class="text-center">
+      
+      <h1>Cart</h1>
+      <table>
+        <thead>
+          <tr>
+            <th class="text-left px-2">Book</th>
+            <th class="text-left px-2">Quantity</th>
+            <th class="text-left px-2">Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+          <tr>
+            <td class="text-left px-2">{{ book.title }}</td>
+            <td class="text-center px-2">{{ book.quantity }}</td>
+            <td class="px-2">{{ book.total_price }}</td>
+            <td class="px-2"><button class="bg-red-500 px-2 py-1" onclick="location.href=`{% url 'shopping:remove_from_cart' book_id=book.id %}`">Remove</button></td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <td class="text-left px-2"></td>
+          <td class="text-center px-2 font-bold">Total</td>
+          <td class="px-2">{{ total }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <button class="bg-blue-500 px-2 py-1" onclick="location.href='{% url 'shopping:checkout' %}'">Checkout</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}
