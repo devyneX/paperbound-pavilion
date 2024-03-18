@@ -30,6 +30,10 @@ migrate:
 migrations:
 	poetry run python -m src.manage makemigrations
 
+.PHONY: run-celery
+run-celery:
+	poetry run celery -A src.project worker -l INFO
+
 .PHONY: run-dependencies
 run-dependencies:
 	test -f .env || touch .env
