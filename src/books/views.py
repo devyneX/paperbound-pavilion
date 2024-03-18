@@ -5,7 +5,8 @@ from django.shortcuts import get_object_or_404, render
 from django.views import View
 from django.views.generic import DetailView, ListView
 
-from .models import Book
+from .choices import GenreChoices, LanguageChoices
+from .models import Author, Book, Publisher
 
 Review = apps.get_model('book_review', 'Review')
 
@@ -66,7 +67,7 @@ class BookSearch(View):
         # Filter by price range
         min_price = request.GET.get('min_price')
         max_price = request.GET.get('max_price')
-        if min_price is not None and max_price is not None:
+        if min_price and max_price:
             books = books.filter(price__range=(min_price, max_price))
 
         # Filter by publication date range
@@ -92,6 +93,14 @@ class BookSearch(View):
         if publisher:
             books = books.filter(publisher__name=publisher)
 
-        # import pdb
-        # pdb.set_trace()
-        return render(request, 'book_search_result.html', {'books': books})
+        context = {}
+        context['books'] = books
+        context['genres'] = GenreChoices.choices
+        context['languages'] = LanguageChoices.choices
+        # Add authors to the context
+        context['authors'] = Author.objects.all()
+        # Add publishers to the context
+        context['publishers'] = Publisher.objects.all()
+        context['params'] = request.GET
+
+        return render(request, 'book_search_result.html', context)
