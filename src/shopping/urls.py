@@ -14,6 +14,16 @@ urlpatterns = [
         name='remove_from_cart'
     ),
     path('cart/', cart_views.cart_detail, name='cart-detail'),
+    path(
+        'orders/',
+        order_views.OrderHistoryView.as_view(),
+        name='order-history'
+    ),
+    path(
+        'order/<int:pk>/',
+        order_views.OrderDetailView.as_view(),
+        name='order-detail'
+    ),
     path('checkout/', order_views.PlaceOrderView.as_view(), name='checkout'),
     path(
         'address/add/',

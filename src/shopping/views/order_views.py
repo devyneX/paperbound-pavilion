@@ -1,11 +1,14 @@
 from django.contrib import messages
+from django.db import models
 from django.db.utils import IntegrityError
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 
 from src.accounts.models import Address
 from src.books.models import Book
@@ -15,6 +18,31 @@ from ..models import (
     Order, OrderBook, OrderStatusChoices, PaymentStatusChoices, Transaction
 )
 from ..utils import init_getway, validate_failure_response, verify_payment
+
+
+class OrderHistoryView(ListView):
+    model = Order
+    template_name = 'shopping/order-history.html'
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user
+                                    ).order_by('-created_at')
+
+
+class OrderDetailView(DetailView):
+    model = Order
+    template_name = 'shopping/order-detail.html'
+    context_object_name = 'order'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['books'] = self.object.orderbooks.annotate(
+            title=models.F('book__title')
+        ).annotate(
+            total_price=models.F('book__price') * models.F('quantity')
+        ).values('title', 'quantity', 'price', 'total_price', 'out_of_stock')
+        return context
 
 
 class PlaceOrderView(CreateView):
