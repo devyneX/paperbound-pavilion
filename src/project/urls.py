@@ -33,6 +33,7 @@ urlpatterns = [
     path('books/', include(booksurlpatterns)),
     path('reviews/', include(reviewurlpatterns))
 ]
+urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
 
 if settings.DEBUG:
     urlpatterns += static(
