@@ -10,7 +10,7 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['address']
-        widgets = {'address': forms.Select(attrs={'class': 'form-control'})}
+        widgets = {'address': forms.Select()}
 
     def __init__(self, *args, **kwargs):
         pk = kwargs.pop('user_id')

@@ -56,7 +56,12 @@ class PaymentStatusChoices(models.TextChoices):
 
 
 class Transaction(BaseModel):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.OneToOneField(
+        Order,
+        on_delete=models.CASCADE,
+        related_name='transaction',
+        related_query_name='transaction'
+    )
     transaction_id = models.CharField(max_length=50, primary_key=True)
     bank_tran_id = models.CharField(max_length=50, null=True, blank=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)

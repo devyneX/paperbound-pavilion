@@ -10,7 +10,7 @@ def format_address(address):
         'address1': f'{address.house}, {address.street}',
         'city': address.city,
         'state': address.state if address.state else '',
-        'country': address.country.name,
+        'country': address.get_country_display(),
         'post_code': address.post_code
     }
 
@@ -18,7 +18,7 @@ def format_address(address):
 def init_getway(request, amount, customer, address, books, urls):
     sslcz = SSLCOMMERZ(settings.SSL_SESSIONS_CONFIG)
 
-    # address = format_address(address)
+    address = format_address(address)
 
     post_body = {
         'total_amount': Decimal(amount),
@@ -46,7 +46,7 @@ def init_getway(request, amount, customer, address, books, urls):
 
     response = sslcz.createSession(post_body)
 
-    return response
+    return post_body['tran_id'], response
 
 
 def verify_payment(post_body):
@@ -55,3 +55,8 @@ def verify_payment(post_body):
         return sslcz.validationTransactionOrder(post_body['val_id'])
     else:
         return False
+
+
+def validate_failure_response(post_body):
+    sslcz = SSLCOMMERZ(settings.SSL_SESSIONS_CONFIG)
+    return sslcz.hash_validate_ipn(post_body)

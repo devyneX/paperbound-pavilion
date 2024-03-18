@@ -17,7 +17,7 @@ def add_to_cart(request, book_id):
     cart[str(book.pk)] = cart.get(str(book.pk), 0) + 1
     request.session.modified = True
     messages.success(request, 'Book added to cart successfully.')
-    return redirect('shopping:checkout')
+    return redirect('shopping:cart-detail')
 
 
 def cart_detail(request):
@@ -55,4 +55,4 @@ def remove_from_cart(request, book_id):
             del cart[str(book.pk)]
         request.session.modified = True
         messages.success(request, 'Book removed from cart successfully.')
-    return redirect('shopping:checkout')
+    return redirect('shopping:cart-detail')

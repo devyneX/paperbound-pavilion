@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.db.utils import IntegrityError
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView
@@ -10,8 +11,10 @@ from src.accounts.models import Address
 from src.books.models import Book
 
 from ..forms import OrderForm
-from ..models import Order, OrderBook, Transaction
-from ..utils import init_getway, verify_payment
+from ..models import (
+    Order, OrderBook, OrderStatusChoices, PaymentStatusChoices, Transaction
+)
+from ..utils import init_getway, validate_failure_response, verify_payment
 
 
 class PlaceOrderView(CreateView):
@@ -21,17 +24,19 @@ class PlaceOrderView(CreateView):
 
     def get_success_url(self):
         pk = self.object.pk
-        return reverse('shopping:payment', kwargs={'id': pk})
+        return reverse('shopping:payment', kwargs={'pk': pk})
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
+        print(self.request.user)
         kwargs['user_id'] = self.request.user.pk
+        print(kwargs['user_id'])
         return kwargs
 
     def form_valid(self, form):
         cart = self.request.session.get('cart', {})
         if len(cart) == 0:
-            return redirect('shopping:cart_detail')
+            return redirect('shopping:cart-detail')
 
         form.instance.user = self.request.user
 
@@ -54,7 +59,7 @@ class PlaceOrderView(CreateView):
                 continue
 
         self.request.session['cart'] = {}
-        return self.get_success_url()
+        return redirect(self.get_success_url())
 
 
 class AddressCreateView(CreateView):
@@ -72,22 +77,26 @@ class PaymentView(View):
 
     def get(self, request, pk):
         order = Order.objects.get(pk=pk)
+        if order.status != OrderStatusChoices.PENDING:
+            return redirect('shopping:cart-detail')
         books = order.books.all()
         amount = order.total_price()
         customer = request.user
-        address = Address.objects.get(user=customer)
+        address = order.address
         urls = {
-            'success': reverse('shopping:post_payment', kwargs={'id': id}),
-            'fail': reverse('shopping:post_payment', kwargs={'id': id}),
-            'cancel': reverse('shopping:post_payment', kwargs={'id': id}),
-            'ipn': reverse('shopping:ipn', kwargs={'id': id})
+            'success': reverse('shopping:payment_success', kwargs={'pk': pk}),
+            'fail': reverse('shopping:payment_fail', kwargs={'pk': pk}),
+            'cancel': reverse('shopping:payment_cancel', kwargs={'pk': pk}),
+            'ipn': reverse('shopping:ipn', kwargs={'pk': pk})
         }
-        response = init_getway(request, amount, customer, address, books, urls)
+        tran_id, response = init_getway(
+            request, amount, customer, address, books, urls
+        )
 
         if response['status'] == 'SUCCESS':
             Transaction.objects.create(
                 order=order,
-                id=response['tran_id'],
+                transaction_id=tran_id,
                 amount=amount,
                 currency='BDT',
                 status='PENDING'
@@ -97,30 +106,57 @@ class PaymentView(View):
         return redirect('shopping:payment_fail', pk=pk)
 
 
+@method_decorator(csrf_exempt, name='dispatch')
+class PaymentSuccess(View):
+
+    def post(self, request, pk):
+        response = verify_payment(request.POST)
+        if response and response['status'] == 'VALID':
+            order = get_object_or_404(Order, pk=pk)
+            order.status = OrderStatusChoices.PROCESSING
+            order.save()
+            transaction = Transaction.objects.get(
+                transaction_id=response['tran_id']
+            )
+            transaction.bank_tran_id = response['bank_tran_id']
+            transaction.store_amount = response['store_amount']
+            transaction.status = PaymentStatusChoices.SUCCESS
+            transaction.save()
+            messages.success(request, 'Payment Successful')
+        return redirect('shopping:cart-detail')
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class PaymentFail(View):
+
+    def post(self, request, pk):
+        if validate_failure_response(request.POST):
+            order = get_object_or_404(Order, pk=pk)
+            order.status = OrderStatusChoices.CANCELLED
+            order.save()
+            cart = {}
+            for order_item in order.orderbooks.all():
+                order_item.book.quantity += order_item.quantity
+                order_item.book.save()
+
+                cart[order_item.book.pk] = order_item.quantity
+
+            request.session['cart'] = cart
+
+            transaction = Transaction.objects.get(
+                transaction_id=request.POST['tran_id']
+            )
+            transaction.status = PaymentStatusChoices.FAILED
+            transaction.bank_tran_id = request.POST['bank_tran_id']
+            transaction.save()
+            messages.error(request, 'Payment Failed')
+
+            return redirect('shopping:cart-detail')
+
+
 @csrf_exempt
-def post_payment(request, pk):
-    messages.info(
-        request, 'You will receive a confirmation email shortly after payment \
-            validation.'
-    )
-    # change this to dashboard
-    return redirect('shopping:checkout')
-
-
-# @csrf_exempt
-# def payment_success(request, id):
-#     print(f'successful payment for order-{id}')
-#     print(request.POST)
-#     return redirect('shopping:checkout')
-
-# @csrf_exempt
-# def payment_fail(request, id):
-#     print('fail:', request.POST)
-#     return redirect('shopping:checkout')
-
-# @csrf_exempt
-# def payment_cancel(request, id):
-#     return redirect('shopping:payment_fail', id=id)
+def payment_cancel(request, pk):
+    return redirect('shopping:payment_fail', pk=pk)
 
 
 @csrf_exempt

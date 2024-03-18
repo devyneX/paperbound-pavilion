@@ -4,7 +4,7 @@
 {% block title %}Cart{% endblock %}
 
 {% block content %}
-  <div class="flex justify-between items-start m-10">
+  <div class="flex justify-center items-start m-10">
     
     <div class="text-center">
       
@@ -34,9 +34,9 @@
         </tr>
         </tbody>
       </table>
-    </div>
-    <div class="text-center px-10">
-      <h1>Checkout</h1>
+      <div class="text-center">
+        <button class="bg-blue-500 px-2 py-1" onclick="location.href='{% url 'shopping:checkout' %}'">Checkout</button>
+      </div>
     </div>
   </div>
 {% endblock %}

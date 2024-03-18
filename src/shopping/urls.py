@@ -13,16 +13,30 @@ urlpatterns = [
         cart_views.remove_from_cart,
         name='remove_from_cart'
     ),
-    path('cart', cart_views.cart_detail, name='cart-detail'),
-    path('checkout', order_views.PlaceOrderView.as_view(), name='checkout'),
+    path('cart/', cart_views.cart_detail, name='cart-detail'),
+    path('checkout/', order_views.PlaceOrderView.as_view(), name='checkout'),
     path(
-        'address/add',
+        'address/add/',
         order_views.AddressCreateView.as_view(),
         name='address-create'
     ),
     path(
-        'payment/<int:pk>', order_views.PaymentView.as_view(), name='payment'
+        'payment/<int:pk>/', order_views.PaymentView.as_view(), name='payment'
     ),
-    path('payment/<int:pk>/ipn', order_views.ipn, name='ipn'),
-    path('payment/forward', order_views.post_payment, name='post-payment'),
+    path(
+        'payment/<int:pk>/success/',
+        order_views.PaymentSuccess.as_view(),
+        name='payment_success'
+    ),
+    path(
+        'payment/<int:pk>/fail/',
+        order_views.PaymentFail.as_view(),
+        name='payment_fail'
+    ),
+    path(
+        'payment/<int:pk>/cancel/',
+        order_views.payment_cancel,
+        name='payment_cancel'
+    ),
+    path('payment/<int:pk>/ipn/', order_views.ipn, name='ipn'),
 ]
