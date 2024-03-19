@@ -12,6 +12,7 @@ from django.views.generic.list import ListView
 
 from src.accounts.models import Address
 from src.books.models import Book
+from src.shopping.tasks import send_confirmation_email
 
 from ..forms import OrderForm
 from ..models import (
@@ -56,9 +57,7 @@ class PlaceOrderView(CreateView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        print(self.request.user)
         kwargs['user_id'] = self.request.user.pk
-        print(kwargs['user_id'])
         return kwargs
 
     def form_valid(self, form):
@@ -151,6 +150,7 @@ class PaymentSuccess(View):
             transaction.status = PaymentStatusChoices.SUCCESS
             transaction.save()
             messages.success(request, 'Payment Successful')
+            send_confirmation_email.delay(order.pk)
         return redirect('shopping:cart-detail')
 
 

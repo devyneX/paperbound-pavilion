@@ -1,3 +1,4 @@
+import os  # noqa
 from pathlib import Path
 
 from split_settings.tools import include
@@ -9,3 +10,4 @@ include('base.py',)
 include('app.py')
 include('sslcommerz.py')
 include('celery.py')
+include('mail.py')
