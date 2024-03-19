@@ -2,6 +2,7 @@ import json
 
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.views.generic import CreateView, ListView, TemplateView, UpdateView
 
 from src.accounts.models import User
@@ -18,6 +19,33 @@ from .forms import (
 
 class AdminDashboard(TemplateView):
     template_name = 'store_admin/dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Calculate total counts
+        total_books = Book.objects.count()
+        total_orders = Order.objects.count()
+        total_users = User.objects.count()
+
+        # Calculate counts for orders and books in the last 30 days
+        thirty_days_ago = timezone.now() - timezone.timedelta(days=30)
+        orders_last_30_days = Order.objects.filter(
+            created_at__gte=thirty_days_ago
+        ).count()
+        books_last_30_days = Book.objects.filter(
+            created_at__gte=thirty_days_ago
+        ).count()
+
+        context.update({
+            'total_books': total_books,
+            'total_orders': total_orders,
+            'total_users': total_users,
+            'orders_last_30_days': orders_last_30_days,
+            'books_last_30_days': books_last_30_days,
+        })
+
+        return context
 
 
 # USER VIEWS
