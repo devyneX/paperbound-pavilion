@@ -1,4 +1,6 @@
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView, LogoutView
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -23,12 +25,20 @@ class Login(LoginView):
 class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'register.html'
-    success_url = reverse_lazy('login')
+    success_url = '/'
 
     def form_valid(self, form):
         # Hash the password before saving
         form.instance.set_password(form.cleaned_data['password'])
-        return super().form_valid(form)
+
+        form.save()
+        # get the username and password
+        username = self.request.POST['username']
+        password = self.request.POST['password']
+        # authenticate user then login
+        user = authenticate(username=username, password=password)
+        login(self.request, user)
+        return HttpResponseRedirect(self.get_success_url)
 
 
 class Logout(LogoutView):
