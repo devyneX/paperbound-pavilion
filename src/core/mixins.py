@@ -15,10 +15,14 @@ class SuperuserRequiredMixin(UserPassesTestMixin):
 class CachedViewMixin:
 
     @method_decorator(cache_page(60 * 60 * 2))
+    def dispatch(self, request, *args, **kwargs):
+        self.cache_key = self.request.path
+        return super().dispatch(request, *args, **kwargs)
+
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         return super().get(request, *args, **kwargs)  # type: ignore
 
-    @method_decorator(cache_page(60 * 60 * 2))
     def post(self, request, *args, **kwargs):
-        cache.clear()
+        # Invalidate cache for this specific URL
+        cache.delete(self.cache_key)
         return super().post(request, *args, **kwargs)
