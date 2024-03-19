@@ -17,11 +17,12 @@ INSTALLED_APPS = [
     'silk',
     # local apps
     'src.core',
+    'src.root',
     'src.accounts',
     'src.books',
     'src.shopping',
     'src.book_review',
-    'src.store_admin'
+    'src.store_admin',
 ]
 
 MIDDLEWARE = [
