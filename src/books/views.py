@@ -5,6 +5,8 @@ from django.shortcuts import get_object_or_404, render
 from django.views import View
 from django.views.generic import DetailView, ListView
 
+from src.core.mixins import CachedViewMixin
+
 from .choices import GenreChoices, LanguageChoices
 from .models import Author, Book, Publisher
 
@@ -27,7 +29,7 @@ class BookListView(ListView):
     template_name = 'book_list.html'
 
 
-class BookDetailView(DetailView):
+class BookDetailView(CachedViewMixin, DetailView):
     model = Book
     context_object_name = 'book'
     template_name = 'book_details.html'
@@ -39,7 +41,7 @@ class BookDetailView(DetailView):
         return render(request, self.template_name, context)
 
 
-class BookSearch(View):
+class BookSearch(CachedViewMixin, View):
 
     def get(self, request, *args, **kwargs):
         books = Book.objects.all()

@@ -3,9 +3,10 @@ from django.views.generic import TemplateView
 
 from src.book_review.models import Review
 from src.books.models import Book
+from src.core.mixins import CachedViewMixin
 
 
-class UserHomeView(TemplateView):
+class UserHomeView(CachedViewMixin, TemplateView):
     template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
