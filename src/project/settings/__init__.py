@@ -7,3 +7,5 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 include('base.py',)
 include('app.py')
+include('sslcommerz.py')
+include('celery.py')

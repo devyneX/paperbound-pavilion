@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends '_base.html' %}
 
 {% block title %}Register{% endblock %}
 
@@ -16,6 +16,7 @@
                 <div>
                     <label for="first_name" class="sr-only">First Name</label>
                     <input id="first_name" name="first_name" type="text" required
+                        value="{{ form_initial_data.first_name }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="First Name">
                     <span class="text-red-500 text-xs italic">{{ form.errors.first_name }}</span>
@@ -23,6 +24,7 @@
                 <div>
                     <label for="last_name" class="sr-only">Last Name</label>
                     <input id="last_name" name="last_name" type="text" required
+                        value="{{ form_initial_data.last_name }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Last Name">
                     <span class="text-red-500 text-xs italic">{{ form.errors.last_name }}</span>
@@ -30,6 +32,7 @@
                 <div>
                     <label for="email" class="sr-only">Email</label>
                     <input id="email" name="email" type="email" required
+                        value="{{ form_initial_data.email }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Email">
                     <span class="text-red-500 text-xs italic">{{ form.errors.email }}</span>
@@ -37,6 +40,7 @@
                 <div>
                     <label for="email" class="sr-only">Username</label>
                     <input id="username" name="username" type="text" required
+                        value="{{ form_initial_data.username }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Username">
                     <span class="text-red-500 text-xs italic">{{ form.errors.username }}</span>
@@ -44,16 +48,26 @@
                 <div>
                     <label for="phone" class="sr-only">Phone</label>
                     <input id="phone" name="phone" type="text" required
+                        value="{{ form_initial_data.phone }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Phone">
                     <span class="text-red-500 text-xs italic">{{ form.errors.phone }}</span>
                 </div>
                 <div>
-                    <label for="password" class="sr-only">Password</label>
-                    <input id="password" name="password" type="password" required
+                    <label for="password1" class="sr-only">Password</label>
+                    <input id="password1" name="password1" type="password" required
+                        value="{{ form_initial_data.password1 }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Password">
-                    <span class="text-red-500 text-xs italic">{{ form.errors.password }}</span>
+                    <span class="text-red-500 text-xs italic">{{ form.errors.password1 }}</span>
+                </div>
+                <div>
+                    <label for="password2" class="sr-only">Confirm Password</label>
+                    <input id="password2" name="password2" type="password" required
+                        value="{{ form_initial_data.password2 }}"
+                        class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        placeholder="Confirm Password">
+                    <span class="text-red-500 text-xs italic">{{ form.errors.password2 }}</span>
                 </div>
             </div>
             <div>

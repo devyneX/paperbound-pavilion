@@ -9,6 +9,9 @@ add-lib:
 add-lib-dev:
 	poetry add $(filter-out $@,$(MAKECMDGOALS)) --group dev
 
+.PHONY: manage
+manage:
+	poetry run python -m src.manage $(filter-out $@,$(MAKECMDGOALS))
 
 .PHONY: install
 install:
@@ -29,6 +32,10 @@ migrate:
 .PHONY: migrations
 migrations:
 	poetry run python -m src.manage makemigrations
+
+.PHONY: run-celery
+run-celery:
+	poetry run celery -A src.project worker -l INFO
 
 .PHONY: run-dependencies
 run-dependencies:

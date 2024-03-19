@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+
+
+{% block title %}Order Detail{% endblock %}
+
+{% block content %}
+  <div class="flex justify-center items-start m-10">
+    
+    <div class="text-center">
+      
+      <h1>Order Detail</h1>
+      <h2>Order Date: {{ order.created_at }}</h2>
+      <table class="mt-10 px-5">
+        <thead>
+          <tr>
+            <th class="text-left px-2">Book</th>
+            <th class="text-left px-2">Quantity</th>
+            <th class="text-left px-2">Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+          <tr>
+            <td class="text-left px-2">{{ book.title }}</td>
+            <td class="text-center px-2">{{ book.quantity }}</td>
+            <td class="px-2">{{ book.total_price }}</td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <td class="text-left px-2"></td>
+          <td class="text-center px-2 font-bold">Total</td>
+          <td class="px-2">{{ total }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
