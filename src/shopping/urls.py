@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import cart_views, order_views
+from .views import cart_views, order_views, payment_views
 
 app_name = 'shopping'
 
@@ -31,22 +31,24 @@ urlpatterns = [
         name='address-create'
     ),
     path(
-        'payment/<int:pk>/', order_views.PaymentView.as_view(), name='payment'
+        'payment/<int:pk>/',
+        payment_views.PaymentView.as_view(),
+        name='payment'
     ),
     path(
         'payment/<int:pk>/success/',
-        order_views.PaymentSuccess.as_view(),
+        payment_views.PaymentSuccess.as_view(),
         name='payment_success'
     ),
     path(
         'payment/<int:pk>/fail/',
-        order_views.PaymentFail.as_view(),
+        payment_views.PaymentFail.as_view(),
         name='payment_fail'
     ),
     path(
         'payment/<int:pk>/cancel/',
-        order_views.payment_cancel,
+        payment_views.payment_cancel,
         name='payment_cancel'
     ),
-    path('payment/<int:pk>/ipn/', order_views.ipn, name='ipn'),
+    path('payment/<int:pk>/ipn/', payment_views.ipn, name='ipn'),
 ]

@@ -1,8 +1,7 @@
 from django import forms
 
 from src.accounts.models import Address
-
-from .models import Order
+from src.shopping.models import Order
 
 
 class OrderForm(forms.ModelForm):
