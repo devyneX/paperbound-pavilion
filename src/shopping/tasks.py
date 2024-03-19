@@ -8,7 +8,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
 from reportlab.platypus import SimpleDocTemplate, Spacer, Table, TableStyle
 
-from .models import Order
+from src.shopping.models import Order, OrderStatusChoices
 
 
 def generate_invoice(order, user):
@@ -87,5 +87,8 @@ def send_confirmation_email(order_id):
     )
     email_message.attach_file(attachment)
     email_message.send(fail_silently=False)
+
+    order.status = OrderStatusChoices.CONFIRMED
+    order.save()
 
     os.remove(attachment)
