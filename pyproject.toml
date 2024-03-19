@@ -16,6 +16,7 @@ pip = "^24.0"
 install = "^1.3.5"
 sslcommerz-lib = "^1.0"
 django-silk = "^5.1.0"
+django-redis = "^5.4.0"
 
 
 [tool.poetry.group.dev.dependencies]
