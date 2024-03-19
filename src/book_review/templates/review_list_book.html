@@ -1,12 +1,28 @@
 {% extends '_base.html' %}
 
-{% block title %}Update Review{% endblock %}
-
 {% block content %}
-<h2>Book Reviews</h2>
-<ul>
-    {% for review in reviews %}
-        <li>{{ review.books.title }}: {{ review.comments }} (Ratings: {{ review.ratings }})</li>
-    {% endfor %}
-</ul>
+<div class="min-h-screen flex justify-center items-center bg-gray-100">
+  <div class="flex flex-col items-center">
+      <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
+        <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
+            <h2 class="text-xl font-semibold text-gray-800">{{ book_title}}</h2>
+        </div>
+        <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
+          <h3 class="font-semibold text-gray-800">All Reviews</h3>
+      </div>
+        {% for r in reviews %}
+            <div class="bg-white border border-gray-200 shadow-md rounded-md p-4">
+                <h2>{{r.user.username}}</h2>
+                <p>Ratings: {{r.ratings}}</p>
+                <p>{{r.comments}}</p>
+                {{curr_user}}
+                {% if user.username == r.user.username %}
+                <a href="{% url 'update-review' pk=r.pk %}"class="text-red-500">update</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+      </div>
+  </div>
+</div>
 {% endblock %}
+

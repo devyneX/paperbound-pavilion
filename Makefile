@@ -9,6 +9,9 @@ add-lib:
 add-lib-dev:
 	poetry add $(filter-out $@,$(MAKECMDGOALS)) --group dev
 
+.PHONY: manage
+manage:
+	poetry run python -m src.manage $(filter-out $@,$(MAKECMDGOALS))
 
 .PHONY: install
 install:

@@ -1,13 +1,44 @@
-{% extends '_base.html' %}
+{% extends 'store_admin/admin_base.html' %}
 
 {% block title %}Admin Dashboard {% endblock %}
 
 
 {% block content %}
 
-<div>
-    <a href="">Books</a> <br>
-    <a href="">Orders</a>
+<div class="container mx-auto px-4 py-8">
+    <!-- <h1 class="text-3xl font-bold text-center mb-8">Admin Dashboard</h1> -->
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Total Books -->
+        <div class="bg-cyan-500 rounded-lg p-4 text-white">
+            <h2 class="text-lg font-semibold mb-2">Total Books</h2>
+            <p class="text-4xl font-bold">{{ total_books }}</p>
+        </div>
+
+        <!-- Total Orders -->
+        <div class="bg-indigo-500 rounded-lg p-4 text-white">
+            <h2 class="text-lg font-semibold mb-2">Total Orders</h2>
+            <p class="text-4xl font-bold">{{ total_orders }}</p>
+        </div>
+
+        <!-- Total Users -->
+        <div class="bg-cyan-500 rounded-lg p-4 text-white">
+            <h2 class="text-lg font-semibold mb-2">Total Users</h2>
+            <p class="text-4xl font-bold">{{ total_users }}</p>
+        </div>
+
+        <!-- Orders in Last 30 Days -->
+        <div class="bg-indigo-500 rounded-lg p-4 text-white">
+            <h2 class="text-lg font-semibold mb-2">Orders in Last 30 Days</h2>
+            <p class="text-4xl font-bold">{{ orders_last_30_days }}</p>
+        </div>
+
+        <!-- Books Added in Last 30 Days -->
+        <div class="bg-cyan-500 rounded-lg p-4 text-white">
+            <h2 class="text-lg font-semibold mb-2">Books Added in Last 30 Days</h2>
+            <p class="text-4xl font-bold">{{ books_last_30_days }}</p>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}

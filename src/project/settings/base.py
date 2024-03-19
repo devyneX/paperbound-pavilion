@@ -14,14 +14,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third-party apps
-
+    'silk',
     # local apps
     'src.core',
+    'src.root',
     'src.accounts',
     'src.books',
     'src.shopping',
     'src.book_review',
-    'src.store_admin'
+    'src.store_admin',
 ]
 
 MIDDLEWARE = [
@@ -32,6 +33,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # SILK MIDDLEWARE
+    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = 'src.project.urls'

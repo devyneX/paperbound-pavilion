@@ -22,6 +22,7 @@ from django.urls import include, path
 from src.accounts import urls as accounts_urls
 from src.book_review.urls import reviewurlpatterns
 from src.books.urls import booksurlpatterns
+from src.root import urls as rooturls
 from src.shopping import urls as shopping_urls
 from src.store_admin import urls as admin_urls
 
@@ -31,8 +32,10 @@ urlpatterns = [
     path('shopping/', include(shopping_urls)),
     path('admin/', include(admin_urls)),
     path('books/', include(booksurlpatterns)),
-    path('reviews/', include(reviewurlpatterns))
+    path('reviews/', include(reviewurlpatterns)),
+    path('', include(rooturls)),
 ]
+urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
 
 if settings.DEBUG:
     urlpatterns += static(

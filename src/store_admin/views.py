@@ -2,12 +2,13 @@ import json
 
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.views.generic import CreateView, ListView, TemplateView, UpdateView
 
 from src.accounts.models import User
 from src.books.choices import GenreChoices, LanguageChoices
 from src.books.models import Author, Book, Publisher
-from src.core.mixins import SuperuserRequiredMixin
+from src.core.mixins import CachedViewMixin, SuperuserRequiredMixin
 from src.shopping.models import Order, OrderBook
 
 from .forms import (
@@ -19,22 +20,49 @@ from .forms import (
 class AdminDashboard(TemplateView):
     template_name = 'store_admin/dashboard.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Calculate total counts
+        total_books = Book.objects.count()
+        total_orders = Order.objects.count()
+        total_users = User.objects.count()
+
+        # Calculate counts for orders and books in the last 30 days
+        thirty_days_ago = timezone.now() - timezone.timedelta(days=30)
+        orders_last_30_days = Order.objects.filter(
+            created_at__gte=thirty_days_ago
+        ).count()
+        books_last_30_days = Book.objects.filter(
+            created_at__gte=thirty_days_ago
+        ).count()
+
+        context.update({
+            'total_books': total_books,
+            'total_orders': total_orders,
+            'total_users': total_users,
+            'orders_last_30_days': orders_last_30_days,
+            'books_last_30_days': books_last_30_days,
+        })
+
+        return context
+
 
 # USER VIEWS
-class UsersList(SuperuserRequiredMixin, ListView):
+class UsersList(SuperuserRequiredMixin, CachedViewMixin, ListView):
     model = User
     template_name = 'store_admin/users.html'
     paginate_by = 20
 
 
-class UsersCreate(SuperuserRequiredMixin, CreateView):
+class UsersCreate(SuperuserRequiredMixin, CachedViewMixin, CreateView):
     model = User
     form_class = UserCreateForm
     template_name = 'store_admin/user-create.html'
     success_url = reverse_lazy('admin-users')
 
 
-class UsersUpdate(SuperuserRequiredMixin, UpdateView):
+class UsersUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
     model = User
     form_class = UserCreateForm
     template_name = 'store_admin/user-update.html'
@@ -42,13 +70,13 @@ class UsersUpdate(SuperuserRequiredMixin, UpdateView):
 
 
 # BOOK VIEWS
-class BooksList(SuperuserRequiredMixin, ListView):
+class BooksList(SuperuserRequiredMixin, CachedViewMixin, ListView):
     model = Book
     template_name = 'store_admin/books.html'
     paginate_by = 20
 
 
-class BooksCreate(SuperuserRequiredMixin, CreateView):
+class BooksCreate(SuperuserRequiredMixin, CachedViewMixin, CreateView):
     model = Book
     form_class = BookCreateForm
     template_name = 'store_admin/book-create.html'
@@ -66,7 +94,7 @@ class BooksCreate(SuperuserRequiredMixin, CreateView):
         return context
 
 
-class BooksUpdate(SuperuserRequiredMixin, UpdateView):
+class BooksUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
     model = Book
     form_class = BookCreateForm
     template_name = 'store_admin/book-update.html'
@@ -85,20 +113,20 @@ class BooksUpdate(SuperuserRequiredMixin, UpdateView):
 
 
 # AUTHOR VIEWS
-class AuthorsList(SuperuserRequiredMixin, ListView):
+class AuthorsList(SuperuserRequiredMixin, CachedViewMixin, ListView):
     model = Author
     template_name = 'store_admin/authors.html'
     paginate_by = 20
 
 
-class AuthorsCreate(SuperuserRequiredMixin, CreateView):
+class AuthorsCreate(SuperuserRequiredMixin, CachedViewMixin, CreateView):
     model = Author
     form_class = AuthorCreateForm
     template_name = 'store_admin/author-create.html'
     success_url = reverse_lazy('admin-authors')
 
 
-class AuthorsUpdate(SuperuserRequiredMixin, UpdateView):
+class AuthorsUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
     model = Author
     form_class = AuthorCreateForm
     template_name = 'store_admin/author-update.html'
@@ -106,20 +134,20 @@ class AuthorsUpdate(SuperuserRequiredMixin, UpdateView):
 
 
 # PUBLISHER VIEWS
-class PublishersList(SuperuserRequiredMixin, ListView):
+class PublishersList(SuperuserRequiredMixin, CachedViewMixin, ListView):
     model = Publisher
     template_name = 'store_admin/publishers.html'
     paginate_by = 20
 
 
-class PublishersCreate(SuperuserRequiredMixin, CreateView):
+class PublishersCreate(SuperuserRequiredMixin, CachedViewMixin, CreateView):
     model = Publisher
     form_class = PublisherCreateForm
     template_name = 'store_admin/publisher-create.html'
     success_url = reverse_lazy('admin-publishers')
 
 
-class PublishersUpdate(SuperuserRequiredMixin, UpdateView):
+class PublishersUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
     model = Publisher
     form_class = PublisherCreateForm
     template_name = 'store_admin/publisher-update.html'
@@ -127,13 +155,13 @@ class PublishersUpdate(SuperuserRequiredMixin, UpdateView):
 
 
 # ORDER VIEWS
-class OrdersList(SuperuserRequiredMixin, ListView):
+class OrdersList(SuperuserRequiredMixin, CachedViewMixin, ListView):
     model = Order
     template_name = 'store_admin/orders.html'
     paginate_by = 20
 
 
-class OrdersUpdate(SuperuserRequiredMixin, UpdateView):
+class OrdersUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
     model = Order
     form_class = OrderCreateForm
     template_name = 'store_admin/order-update.html'
