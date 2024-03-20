@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
 
 from src.core.models import BaseModel
@@ -7,6 +8,7 @@ from src.core.models import BaseModel
 
 class User(AbstractUser):
     phone = models.CharField(max_length=20)
+    email = models.EmailField(_('email address'), unique=True)
 
 
 class Address(BaseModel):
