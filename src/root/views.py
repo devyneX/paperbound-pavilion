@@ -1,4 +1,5 @@
 from django.db.models import Avg, Count
+from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
 from src.book_review.models import Review
@@ -37,3 +38,13 @@ class UserHomeView(CachedViewMixin, TemplateView):
         context['latest_reviews'] = latest_reviews
 
         return context
+
+
+def set_language(request):
+    if 'language' in request.GET:
+        next_url = request.META.get('HTTP_REFERER')
+        lang_code = request.GET['language']
+        response = redirect(next_url)
+        response.set_cookie('django_language', lang_code)
+        return response
+    return redirect('/')

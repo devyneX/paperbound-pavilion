@@ -1,4 +1,5 @@
 {% extends 'store_admin/admin_base.html' %}
+{% load i18n %}
 
 {% block title %}Books List{% endblock %}
 {% block header %} Books {% endblock %}
@@ -7,10 +8,10 @@
 {% block content %}
 <div class="container mx-auto p-4">
     <div class="flex gap-4 mb-2">
-        <h2 class="text-3xl font-semibold mb-4">Books List</h2>
+        <h2 class="text-3xl font-semibold mb-4">{% trans "BooksList" %}</h2>
         <a href="{% url 'admin-book-create' %}"
             class="group relative flex justify-center items-center px-4 border border-transparent text-sm text-center font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            create new book
+            {% trans "CreateBookBtnText" %}
         </a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -19,13 +20,13 @@
             <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
                 <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
                 <a href="{% url 'admin-book-update' book.id %}"
-                    class="text-blue-600 hover:text-blue-900 font-semibold">Edit</a>
+                    class="text-blue-600 hover:text-blue-900 font-semibold">{% trans "Edit" %}</a>
             </div>
             <div class="p-4">
-                <p class="text-gray-600 mb-2"><strong>Author:</strong> {{ book.author }}</p>
-                <p class="text-gray-600 mb-2"><strong>Language:</strong> {{ book.get_language_display }}</p>
-                <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ book.get_genre_display }}</p>
-                <p class="text-gray-600 mb-2"><strong>Publisher:</strong> {{ book.publisher }}</p>
+                <p class="text-gray-600 mb-2"><strong>{% trans "Author" %}:</strong> {{ book.author }}</p>
+                <p class="text-gray-600 mb-2"><strong>{% trans "Language" %}:</strong> {{ book.get_language_display }}</p>
+                <p class="text-gray-600 mb-2"><strong>{% trans "Genre" %}:</strong> {{ book.get_genre_display }}</p>
+                <p class="text-gray-600 mb-2"><strong>{% trans "Genre" %}:</strong> {{ book.publisher }}</p>
             </div>
         </div>
         {% endfor %}

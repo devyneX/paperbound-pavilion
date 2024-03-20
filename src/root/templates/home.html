@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}Home{% endblock %}
 
 
 {% block content %}
 
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-center mb-8">Welcome</h1>
+    <h1 class="text-3xl font-bold text-center mb-8"> {% trans "Welcome" %}</h1>
     
     <!-- Latest Books List -->
     <div class="mb-8">
-        <h2 class="text-xl font-semibold mb-4">Latest Books</h2>
+        <h2 class="text-xl font-semibold mb-4"> {% trans "LatestBooks" %} </h2>
         <div class="flex overflow-x-auto scrolling-wrapper">
             {% for book in latest_books %}
             <div class="max-w-xs mx-2 bg-cyan-500 text-white shadow-md rounded-lg p-4">
@@ -24,7 +24,7 @@
 
     <!-- Most Popular Books List -->
     <div class="mb-8">
-        <h2 class="text-xl font-semibold mb-4">Most Popular Books</h2>
+        <h2 class="text-xl font-semibold mb-4"> {% trans "MostPopularBooks" %}</h2>
         <div class="flex overflow-x-auto scrolling-wrapper">
             {% for book in most_popular_books %}
             <div class="max-w-xs mx-2 bg-indigo-500 text-white shadow-md rounded-lg p-4">
@@ -38,7 +38,7 @@
 
     <!-- Highest Rated Books List -->
     <div>
-        <h2 class="text-xl font-semibold mb-4">Highest Rated Books</h2>
+        <h2 class="text-xl font-semibold mb-4"> {% trans "HighestRatedBooks" %} </h2>
         <div class="flex overflow-x-auto scrolling-wrapper">
             {% for book in highest_rated_books %}
             <div class="max-w-xs mx-2 bg-cyan-500 text-white shadow-md rounded-lg p-4">
