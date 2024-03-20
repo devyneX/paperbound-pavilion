@@ -1,8 +1,9 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.cache import cache
 from django.http import HttpRequest, HttpResponse
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
+
+# from django.utils.decorators import method_decorator
+# from django.views.decorators.cache import cache_page
 
 
 # Custom mixin to check if the user is a superuser
@@ -14,7 +15,7 @@ class SuperuserRequiredMixin(UserPassesTestMixin):
 
 class CachedViewMixin:
 
-    @method_decorator(cache_page(60 * 60 * 2))
+    # @method_decorator(cache_page(60 * 60 * 2))
     def dispatch(self, request, *args, **kwargs):
         self.cache_key = self.request.path
         return super().dispatch(request, *args, **kwargs)

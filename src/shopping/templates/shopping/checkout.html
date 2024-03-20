@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Checkout{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans "Checkout" %}{% endblock %}
 
 {% block content %}
   <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden m-10 p-4">
-    <h2 class="text-3xl font-semibold mb-4">Checkout</h2>
+    <h2 class="text-3xl font-semibold mb-4">{% trans "Checkout" %}</h2>
     Add your address <a class="text-blue-500" href="{% url 'shopping:address-create' %}">here</a> if you haven't already.
     {% include "_form.html" with submit_text="Place Order" %}
   </div>

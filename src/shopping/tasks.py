@@ -22,7 +22,7 @@ def generate_invoice(order, user):
     company_data = [[
         'Company Name: Paperbound Pavilion'
     ], ['Description: An online bookstore offering a wide variety of books.'],
-                    ['Address: 123 Main St, Anytown, USA'],
+                    ['Address: 221B Baker Street, London, England'],
                     ['Contact: info@paperboundpavilion.com'], ['', '', '', '']]
 
     company_table = Table(company_data)
@@ -81,7 +81,8 @@ def send_confirmation_email(order_id):
     generate_invoice(order, order.user)
     attachment = settings.EMAIL_ATTACHMENT_PATH + f'/invoice-{order.id}.pdf'
     message = 'Your order has been confirmed. Here is your invoice. \
-        Thank you for shopping with us.',
+        Thank you for shopping with us.'
+
     email_message = EmailMessage(
         'Order Confirmation', message, settings.EMAIL_HOST_USER, recipient_list
     )

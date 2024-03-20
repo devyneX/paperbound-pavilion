@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Order History{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans "OrderHistory" %}{% endblock %}
 
 {% block content %}
 <div class="container mx-auto p-4">
     <div class="flex gap-4 mb-2">
-        <h2 class="text-3xl font-semibold mb-4">Order History</h2>
+        <h2 class="text-3xl font-semibold mb-4">{% trans "OrderHistory" %}</h2>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {% for order in orders %}
         <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
             <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
                 <h3 class="text-xl font-semibold text-gray-800">{{ order.user.first_name }}</h3>
                 <a href="{% url 'shopping:order-detail' order.id %}"
-                    class="text-blue-600 hover:text-blue-900 font-semibold">Edit</a>
+                    class="text-blue-600 hover:text-blue-900 font-semibold">{% trans "View" %}</a>
             </div>
             <div class="p-4">
-                <p class="text-gray-600 mb-2"><strong>Address:</strong> {{ order.address }}</p>
-                <!-- <p class="text-gray-600 mb-2"><strong>Language:</strong> {{ order.get_language_display }}</p>
-                <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ order.get_genre_display }}</p>
-                <p class="text-gray-600 mb-2"><strong>Order:</strong> {{ order.order }}</p> -->
+                <p class="text-gray-600 mb-2"><strong>{% trans "Date" %}:</strong> {{ order.created_at }}</p>
+                <p class="text-gray-600 mb-2"><strong>{% trans "Address" %}:</strong> {{ order.address }}</p>
             </div>
         </div>
         {% endfor %}

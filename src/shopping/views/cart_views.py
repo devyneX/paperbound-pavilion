@@ -62,3 +62,17 @@ def remove_from_cart(request, book_id):
         request.session.modified = True
         messages.success(request, 'Book removed from cart successfully.')
     return redirect('shopping:cart-detail')
+
+
+def delete_cart_item(request, book_id):
+    book = get_object_or_404(Book, pk=book_id)
+    if request.session.get('cart') is None:
+        return redirect('shopping:cart-detail')
+
+    cart = request.session['cart']
+
+    if str(book.pk) in cart:
+        del cart[str(book.pk)]
+        request.session.modified = True
+        messages.success(request, 'Book removed from cart successfully.')
+    return redirect('shopping:cart-detail')

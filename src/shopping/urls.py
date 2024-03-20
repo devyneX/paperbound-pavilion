@@ -15,6 +15,11 @@ urlpatterns = [
     ),
     path('cart/', cart_views.cart_detail, name='cart-detail'),
     path(
+        'cart/delete/<int:book_id>/',
+        cart_views.delete_cart_item,
+        name='delete_from_cart'
+    ),
+    path(
         'orders/',
         order_views.OrderHistoryView.as_view(),
         name='order-history'
