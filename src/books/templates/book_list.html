@@ -1,4 +1,4 @@
-{% extends '_base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
@@ -16,7 +16,8 @@
                   <p class="text-gray-600 mb-2"><strong>Language:</strong> {{ book.language }}</p>
                   <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ book.genre }}</p>
                   <p class="text-gray-600 mb-2"><strong>Publisher:</strong> {{ book.publisher }}</p>
-                  <a href="{% url 'book-detail' book.pk %}" class="btn btn-outline-success" role="button">View</a>
+                  <a href="{% url 'shopping:add_to_cart' book.pk %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" role="button">Add to cart</a>
+                  <a href="{% url 'book-detail' book.pk %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" role="button">View</a>
               </div>
           </div>
           {% endfor %}

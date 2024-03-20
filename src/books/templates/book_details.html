@@ -1,36 +1,39 @@
-{% extends '_base.html' %}
-
+{% extends 'base.html' %}
 {% block content %}
 <div class="min-h-screen flex justify-center items-center bg-gray-100">
   <div class="flex flex-col items-center">
       <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
         <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
-            <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
-        </div>
-
+          <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
+      </div>
         <div class="bg-white border border-gray-200 shadow-md rounded-md p-4">
-          <h3 class="text-sm text-gray-600 mb-2">{{ book.author }}</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ book.author }}</h3>
           <p class="text-sm text-gray-700 mb-2"><strong>Genre:</strong> {{ book.genre }}</p>
           <p class="text-sm text-gray-700 mb-2"><strong>Language:</strong> {{ book.language }}</p>
           <p class="text-sm text-gray-700 mb-2"><strong>Description:</strong> {{ book.description }}</p>
           <p class="text-sm text-gray-700 mb-2"><strong>Publisher:</strong> {{ book.publisher }}</p>
-          <p class="text-sm text-gray-700 mb-2"><strong>Price:</strong> {{ book.price }}</p>
-          <a href="#" class="btn btn-outline-success" role="button">Buy Now</a>
-          <hr><br>
-          <h3  >Reviews</h3>
-          {% for r in reviews %}
-            
-            <p>{{r.user.username}}</p>
-            {% for i in r.range %}
-              &starf;
-            {% endfor %}
-
-            <p>{{r.comments}}</p>
-          {% endfor %}
-          <br>
-          <a href="{% url 'reviews' pk=book.id %}">See all</a>
-          <hr>
-          <a href="{% url 'create-review' pk=book.id %}"> Add a review</a>
+          <p class="text-sm text-gray-700 mb-4"><strong>Price:</strong> {{ book.price }}</p>
+          <a href="{% url 'shopping:add_to_cart' book.pk %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm md:mr-2">Add to Cart</a>
+      
+      
+          <div class="p-4">
+            <div class="mb-4">
+              <h3 class="text-2xl font-bold mb-2">Reviews</h3>
+              {% for r in reviews %}          
+                <div class="border border-gray-200 rounded-md p-2 mb-2">
+                  <p class="text-lg font-semibold text-lime-500">{{ r.user.username }}</p>
+                  <div class="mb-1">
+                    {% for i in r.range %}
+                      &starf;
+                    {% endfor %}
+                  </div>
+                  <p class="text-gray-700">{{ r.comments }}</p>
+                </div>
+              {% endfor %}
+            </div>
+            <a href="{% url 'reviews' pk=book.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm md:mr-2 mb-2 md:mb-0">See all</a>
+            <a href="{% url 'create-review' pk=book.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm">Add a review</a>
+          </div>
         </div>
       </div>
 
