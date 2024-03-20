@@ -35,6 +35,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # SILK MIDDLEWARE
     'silk.middleware.SilkyMiddleware',
+    # LOCALE MW
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'src.project.urls'

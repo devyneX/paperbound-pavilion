@@ -1,3 +1,5 @@
+from django.utils.translation import gettext_lazy as _
+
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
@@ -20,3 +22,12 @@ CACHES = {
         }
     }
 }
+
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('bn', _('Bangla')),
+)
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',  # type: ignore # noqa
+]
