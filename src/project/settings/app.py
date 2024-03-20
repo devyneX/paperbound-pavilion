@@ -10,7 +10,7 @@ MEDIA_ROOT = BASE_DIR / 'media'  # type: ignore # noqa
 # Static root
 STATIC_ROOT = 'staticfiles'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = ''
 
 # cache
 CACHES = {

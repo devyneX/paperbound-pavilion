@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block content %}
 
 <div class="min-h-screen flex justify-center items-center bg-gray-100">
@@ -12,12 +12,12 @@
                   <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
               </div>
               <div class="p-4">
-                  <p class="text-gray-600 mb-2"><strong>Author:</strong> {{ book.author }}</p>
-                  <p class="text-gray-600 mb-2"><strong>Language:</strong> {{ book.language }}</p>
-                  <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ book.genre }}</p>
-                  <p class="text-gray-600 mb-2"><strong>Publisher:</strong> {{ book.publisher }}</p>
-                  <a href="{% url 'shopping:add_to_cart' book.pk %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" role="button">Add to cart</a>
-                  <a href="{% url 'book-detail' book.pk %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" role="button">View</a>
+                  <p class="text-gray-600 mb-2"><strong>{% trans 'Author'%}:</strong> {{ book.author }}</p>
+                  <p class="text-gray-600 mb-2"><strong>{% trans 'Language'%}:</strong> {{ book.language }}</p>
+                  <p class="text-gray-600 mb-2"><strong>{% trans 'Genre'%}:</strong> {{ book.genre }}</p>
+                  <p class="text-gray-600 mb-2"><strong>{% trans 'Publisher'%}:</strong> {{ book.publisher }}</p>
+                  <a href="{% url 'shopping:add_to_cart' book.pk %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" role="button">{% trans 'AddToCartBtnText' %}</a>
+                  <a href="{% url 'book-detail' book.pk %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" role="button">{% trans 'View' %}</a>
               </div>
           </div>
           {% endfor %}

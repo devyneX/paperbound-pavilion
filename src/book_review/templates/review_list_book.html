@@ -1,5 +1,5 @@
 {% extends '_base.html' %}
-
+{% load i18n %}
 {% block content %}
 <div class="min-h-screen flex justify-center items-center bg-gray-100">
   <div class="flex flex-col items-center">
@@ -8,16 +8,18 @@
             <h2 class="text-xl font-semibold text-gray-800">{{ book_title}}</h2>
         </div>
         <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
-          <h3 class="font-semibold text-gray-800">All Reviews</h3>
+          <h3 class="font-semibold text-gray-800">{% trans 'AllReviews' %}</h3>
       </div>
         {% for r in reviews %}
             <div class="bg-white border border-gray-200 shadow-md rounded-md p-4">
                 <h2>{{r.user.username}}</h2>
-                <p>Ratings: {{r.ratings}}</p>
+                <p>{% trans 'Ratings'%}: {{r.ratings}}</p>
                 <p>{{r.comments}}</p>
                 {{curr_user}}
                 {% if user.username == r.user.username %}
-                <a href="{% url 'update-review' pk=r.pk %}"class="text-red-500">update</a>
+                <a href="{% url 'update-review' pk=r.pk %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-md text-sm">
+                  {% trans 'Update'%}
+                </a>
                 {% endif %}
             </div>
         {% endfor %}
