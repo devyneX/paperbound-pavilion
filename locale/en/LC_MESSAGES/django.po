@@ -1,0 +1,368 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-20 16:27+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/accounts/templates/login.html:12
+msgid "SignInToYourAccount"
+msgstr "Sign in to your account"
+
+#: src/accounts/templates/login.html:19 src/accounts/templates/register.html:42
+msgid "Username"
+msgstr "Username"
+
+#: src/accounts/templates/login.html:28 src/accounts/templates/register.html:58
+msgid "Password"
+msgstr "Password"
+
+#: src/accounts/templates/login.html:40
+msgid "LogIn"
+msgstr "Log In"
+
+#: src/accounts/templates/login.html:54
+msgid "RegisterPromt"
+msgstr "No account? Register here."
+
+#: src/accounts/templates/register.html:11
+msgid "CreateYourAccount"
+msgstr "tCreate your account"
+
+#: src/accounts/templates/register.html:18
+msgid "FirstName"
+msgstr "First Name"
+
+#: src/accounts/templates/register.html:26
+msgid "LastName"
+msgstr "Last Name"
+
+#: src/accounts/templates/register.html:34
+#: src/store_admin/templates/store_admin/users.html:26
+msgid "Email"
+msgstr "Email"
+
+#: src/accounts/templates/register.html:50
+#: src/store_admin/templates/store_admin/users.html:27
+msgid "Phone"
+msgstr "Phone"
+
+#: src/accounts/templates/register.html:66
+msgid "ConfirmPassword"
+msgstr "Confirm Password"
+
+#: src/accounts/templates/register.html:77
+msgid "Register"
+msgstr "Register"
+
+#: src/accounts/templates/register.html:82
+msgid "LoginPromt"
+msgstr "Already have an account? Log in here."
+
+#: src/book_review/templates/create_review.html:36
+#: src/book_review/templates/review_list_book.html:21
+#: src/book_review/templates/update_review.html:13
+#, fuzzy
+#| msgid "UpdateBook"
+msgid "Update"
+msgstr "Update"
+
+#: src/book_review/templates/review_list_book.html:11
+msgid "AllReviews"
+msgstr "All Reviews"
+
+#: src/book_review/templates/review_list_book.html:16
+msgid "Ratings"
+msgstr "Ratings"
+
+#: src/books/templates/book_details.html:12
+#: src/books/templates/book_list.html:17
+#: src/store_admin/templates/store_admin/books.html:28
+#: src/store_admin/templates/store_admin/books.html:29
+msgid "Genre"
+msgstr "Genre"
+
+#: src/books/templates/book_details.html:13
+#: src/books/templates/book_list.html:16
+#: src/store_admin/templates/store_admin/books.html:27
+msgid "Language"
+msgstr "Language"
+
+#: src/books/templates/book_details.html:14
+msgid "Description"
+msgstr "Description"
+
+#: src/books/templates/book_details.html:15
+#: src/books/templates/book_list.html:18
+#: src/store_admin/templates/store_admin/publishers.html:26
+msgid "Publisher"
+msgstr "Publisher"
+
+#: src/books/templates/book_details.html:16
+msgid "Price"
+msgstr "Price"
+
+#: src/books/templates/book_details.html:17
+#: src/books/templates/book_list.html:19
+msgid "AddToCartBtnText"
+msgstr "Add to cart"
+
+#: src/books/templates/book_details.html:22
+msgid "Reviews"
+msgstr "Reviews"
+
+#: src/books/templates/book_details.html:35
+msgid "SeeAll"
+msgstr "See all"
+
+#: src/books/templates/book_details.html:36
+msgid "AddAReview"
+msgstr "Add a review"
+
+#: src/books/templates/book_list.html:15
+#: src/store_admin/templates/store_admin/books.html:26
+msgid "Author"
+msgstr "Author"
+
+#: src/books/templates/book_list.html:20
+msgid "View"
+msgstr "View"
+
+#: src/core/templates/base.html:16
+msgid "Search"
+msgstr "Search"
+
+#: src/core/templates/base.html:30
+#: src/store_admin/templates/store_admin/admin_base.html:9
+msgid "Books"
+msgstr "Books"
+
+#: src/core/templates/base.html:60
+msgid "Log out"
+msgstr "Log out"
+
+#: src/project/settings/app.py:28
+msgid "English"
+msgstr "English"
+
+#: src/project/settings/app.py:29
+msgid "Bangla"
+msgstr "Bangla"
+
+#: src/root/templates/home.html:9
+msgid "Welcome"
+msgstr "Welcome"
+
+#: src/root/templates/home.html:13
+msgid "LatestBooks"
+msgstr "Latest Book"
+
+#: src/root/templates/home.html:27
+msgid "MostPopularBooks"
+msgstr "Most Popular Books"
+
+#: src/root/templates/home.html:41
+msgid "HighestRatedBooks"
+msgstr "Highest Rated Books"
+
+#: src/store_admin/templates/store_admin/admin_base.html:6
+msgid "Admin"
+msgstr "Admin"
+
+#: src/store_admin/templates/store_admin/admin_base.html:8
+#: src/store_admin/templates/store_admin/users.html:5
+msgid "Users"
+msgstr "Users"
+
+#: src/store_admin/templates/store_admin/admin_base.html:10
+#: src/store_admin/templates/store_admin/authors.html:5
+msgid "Authors"
+msgstr "Authors"
+
+#: src/store_admin/templates/store_admin/admin_base.html:11
+#: src/store_admin/templates/store_admin/publishers.html:5
+msgid "Publishers"
+msgstr "Publisher"
+
+#: src/store_admin/templates/store_admin/admin_base.html:12
+#: src/store_admin/templates/store_admin/orders.html:5
+msgid "Orders"
+msgstr "Order"
+
+#: src/store_admin/templates/store_admin/author-create.html:4
+msgid "CreateAuthor"
+msgstr "Create Author"
+
+#: src/store_admin/templates/store_admin/author-create.html:5
+msgid "CreateAuthorText"
+msgstr "Create an author"
+
+#: src/store_admin/templates/store_admin/author-update.html:4
+msgid "UpdateAuthor"
+msgstr "Update Author"
+
+#: src/store_admin/templates/store_admin/author-update.html:5
+msgid "UpdateAuthorText"
+msgstr "Update an author"
+
+#: src/store_admin/templates/store_admin/authors.html:4
+#: src/store_admin/templates/store_admin/authors.html:11
+msgid "AuthorsList"
+msgstr "Author list"
+
+#: src/store_admin/templates/store_admin/authors.html:14
+msgid "CreateAuthorBtnText"
+msgstr "Create new author"
+
+#: src/store_admin/templates/store_admin/authors.html:23
+#: src/store_admin/templates/store_admin/books.html:23
+#: src/store_admin/templates/store_admin/orders.html:19
+#: src/store_admin/templates/store_admin/publishers.html:23
+#: src/store_admin/templates/store_admin/users.html:23
+msgid "Edit"
+msgstr "Edit"
+
+#: src/store_admin/templates/store_admin/book-create.html:4
+msgid "CreateBook"
+msgstr "Create Book"
+
+#: src/store_admin/templates/store_admin/book-create.html:5
+msgid "CreateBookText"
+msgstr "Create a book"
+
+#: src/store_admin/templates/store_admin/book-update.html:4
+msgid "UpdateBook"
+msgstr "Update Book"
+
+#: src/store_admin/templates/store_admin/book-update.html:5
+msgid "UpdateBookText"
+msgstr "Update a book"
+
+#: src/store_admin/templates/store_admin/books.html:11
+msgid "BooksList"
+msgstr "Books List"
+
+#: src/store_admin/templates/store_admin/books.html:14
+msgid "CreateBookBtnText"
+msgstr "Create a book"
+
+#: src/store_admin/templates/store_admin/dashboard.html:3
+msgid "AdminDashboard"
+msgstr "Admin dashboard"
+
+#: src/store_admin/templates/store_admin/dashboard.html:13
+msgid "TotalBooks"
+msgstr "Total Books"
+
+#: src/store_admin/templates/store_admin/dashboard.html:19
+msgid "TotalOrders"
+msgstr "Total Orders"
+
+#: src/store_admin/templates/store_admin/dashboard.html:25
+msgid "TotalUsers"
+msgstr "Total Users"
+
+#: src/store_admin/templates/store_admin/dashboard.html:31
+msgid "OrdersInLast30Days"
+msgstr "Orders created in last 30 days"
+
+#: src/store_admin/templates/store_admin/dashboard.html:37
+msgid "BooksAddedInLast30Days"
+msgstr "Books added in last 30 days"
+
+#: src/store_admin/templates/store_admin/order-update.html:4
+#: src/store_admin/templates/store_admin/order-update.html:94
+msgid "UpdateOrder"
+msgstr "Update Order"
+
+#: src/store_admin/templates/store_admin/order-update.html:5
+msgid "UpdateOrderText"
+msgstr "Update an order"
+
+#: src/store_admin/templates/store_admin/order-update.html:25
+#: src/store_admin/templates/store_admin/orders.html:22
+msgid "Address"
+msgstr "Address"
+
+#: src/store_admin/templates/store_admin/order-update.html:39
+#: src/store_admin/templates/store_admin/order-update.html:61
+#: src/store_admin/templates/store_admin/order-update.html:65
+msgid "SelectBook"
+msgstr "Select Book"
+
+#: src/store_admin/templates/store_admin/order-update.html:49
+#: src/store_admin/templates/store_admin/order-update.html:71
+msgid "Quantity"
+msgstr "Quantity"
+
+#: src/store_admin/templates/store_admin/order-update.html:88
+msgid "AddAnotherBook"
+msgstr "Add another book"
+
+#: src/store_admin/templates/store_admin/orders.html:4
+#: src/store_admin/templates/store_admin/orders.html:11
+msgid "OrdersList"
+msgstr "Orders List"
+
+#: src/store_admin/templates/store_admin/publisher-create.html:4
+msgid "CreatePublisher"
+msgstr "Create Publisher"
+
+#: src/store_admin/templates/store_admin/publisher-create.html:5
+msgid "CreatePublisherText"
+msgstr "Create a publisher"
+
+#: src/store_admin/templates/store_admin/publisher-update.html:4
+msgid "UpdatePublisher"
+msgstr "Update Publisher"
+
+#: src/store_admin/templates/store_admin/publisher-update.html:5
+msgid "UpdatePublisherText"
+msgstr "Update a publisher"
+
+#: src/store_admin/templates/store_admin/publishers.html:4
+#: src/store_admin/templates/store_admin/publishers.html:11
+msgid "PublishersList"
+msgstr "Publishers list"
+
+#: src/store_admin/templates/store_admin/publishers.html:14
+msgid "CreatePublisherBtnText"
+msgstr "Create a publisher"
+
+#: src/store_admin/templates/store_admin/user-create.html:4
+msgid "CreateUser"
+msgstr "Create User"
+
+#: src/store_admin/templates/store_admin/user-create.html:5
+msgid "CreateUserText"
+msgstr "Create a user"
+
+#: src/store_admin/templates/store_admin/user-update.html:4
+msgid "UpdateUser"
+msgstr "Update User"
+
+#: src/store_admin/templates/store_admin/user-update.html:5
+msgid "UpdateUserText"
+msgstr "Update an user"
+
+#: src/store_admin/templates/store_admin/users.html:4
+#: src/store_admin/templates/store_admin/users.html:11
+msgid "UsersList"
+msgstr "Users List"
+
+#: src/store_admin/templates/store_admin/users.html:14
+msgid "CreateUserBtnText"
+msgstr "Create an user"
