@@ -5,5 +5,5 @@
 {% block header %} {% trans "CreateAuthorText" %} {% endblock %} 
 
 {% block content %}
-{% include "form.html" with form_title="Create Author" submit_text="Create"%}
+{% include "form.html" with form_title=_("CreateAuthor") submit_text=_("Create")%}
 {% endblock %}

@@ -5,5 +5,5 @@
 {% block header %} {% trans "UpdateBookText" %} {% endblock %} 
 
 {% block content %}
-{% include "form.html" with form_title="Update Book" submit_text="Update"%}
+{% include "form.html" with form_title=_("UpdateBook") submit_text=_("Update")%}
 {% endblock %}
