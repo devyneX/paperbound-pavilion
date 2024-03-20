@@ -1,7 +1,8 @@
 {% extends 'store_admin/admin_base.html' %}
+{% load i18n %}
 
-{% block title %}Update Book{%endblock %} 
-{% block header %} Update a book {% endblock %} 
+{% block title %}{% trans "UpdateOrder" %}{%endblock %} 
+{% block header %} {% trans "UpdateOrderText" %} {% endblock %} 
 
 {% block content %}
     <form class="p-4" method="post">
@@ -21,7 +22,7 @@
         
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
-                Address:
+                {% trans "Address" %}:
             </label>
             <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="address" id="address">
                 <option value="">{{ object.address.id }} : {{ object.address }}</option>
@@ -35,7 +36,7 @@
             {% for order_book in object.orderbooks.all %}
                 <div class="mb-4 book-section">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="book1">
-                        Select Book:
+                        {% trans "SelectBook" %}:
                     </label>
                     <div class="flex gap-4">
                         <select data-index="{{ forloop.counter0 }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline book-dropdown" id="book1">
@@ -45,7 +46,7 @@
                             {% endfor %}
                         </select>
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="quantity1">
-                            Quantity:
+                            {% trans "Quantity" %}:
                         </label>
                         <input data-index="{{ forloop.counter0 }}" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline quantity-field" id="quantity1" min="1" value="{{ order_book.quantity }}">   
                     </div>
@@ -57,17 +58,17 @@
             {% else %}
             <div class="mb-4 book-section">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="book1">
-                    Select Book:
+                    {% trans "SelectBook" %}:
                 </label>
                 <div class="flex gap-4">
                     <select data-index="0" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline book-dropdown" id="book1">
-                        <option value="">Select Book</option>
+                        <option value="">{% trans "SelectBook" %}</option>
                         {% for book in books %}
                             <option value="{{ book.id }}">{{ book }}</option>
                         {% endfor %}
                     </select>
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="quantity1">
-                        Quantity:
+                        {% trans "Quantity" %}:
                     </label>
                     <input data-index="0" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline quantity-field" id="quantity1" min="1">   
                 </div>
@@ -84,13 +85,13 @@
             {% endfor %}]
         {% else %} [] {% endif %}" id="books-list">
 
-        <button type="button" id="add-book-button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4">Add Another Book</button>
+        <button type="button" id="add-book-button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4">{% trans "AddAnotherBook" %}</button>
     
         <!-- Other form fields go here -->
         
         <div class="flex items-center justify-between">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                Update Order
+                {% trans "UpdateOrder" %}
             </button>
         </div>
     </form>

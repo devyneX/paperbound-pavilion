@@ -1,7 +1,8 @@
 {% extends 'store_admin/admin_base.html' %}
+{% load i18n %}
 
-{% block title %}Update Book{%endblock %} 
-{% block header %} Update a book {% endblock %} 
+{% block title %}{% trans "UpdateBook" %}{%endblock %} 
+{% block header %} {% trans "UpdateBookText" %} {% endblock %} 
 
 {% block content %}
 {% include "form.html" with form_title="Update Book" submit_text="Update"%}

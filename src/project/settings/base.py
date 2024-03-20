@@ -35,6 +35,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # SILK MIDDLEWARE
     'silk.middleware.SilkyMiddleware',
+    # LOCALE MW
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'src.project.urls'
@@ -50,6 +52,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },

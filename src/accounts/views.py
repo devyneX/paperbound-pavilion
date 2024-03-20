@@ -24,7 +24,7 @@ class Login(LoginView):
 class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'register.html'
-    success_url = '/'
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         # Hash the password before saving

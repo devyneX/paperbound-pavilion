@@ -42,6 +42,10 @@ run-dependencies:
 	test -f .env || touch .env
 	${DOCKER_COMPOSE_COMMAND} -f docker-compose.dev.yml up --force-recreate db redis
 
+.PHONY: run-email-server
+run-email-server:
+	poetry run python -m aiosmtpd -n -l localhost:8025
+
 .PHONY: run-server
 run-server:
 	poetry run python -m src.manage runserver

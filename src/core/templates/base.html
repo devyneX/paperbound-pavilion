@@ -1,6 +1,7 @@
 {% extends "_base.html" %}
 
 {% block navbar %}
+{% load i18n %}
   <!-- navbar.html -->
 <nav class="bg-gray-800 shadow-lg">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -12,7 +13,7 @@
         <!-- Search bar -->
         <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
           <div class="max-w-lg w-full lg:max-w-xs">
-            <label for="search" class="sr-only">Search</label>
+            <label for="search" class="sr-only">{% trans "Search" %}</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <!-- Heroicon name: search -->
@@ -26,7 +27,38 @@
         </div>
         <!-- Books link -->
         <div class="flex items-center">
-          <a href="{% url 'book-list' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Books</a>
+          <a href="{% url 'book-list' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{% trans "Books" %}</a>
+        </div>
+
+
+        
+      
+        <!-- LANGS -->
+        {% get_current_language as CURRENT_LANGUAGE %}
+        {% get_available_languages as AVAILABLE_LANGUAGES %}
+        {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+        <div class="languages">
+          <ul class="languages flex">
+            <form id="language-form" method="GET" action="{% url 'set_language' %}">
+              {% csrf_token %}
+              {% for language in AVAILABLE_LANGUAGES %}
+                
+                  <button type="submit" name="language" value="{{ language.0 }}" 
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                    {{ language.1 }}
+                  </button>
+                
+              {% endfor %}
+          </form>
+          </ul>
+        </div>
+
+        <!-- LOGOUT -->
+        <div class="flex items-center">
+          <form action="{% url 'logout' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{% trans "Log out" %}</a>
+          </form>
         </div>
       </div>
     </div>
