@@ -1,15 +1,35 @@
 {% extends '_base.html' %}
-
+{% load i18n %}
 {% block navbar %}
 <div class="bg-cyan-500 p-4">
     <div class="container mx-auto flex justify-between items-center">
-        <a href="/admin" class="text-white font-bold text-lg"> {% block header %}Admin {% endblock %} </a>
+        <a href="/admin" class="text-white font-bold text-lg"> {% block header %} {% trans "Admin" %} {% endblock %} </a>
         <div>
-            <a href="{% url 'admin-users' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Users</a>
-            <a href="{% url 'admin-books' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Books</a>
-            <a href="{% url 'admin-authors' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Authors</a>
-            <a href="{% url 'admin-publishers' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Publishers</a>
-            <a href="{% url 'admin-orders' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">Orders</a>
+            <a href="{% url 'admin-users' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">{% trans "Users" %}</a>
+            <a href="{% url 'admin-books' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">{% trans "Books" %}</a>
+            <a href="{% url 'admin-authors' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">{% trans "Authors" %}</a>
+            <a href="{% url 'admin-publishers' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">{% trans "Publishers" %}</a>
+            <a href="{% url 'admin-orders' %}" class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">{% trans "Orders" %}</a>
+        </div>
+
+        <!-- LANGS -->
+        {% get_current_language as CURRENT_LANGUAGE %}
+        {% get_available_languages as AVAILABLE_LANGUAGES %}
+        {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+        <div class="languages">
+            <ul class="languages flex">
+                <form id="language-form" method="GET" action="{% url 'set_language' %}">
+                {% csrf_token %}
+                {% for language in AVAILABLE_LANGUAGES %}
+                    
+                    <button type="submit" name="language" value="{{ language.0 }}" 
+                    class="text-white font-medium mx-2 border-2 border-white rounded-md p-2">
+                        {{ language.1 }}
+                    </button>
+                    
+                {% endfor %}
+            </form>
+            </ul>
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load i18n %}
 
 {% block title %}Register{% endblock %}
 
@@ -7,14 +8,14 @@
     <div class="max-w-md w-full space-y-8">
         <div>
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                Create your account
+                {% trans "CreateYourAccount" %}
             </h2>
         </div>
         <form class="mt-8 space-y-6" method="POST">
             {% csrf_token %}
             <div class="rounded-md shadow-sm -space-y-px">
                 <div>
-                    <label for="first_name" class="sr-only">First Name</label>
+                    <label for="first_name" class="sr-only">{% trans "FirstName" %}</label>
                     <input id="first_name" name="first_name" type="text" required
                         value="{{ form_initial_data.first_name }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -22,7 +23,7 @@
                     <span class="text-red-500 text-xs italic">{{ form.errors.first_name }}</span>
                 </div>
                 <div>
-                    <label for="last_name" class="sr-only">Last Name</label>
+                    <label for="last_name" class="sr-only">{% trans "LastName" %}</label>
                     <input id="last_name" name="last_name" type="text" required
                         value="{{ form_initial_data.last_name }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -30,7 +31,7 @@
                     <span class="text-red-500 text-xs italic">{{ form.errors.last_name }}</span>
                 </div>
                 <div>
-                    <label for="email" class="sr-only">Email</label>
+                    <label for="email" class="sr-only">{% trans "Email" %}</label>
                     <input id="email" name="email" type="email" required
                         value="{{ form_initial_data.email }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -38,7 +39,7 @@
                     <span class="text-red-500 text-xs italic">{{ form.errors.email }}</span>
                 </div>
                 <div>
-                    <label for="email" class="sr-only">Username</label>
+                    <label for="email" class="sr-only">{% trans "Username" %}</label>
                     <input id="username" name="username" type="text" required
                         value="{{ form_initial_data.username }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -46,7 +47,7 @@
                     <span class="text-red-500 text-xs italic">{{ form.errors.username }}</span>
                 </div>
                 <div>
-                    <label for="phone" class="sr-only">Phone</label>
+                    <label for="phone" class="sr-only">{% trans "Phone" %}</label>
                     <input id="phone" name="phone" type="text" required
                         value="{{ form_initial_data.phone }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -54,7 +55,7 @@
                     <span class="text-red-500 text-xs italic">{{ form.errors.phone }}</span>
                 </div>
                 <div>
-                    <label for="password1" class="sr-only">Password</label>
+                    <label for="password1" class="sr-only">{% trans "Password" %}</label>
                     <input id="password1" name="password1" type="password" required
                         value="{{ form_initial_data.password1 }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -62,7 +63,7 @@
                     <span class="text-red-500 text-xs italic">{{ form.errors.password1 }}</span>
                 </div>
                 <div>
-                    <label for="password2" class="sr-only">Confirm Password</label>
+                    <label for="password2" class="sr-only">{% trans "ConfirmPassword" %}</label>
                     <input id="password2" name="password2" type="password" required
                         value="{{ form_initial_data.password2 }}"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -73,12 +74,12 @@
             <div>
                 <button type="submit"
                     class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Register
+                    {% trans "Register" %}
                 </button>
             </div>
         </form>
         <div class="w-full text-center">
-            <a href="{% url 'login' %}" class="text-sm text-blue-700">Already have an account? Log in here</a>
+            <a href="{% url 'login' %}" class="text-sm text-blue-700">{% trans "LoginPromt" %}</a>
         </div>
     </div>
 </div>

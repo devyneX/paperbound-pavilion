@@ -1,7 +1,8 @@
 {% extends 'store_admin/admin_base.html' %}
+{% load i18n %}
 
-{% block title %}Create Book{%endblock %} 
-{% block header %} Create a book {% endblock %} 
+{% block title %}{% trans "CreateBook" %}{%endblock %} 
+{% block header %} {% trans "CreateBookText" %} {% endblock %} 
 
 {% block content %}
 {% include "form.html" with form_title="Create Book" submit_text="Create"%}
