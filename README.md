@@ -56,8 +56,8 @@ Users can remove items from their cart if they no longer wish to purchase them. 
 ###  Checkout cart
 
 ####  Ask for address
-- **i** Users are prompted to select from previously used addresses for shipping.
-- **ii** Users have the option to add a new address for shipping if needed.
+-  Users are prompted to select from previously used addresses for shipping.
+-  Users have the option to add a new address for shipping if needed.
 
 ###  Payment
 
