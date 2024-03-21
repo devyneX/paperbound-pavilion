@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "UpdateAddress" %}{% endblock title %}
+
+
+{% block content %}
+  {% include "form.html" with form_title=_("UpdateAddress") submit_text=_("UpdateAddress")%}
+{% endblock content %}

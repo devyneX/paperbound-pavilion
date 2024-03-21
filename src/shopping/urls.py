@@ -31,11 +31,6 @@ urlpatterns = [
     ),
     path('checkout/', order_views.PlaceOrderView.as_view(), name='checkout'),
     path(
-        'address/add/',
-        order_views.AddressCreateView.as_view(),
-        name='address-create'
-    ),
-    path(
         'payment/<int:pk>/',
         payment_views.PaymentView.as_view(),
         name='payment'

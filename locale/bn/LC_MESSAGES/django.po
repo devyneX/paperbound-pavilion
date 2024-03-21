@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 16:59+0600\n"
+"POT-Creation-Date: 2024-03-21 18:53+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,59 +55,101 @@ msgstr "দেশ"
 msgid "post_code"
 msgstr "পোস্ট কোড"
 
-#: src/accounts/templates/login.html:11
+#: src/accounts/templates/accounts/address-create.html:5
+#: src/accounts/templates/accounts/address-create.html:8
+msgid "AddAddress"
+msgstr "ঠিকানা যোগ করুন"
+
+#: src/accounts/templates/accounts/address-list.html:6
+#: src/accounts/templates/accounts/address-list.html:11
+#: src/core/templates/base.html:17
+#: src/shopping/templates/shopping/order-history.html:5
+#: src/shopping/templates/shopping/order-history.html:10
+msgid "OrderHistory"
+msgstr "অর্ডারের তালিকা"
+
+#: src/accounts/templates/accounts/address-list.html:18
+#: src/accounts/templates/accounts/address-update.html:3
+#: src/accounts/templates/accounts/address-update.html:7
+msgid "UpdateAddress"
+msgstr "ঠিকানা আপডেট করুন"
+
+#: src/accounts/templates/accounts/login.html:11
 msgid "SignInToYourAccount"
 msgstr "আপনার অ্যাকাউন্টে সাইন ইন করুন"
 
-#: src/accounts/templates/login.html:18 src/accounts/templates/register.html:42
+#: src/accounts/templates/accounts/login.html:18
+#: src/accounts/templates/accounts/profile.html:16
+#: src/accounts/templates/accounts/register.html:42
 msgid "Username"
 msgstr "ব্যবহারকারীর নাম"
 
-#: src/accounts/templates/login.html:27 src/accounts/templates/register.html:58
+#: src/accounts/templates/accounts/login.html:27
+#: src/accounts/templates/accounts/register.html:58
 msgid "Password"
 msgstr "পাসওয়ার্ড"
 
-#: src/accounts/templates/login.html:39
+#: src/accounts/templates/accounts/login.html:39
+#: src/core/templates/base.html:77
 msgid "LogIn"
 msgstr "লগ ইন"
 
-#: src/accounts/templates/login.html:53
+#: src/accounts/templates/accounts/login.html:53
 msgid "RegisterPromt"
 msgstr "কোন অ্যাকাউন্ট নেই? এখানে নিবন্ধন করুন।"
 
-#: src/accounts/templates/register.html:11
-msgid "CreateYourAccount"
-msgstr "আপনার অ্যাকাউন্ট তৈরি করুন"
+#: src/accounts/templates/accounts/profile-update.html:3
+#: src/accounts/templates/accounts/profile-update.html:6
+#: src/accounts/templates/accounts/self-profile.html:5
+msgid "UpdateProfile"
+msgstr "প্রফাইল হালনাগাদ"
 
-#: src/accounts/templates/register.html:18
-msgid "FirstName"
-msgstr "প্রথম নাম"
-
-#: src/accounts/templates/register.html:26
-msgid "LastName"
-msgstr "শেষ নাম"
-
-#: src/accounts/templates/register.html:34
-#: src/store_admin/templates/store_admin/users.html:26
-msgid "Email"
-msgstr "ইমেইল"
-
-#: src/accounts/templates/register.html:50
+#: src/accounts/templates/accounts/profile.html:18
+#: src/accounts/templates/accounts/register.html:50
 #: src/store_admin/templates/store_admin/users.html:27
 msgid "Phone"
 msgstr "ফোন"
 
-#: src/accounts/templates/register.html:66
+#: src/accounts/templates/accounts/profile.html:23
+#: src/book_review/templates/review_list_book.html:11
+#: src/book_review/templates/review_list_user.html:11
+#: src/books/templates/book_details.html:22
+msgid "Reviews"
+msgstr "পর্যালোচনা"
+
+#: src/accounts/templates/accounts/register.html:11
+msgid "CreateYourAccount"
+msgstr "আপনার অ্যাকাউন্ট তৈরি করুন"
+
+#: src/accounts/templates/accounts/register.html:18
+msgid "FirstName"
+msgstr "প্রথম নাম"
+
+#: src/accounts/templates/accounts/register.html:26
+msgid "LastName"
+msgstr "শেষ নাম"
+
+#: src/accounts/templates/accounts/register.html:34
+#: src/store_admin/templates/store_admin/users.html:26
+msgid "Email"
+msgstr "ইমেইল"
+
+#: src/accounts/templates/accounts/register.html:66
 msgid "ConfirmPassword"
 msgstr "পাসওয়ার্ড নিশ্চিত করুন"
 
-#: src/accounts/templates/register.html:77
+#: src/accounts/templates/accounts/register.html:77
+#: src/core/templates/base.html:78
 msgid "Register"
 msgstr "নিবন্ধন"
 
-#: src/accounts/templates/register.html:82
+#: src/accounts/templates/accounts/register.html:82
 msgid "LoginPromt"
 msgstr "ইতিমধ্যে একটি অ্যাকাউন্ট আছে? এখানে লগ ইন করুন।"
+
+#: src/accounts/templates/accounts/self-profile.html:8
+msgid "Addresses"
+msgstr "ঠিকানা"
 
 #: src/book_review/models.py:14
 msgid "ratings"
@@ -249,12 +291,6 @@ msgstr "মুছে ফেলা হয়েছে"
 msgid "Books"
 msgstr "বই"
 
-#: src/core/templates/base.html:17
-#: src/shopping/templates/shopping/order-history.html:5
-#: src/shopping/templates/shopping/order-history.html:10
-msgid "OrderHistory"
-msgstr "অর্ডারের তালিকা"
-
 #: src/core/templates/base.html:19
 msgid "FindBooks"
 msgstr "বই সন্ধান"
@@ -263,7 +299,7 @@ msgstr "বই সন্ধান"
 msgid "Search"
 msgstr "অনুসন্ধান করুন"
 
-#: src/core/templates/base.html:70
+#: src/core/templates/base.html:71
 msgid "Log out"
 msgstr "প্রস্থান"
 
@@ -544,5 +580,3 @@ msgstr "ব্যবহারকারীগণের তালিকা"
 msgid "CreateUserBtnText"
 msgstr "একজন ব্যবহারকারী তৈরি করুন"
 
-#~ msgid "OrderHisoty"
-#~ msgstr "অর্ডারের তালিকা"

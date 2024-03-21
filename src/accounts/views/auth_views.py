@@ -3,12 +3,12 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
-from .forms import CustomAuthenticationForm, RegisterForm
+from src.accounts.forms import CustomAuthenticationForm, RegisterForm
 
 
 class Login(LoginView):
     form_class = CustomAuthenticationForm
-    template_name = 'login.html'
+    template_name = 'accounts/login.html'
     redirect_authenticated_user = True
 
     def get_success_url(self):
@@ -23,7 +23,7 @@ class Login(LoginView):
 
 class RegisterView(CreateView):
     form_class = RegisterForm
-    template_name = 'register.html'
+    template_name = 'accounts/register.html'
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
@@ -48,4 +48,4 @@ class RegisterView(CreateView):
 
 
 class Logout(LogoutView):
-    next_page = reverse_lazy('login')
+    next_page = reverse_lazy('accounts:login')

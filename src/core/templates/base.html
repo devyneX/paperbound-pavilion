@@ -63,12 +63,21 @@
         </div>
 
         <!-- LOGOUT -->
-        <div class="flex items-center">
-          <form action="{% url 'logout' %}" method="POST">
-            {% csrf_token %}
-            <button type="submit" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{% trans "Log out" %}</a>
-          </form>
-        </div>
+        {% if request.user.is_authenticated %}
+          <div class="flex items-center">
+            <form action="{% url 'accounts:logout' %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{% trans "Log out" %}</a>
+            </form>
+          </div>
+          <a href="{% url 'accounts:self-profile' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-user"></i></a>
+        {% else %}
+          <div class="flex items-center">
+            <a href="{% url 'accounts:login' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text">{% trans "LogIn" %}</a>
+            <a href="{% url 'accounts:register' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text">{% trans "Register" %}</a>
+          </div>
+        {% endif %}
+        
       </div>
     </div>
   </nav>
