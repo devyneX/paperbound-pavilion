@@ -134,15 +134,15 @@ msgstr "Add to Cart"
 
 #: src/books/templates/book_details.html:22
 msgid "Reviews"
-msgstr ""
+msgstr "Reviews"
 
 #: src/books/templates/book_details.html:35
 msgid "SeeAll"
-msgstr ""
+msgstr "See All"
 
 #: src/books/templates/book_details.html:36
 msgid "AddAReview"
-msgstr ""
+msgstr "Add Review"
 
 #: src/books/templates/book_list.html:15
 #: src/store_admin/templates/store_admin/books.html:26

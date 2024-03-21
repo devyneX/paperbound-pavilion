@@ -134,15 +134,15 @@ msgstr "কার্টে যোগ করুন"
 
 #: src/books/templates/book_details.html:22
 msgid "Reviews"
-msgstr ""
+msgstr "পর্যালোচনা"
 
 #: src/books/templates/book_details.html:35
 msgid "SeeAll"
-msgstr ""
+msgstr "সব দেখুন"
 
 #: src/books/templates/book_details.html:36
 msgid "AddAReview"
-msgstr ""
+msgstr "পর্যালোচনা করুন"
 
 #: src/books/templates/book_list.html:15
 #: src/store_admin/templates/store_admin/books.html:26
