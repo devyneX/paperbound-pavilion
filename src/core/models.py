@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class SoftDeletionManager(models.Manager):
@@ -8,9 +9,12 @@ class SoftDeletionManager(models.Manager):
 
 
 class BaseModel(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    deleted = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True,
+                                      verbose_name=_('created_at'))
+    updated_at = models.DateTimeField(auto_now=True,
+                                      verbose_name=_('deleted_at'))
+    deleted = models.BooleanField(default=False,
+                                  verbose_name=_('deleted'))
 
     objects = SoftDeletionManager()
     all_objects = models.Manager(
