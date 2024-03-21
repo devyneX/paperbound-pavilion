@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 18:53+0600\n"
+"POT-Creation-Date: 2024-03-21 19:32+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,62 +18,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: src/accounts/models.py:11
+msgid "phone"
+msgstr "Phone"
 
-#: src/accounts/models.py:11 src/accounts/templates/accounts/profile.html:17
+#: src/accounts/models.py:12 src/accounts/templates/accounts/profile.html:17
 msgid "email address"
 msgstr "Email"
 
+#: src/accounts/models.py:19 src/book_review/models.py:22
+#: src/shopping/models.py:20
+msgid "user"
+msgstr "User"
+
+#: src/accounts/models.py:22
+msgid "house"
+msgstr "House"
+
+#: src/accounts/models.py:23
+msgid "street"
+msgstr "Street"
+
+#: src/accounts/models.py:24
+msgid "city"
+msgstr "City"
+
+#: src/accounts/models.py:25
+msgid "state"
+msgstr "State"
+
+#: src/accounts/models.py:29
+msgid "country"
+msgstr "Country"
+
+#: src/accounts/models.py:31
+msgid "post_code"
+msgstr "Post Code"
+
 #: src/accounts/templates/accounts/address-create.html:5
 #: src/accounts/templates/accounts/address-create.html:8
+#: src/accounts/templates/accounts/address-list.html:14
 msgid "AddAddress"
 msgstr "Add Address"
 
 #: src/accounts/templates/accounts/address-list.html:6
 #: src/accounts/templates/accounts/address-list.html:11
-#: src/core/templates/base.html:17
-#: src/shopping/templates/shopping/order-history.html:5
-#: src/shopping/templates/shopping/order-history.html:10
-msgid "OrderHistory"
-msgstr "Order History"
+#: src/accounts/templates/accounts/self-profile.html:8
+msgid "Addresses"
+msgstr "Addresses"
 
-#: src/accounts/models.py:10
-msgid "phone"
-msgstr "Phone"
-
-#: src/accounts/models.py:11
-msgid "email address"
-msgstr "Email Address"
-
-#: src/accounts/models.py:16 src/book_review/models.py:22
-#: src/shopping/models.py:19
-msgid "user"
-msgstr "User"
-
-#: src/accounts/models.py:19
-msgid "house"
-msgstr "House"
-
-#: src/accounts/models.py:20
-msgid "street"
-msgstr "Street"
-
-#: src/accounts/models.py:21
-msgid "city"
-msgstr "City"
-
-#: src/accounts/models.py:22
-msgid "state"
-msgstr "State"
-
-#: src/accounts/models.py:24
-msgid "country"
-msgstr "Country"
-
-#: src/accounts/models.py:26
-msgid "post_code"
-msgstr "Post Code"
-
-#: src/accounts/templates/accounts/address-list.html:18
+#: src/accounts/templates/accounts/address-list.html:22
 #: src/accounts/templates/accounts/address-update.html:3
 #: src/accounts/templates/accounts/address-update.html:7
 msgid "UpdateAddress"
@@ -152,10 +146,6 @@ msgstr "Register"
 msgid "LoginPromt"
 msgstr "Already have an account? Log in here."
 
-#: src/accounts/templates/accounts/self-profile.html:8
-msgid "Addresses"
-msgstr "Addresses"
-=======
 #: src/book_review/models.py:14
 msgid "ratings"
 msgstr "Ratings"
@@ -164,7 +154,7 @@ msgstr "Ratings"
 msgid "comments"
 msgstr "Comments"
 
-#: src/book_review/models.py:29 src/shopping/models.py:27
+#: src/book_review/models.py:29 src/shopping/models.py:30
 msgid "books"
 msgstr "Books"
 
@@ -177,54 +167,54 @@ msgstr "Books"
 msgid "Update"
 msgstr "Update"
 
-#: src/book_review/templates/review_list_book.html:11
-#: src/book_review/templates/review_list_user.html:11
-#: src/books/templates/book_details.html:22
-msgid "Reviews"
-msgstr "Reviews"
-
 #: src/book_review/templates/review_list_book.html:27
 #: src/books/templates/book_details.html:36
 msgid "AddAReview"
 msgstr "Add Review"
 
-#: src/books/models.py:11 src/books/models.py:25
+#: src/book_review/templates/review_list_user.html:27
+#, fuzzy
+#| msgid "Update"
+msgid "UpdateReview"
+msgstr "Update"
+
+#: src/books/models.py:12 src/books/models.py:26
 msgid "name"
 msgstr "Name"
 
-#: src/books/models.py:26 src/shopping/models.py:20
+#: src/books/models.py:27 src/shopping/models.py:22
 msgid "address"
 msgstr "Address"
 
-#: src/books/models.py:36
+#: src/books/models.py:37
 msgid "title"
 msgstr "Title"
 
-#: src/books/models.py:37
+#: src/books/models.py:38
 msgid "description"
 msgstr "Description"
 
-#: src/books/models.py:38 src/shopping/models.py:51
+#: src/books/models.py:40 src/shopping/models.py:55
 msgid "price"
 msgstr "Price"
 
-#: src/books/models.py:39 src/shopping/models.py:50
+#: src/books/models.py:42 src/shopping/models.py:53
 msgid "quantity"
 msgstr "Quantity"
 
-#: src/books/models.py:40
+#: src/books/models.py:44
 msgid "language"
 msgstr "Language"
 
-#: src/books/models.py:41
+#: src/books/models.py:46
 msgid "genre"
 msgstr "Genre"
 
-#: src/books/models.py:47
+#: src/books/models.py:52
 msgid "author"
 msgstr "Author"
 
-#: src/books/models.py:54
+#: src/books/models.py:59
 msgid "publisher"
 msgstr "Publisher"
 
@@ -253,7 +243,7 @@ msgstr "Publisher"
 
 #: src/books/templates/book_details.html:16
 #: src/shopping/templates/shopping/cart-detail.html:15
-#: src/shopping/templates/shopping/order-detail.html:17
+#: src/shopping/templates/shopping/order-detail.html:18
 msgid "Price"
 msgstr "Price"
 
@@ -276,24 +266,30 @@ msgstr "Author"
 msgid "View"
 msgstr "View"
 
-#: src/core/models.py:12
+#: src/core/models.py:13
 msgid "created_at"
 msgstr "Create Book"
 
-#: src/core/models.py:13
+#: src/core/models.py:15
 msgid "deleted_at"
 msgstr "Deleted At"
 
-#: src/core/models.py:14
+#: src/core/models.py:17
 msgid "deleted"
 msgstr "Deleted"
 
 #: src/core/templates/base.html:15
 #: src/shopping/templates/shopping/cart-detail.html:13
-#: src/shopping/templates/shopping/order-detail.html:15
+#: src/shopping/templates/shopping/order-detail.html:16
 #: src/store_admin/templates/store_admin/admin_base.html:9
 msgid "Books"
 msgstr "Books"
+
+#: src/core/templates/base.html:17
+#: src/shopping/templates/shopping/order-history.html:5
+#: src/shopping/templates/shopping/order-history.html:10
+msgid "OrderHistory"
+msgstr "Order History"
 
 #: src/core/templates/base.html:19
 msgid "FindBooks"
@@ -331,27 +327,21 @@ msgstr "Most Popular Books"
 msgid "HighestRatedBooks"
 msgstr "Highest Rated Books"
 
-
-#: src/shopping/models.py:25
+#: src/shopping/models.py:27
 msgid "status"
 msgstr "Status"
 
-#: src/shopping/models.py:41
+#: src/shopping/models.py:44
 msgid "order"
 msgstr "Order"
 
-#: src/shopping/models.py:48
+#: src/shopping/models.py:51
 msgid "book"
 msgstr "Books"
 
-#: src/shopping/models.py:52
+#: src/shopping/models.py:57
 msgid "out_of_stock"
 msgstr "Out of Stock"
-
-#: src/shopping/templates/shopping/address-create.html:5
-#: src/shopping/templates/shopping/address-create.html:8
-msgid "AddAddress"
-msgstr "Add Address"
 
 #: src/shopping/templates/shopping/cart-detail.html:4
 #: src/shopping/templates/shopping/cart-detail.html:9
@@ -359,14 +349,14 @@ msgid "Cart"
 msgstr "Cart"
 
 #: src/shopping/templates/shopping/cart-detail.html:14
-#: src/shopping/templates/shopping/order-detail.html:16
+#: src/shopping/templates/shopping/order-detail.html:17
 #: src/store_admin/templates/store_admin/order-update.html:49
 #: src/store_admin/templates/store_admin/order-update.html:71
 msgid "Quantity"
 msgstr "Quantity"
 
 #: src/shopping/templates/shopping/cart-detail.html:34
-#: src/shopping/templates/shopping/order-detail.html:30
+#: src/shopping/templates/shopping/order-detail.html:31
 msgid "Total"
 msgstr "Total"
 
@@ -381,9 +371,14 @@ msgstr "Checkout"
 msgid "OrderDetail"
 msgstr "Order Detail"
 
+#: src/shopping/templates/shopping/order-detail.html:11
 #: src/shopping/templates/shopping/order-history.html:21
 msgid "Date"
 msgstr "Date"
+
+#: src/shopping/templates/shopping/order-detail.html:12
+msgid "Order Status"
+msgstr "Order Status"
 
 #: src/shopping/templates/shopping/order-history.html:22
 #: src/store_admin/templates/store_admin/order-update.html:25

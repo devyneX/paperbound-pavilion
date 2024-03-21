@@ -8,7 +8,8 @@
 <div class="flex justify-center items-start m-10">
   <div class="text-center">
     <h1 class="text-3xl font-bold mb-4 text-indigo-600">{% trans "OrderDetail" %}</h1>
-    <h2 class="text-lg mb-4">{{ 'Date' }}: {{ order.created_at }}</h2>
+    <h2 class="text-lg mb-2">{% trans "Date" %}: {{ order.created_at }}</h2>
+    <h2 class="text-lg mb-4">{% trans "Order Status" %}: {{ order.get_status_display }}</h2>
     <table class="w-full mt-10">
       <thead>
         <tr class="bg-cyan-100">

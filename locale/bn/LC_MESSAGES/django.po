@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 18:53+0600\n"
+"POT-Creation-Date: 2024-03-21 19:32+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,57 +18,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/accounts/models.py:10
+#: src/accounts/models.py:11
 msgid "phone"
 msgstr "ফোন"
 
-#: src/accounts/models.py:11
+#: src/accounts/models.py:12 src/accounts/templates/accounts/profile.html:17
 msgid "email address"
 msgstr "ইমেইল ঠিকানা"
 
-#: src/accounts/models.py:16 src/book_review/models.py:22
-#: src/shopping/models.py:19
+#: src/accounts/models.py:19 src/book_review/models.py:22
+#: src/shopping/models.py:20
 msgid "user"
 msgstr "ব্যবহারকারী"
 
-#: src/accounts/models.py:19
+#: src/accounts/models.py:22
 msgid "house"
 msgstr "বাড়ি"
 
-#: src/accounts/models.py:20
+#: src/accounts/models.py:23
 msgid "street"
 msgstr "রাস্তা"
 
-#: src/accounts/models.py:21
+#: src/accounts/models.py:24
 msgid "city"
 msgstr "শহর"
 
-#: src/accounts/models.py:22
+#: src/accounts/models.py:25
 msgid "state"
 msgstr "রাজ্য"
 
-#: src/accounts/models.py:24
+#: src/accounts/models.py:29
 msgid "country"
 msgstr "দেশ"
 
-#: src/accounts/models.py:26
+#: src/accounts/models.py:31
 msgid "post_code"
 msgstr "পোস্ট কোড"
 
 #: src/accounts/templates/accounts/address-create.html:5
 #: src/accounts/templates/accounts/address-create.html:8
+#: src/accounts/templates/accounts/address-list.html:14
 msgid "AddAddress"
 msgstr "ঠিকানা যোগ করুন"
 
 #: src/accounts/templates/accounts/address-list.html:6
 #: src/accounts/templates/accounts/address-list.html:11
-#: src/core/templates/base.html:17
-#: src/shopping/templates/shopping/order-history.html:5
-#: src/shopping/templates/shopping/order-history.html:10
-msgid "OrderHistory"
-msgstr "অর্ডারের তালিকা"
+#: src/accounts/templates/accounts/self-profile.html:8
+msgid "Addresses"
+msgstr "ঠিকানা"
 
-#: src/accounts/templates/accounts/address-list.html:18
+#: src/accounts/templates/accounts/address-list.html:22
 #: src/accounts/templates/accounts/address-update.html:3
 #: src/accounts/templates/accounts/address-update.html:7
 msgid "UpdateAddress"
@@ -147,10 +146,6 @@ msgstr "নিবন্ধন"
 msgid "LoginPromt"
 msgstr "ইতিমধ্যে একটি অ্যাকাউন্ট আছে? এখানে লগ ইন করুন।"
 
-#: src/accounts/templates/accounts/self-profile.html:8
-msgid "Addresses"
-msgstr "ঠিকানা"
-
 #: src/book_review/models.py:14
 msgid "ratings"
 msgstr "রেটিংস"
@@ -159,7 +154,7 @@ msgstr "রেটিংস"
 msgid "comments"
 msgstr "মন্তব্য"
 
-#: src/book_review/models.py:29 src/shopping/models.py:27
+#: src/book_review/models.py:29 src/shopping/models.py:30
 msgid "books"
 msgstr "বই"
 
@@ -172,54 +167,54 @@ msgstr "বই"
 msgid "Update"
 msgstr "বই আপডেট করুন"
 
-#: src/book_review/templates/review_list_book.html:11
-#: src/book_review/templates/review_list_user.html:11
-#: src/books/templates/book_details.html:22
-msgid "Reviews"
-msgstr "পর্যালোচনা"
-
 #: src/book_review/templates/review_list_book.html:27
 #: src/books/templates/book_details.html:36
 msgid "AddAReview"
 msgstr "পর্যালোচনা করুন"
 
-#: src/books/models.py:11 src/books/models.py:25
+#: src/book_review/templates/review_list_user.html:27
+#, fuzzy
+#| msgid "Update"
+msgid "UpdateReview"
+msgstr "বই আপডেট করুন"
+
+#: src/books/models.py:12 src/books/models.py:26
 msgid "name"
 msgstr "নাম"
 
-#: src/books/models.py:26 src/shopping/models.py:20
+#: src/books/models.py:27 src/shopping/models.py:22
 msgid "address"
 msgstr "ঠিকানা"
 
-#: src/books/models.py:36
+#: src/books/models.py:37
 msgid "title"
 msgstr "শিরোনাম"
 
-#: src/books/models.py:37
+#: src/books/models.py:38
 msgid "description"
 msgstr "বিবরণ"
 
-#: src/books/models.py:38 src/shopping/models.py:51
+#: src/books/models.py:40 src/shopping/models.py:55
 msgid "price"
 msgstr "মূল্য"
 
-#: src/books/models.py:39 src/shopping/models.py:50
+#: src/books/models.py:42 src/shopping/models.py:53
 msgid "quantity"
 msgstr "পরিমাণ"
 
-#: src/books/models.py:40
+#: src/books/models.py:44
 msgid "language"
 msgstr "ভাষা"
 
-#: src/books/models.py:41
+#: src/books/models.py:46
 msgid "genre"
 msgstr "জানর"
 
-#: src/books/models.py:47
+#: src/books/models.py:52
 msgid "author"
 msgstr "লেখক"
 
-#: src/books/models.py:54
+#: src/books/models.py:59
 msgid "publisher"
 msgstr "প্রকাশক"
 
@@ -248,7 +243,7 @@ msgstr "প্রকাশক"
 
 #: src/books/templates/book_details.html:16
 #: src/shopping/templates/shopping/cart-detail.html:15
-#: src/shopping/templates/shopping/order-detail.html:17
+#: src/shopping/templates/shopping/order-detail.html:18
 msgid "Price"
 msgstr "মূল্য"
 
@@ -271,25 +266,30 @@ msgstr "লেখক"
 msgid "View"
 msgstr "দেখুন"
 
-#: src/core/models.py:12
+#: src/core/models.py:13
 msgid "created_at"
 msgstr "তৈরির সময়"
 
-#: src/core/models.py:13
+#: src/core/models.py:15
 msgid "deleted_at"
 msgstr "মুছে ফেলার সময়"
 
-#: src/core/models.py:14
+#: src/core/models.py:17
 msgid "deleted"
 msgstr "মুছে ফেলা হয়েছে"
 
-
 #: src/core/templates/base.html:15
 #: src/shopping/templates/shopping/cart-detail.html:13
-#: src/shopping/templates/shopping/order-detail.html:15
+#: src/shopping/templates/shopping/order-detail.html:16
 #: src/store_admin/templates/store_admin/admin_base.html:9
 msgid "Books"
 msgstr "বই"
+
+#: src/core/templates/base.html:17
+#: src/shopping/templates/shopping/order-history.html:5
+#: src/shopping/templates/shopping/order-history.html:10
+msgid "OrderHistory"
+msgstr "অর্ডারের তালিকা"
 
 #: src/core/templates/base.html:19
 msgid "FindBooks"
@@ -327,26 +327,21 @@ msgstr "সর্বাধিক জনপ্রিয় বই"
 msgid "HighestRatedBooks"
 msgstr "সর্বোচ্চ রেটেড বইগুলি"
 
-#: src/shopping/models.py:25
+#: src/shopping/models.py:27
 msgid "status"
 msgstr "অবস্থা"
 
-#: src/shopping/models.py:41
+#: src/shopping/models.py:44
 msgid "order"
 msgstr "অর্ডারগণ"
 
-#: src/shopping/models.py:48
+#: src/shopping/models.py:51
 msgid "book"
 msgstr "বই"
 
-#: src/shopping/models.py:52
+#: src/shopping/models.py:57
 msgid "out_of_stock"
 msgstr "স্টকে নেই"
-
-#: src/shopping/templates/shopping/address-create.html:5
-#: src/shopping/templates/shopping/address-create.html:8
-msgid "AddAddress"
-msgstr "ঠিকানা যোগ করুন"
 
 #: src/shopping/templates/shopping/cart-detail.html:4
 #: src/shopping/templates/shopping/cart-detail.html:9
@@ -354,14 +349,14 @@ msgid "Cart"
 msgstr "কার্ট"
 
 #: src/shopping/templates/shopping/cart-detail.html:14
-#: src/shopping/templates/shopping/order-detail.html:16
+#: src/shopping/templates/shopping/order-detail.html:17
 #: src/store_admin/templates/store_admin/order-update.html:49
 #: src/store_admin/templates/store_admin/order-update.html:71
 msgid "Quantity"
 msgstr "পরিমাণ"
 
 #: src/shopping/templates/shopping/cart-detail.html:34
-#: src/shopping/templates/shopping/order-detail.html:30
+#: src/shopping/templates/shopping/order-detail.html:31
 msgid "Total"
 msgstr "সর্বমোট"
 
@@ -376,9 +371,14 @@ msgstr "চেকআউট"
 msgid "OrderDetail"
 msgstr "অর্ডার বিবরণ"
 
+#: src/shopping/templates/shopping/order-detail.html:11
 #: src/shopping/templates/shopping/order-history.html:21
 msgid "Date"
 msgstr "তারিখ"
+
+#: src/shopping/templates/shopping/order-detail.html:12
+msgid "Order Status"
+msgstr "অর্ডারের অবস্থা"
 
 #: src/shopping/templates/shopping/order-history.html:22
 #: src/store_admin/templates/store_admin/order-update.html:25
@@ -579,4 +579,3 @@ msgstr "ব্যবহারকারীগণের তালিকা"
 #: src/store_admin/templates/store_admin/users.html:14
 msgid "CreateUserBtnText"
 msgstr "একজন ব্যবহারকারী তৈরি করুন"
-

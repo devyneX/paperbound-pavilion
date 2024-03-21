@@ -32,8 +32,8 @@
                 </div>
               {% endfor %}
             </div>
-            <a href="{% url 'reviews' pk=book.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm md:mr-2 mb-2 md:mb-0">{% trans 'SeeAll'%}</a>
-            <a href="{% url 'create-review' pk=book.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm">{% trans 'AddAReview'%}</a>
+            <a href="{% url 'review:reviews' pk=book.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm md:mr-2 mb-2 md:mb-0">{% trans 'SeeAll'%}</a>
+            <a href="{% url 'review:create-review' pk=book.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm">{% trans 'AddAReview'%}</a>
           </div>
         </div>
       </div>
