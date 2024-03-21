@@ -2,12 +2,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
 from django.db.utils import IntegrityError
 from django.shortcuts import redirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
-from src.accounts.models import Address
 from src.books.models import Book
 from src.shopping.forms import OrderForm
 from src.shopping.models import Order, OrderBook
@@ -79,14 +78,3 @@ class PlaceOrderView(LoginRequiredMixin, CreateView):
 
         self.request.session['cart'] = {}
         return redirect(self.get_success_url())
-
-
-class AddressCreateView(LoginRequiredMixin, CreateView):
-    model = Address
-    fields = ['house', 'street', 'city', 'state', 'post_code', 'country']
-    template_name = 'shopping/address-create.html'
-    success_url = reverse_lazy('shopping:checkout')
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)

@@ -11,7 +11,7 @@
                 {% trans "SignInToYourAccount" %}
             </h2>
         </div>
-        <form class="mt-8 space-y-6" method="POST" action="{% url 'login' %}?next={{next|urlencode}}">
+        <form class="mt-8 space-y-6" method="POST" action="{% url 'accounts:login' %}?next={{next|urlencode}}">
             {% csrf_token %}
             <div class="rounded-md shadow-sm -space-y-px">
                 <div>
@@ -50,7 +50,7 @@
         </form>
 
         <div class="w-full text-center">
-            <a href="{% url 'register' %}" class="text-sm text-blue-700">{% trans "RegisterPromt" %}</a>
+            <a href="{% url 'accounts:register' %}" class="text-sm text-blue-700">{% trans "RegisterPromt" %}</a>
         </div>
     </div>
 </div>

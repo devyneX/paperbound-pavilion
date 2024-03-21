@@ -6,7 +6,7 @@ from .views import (
 
 app_name = 'review'
 
-reviewurlpatterns = [
+urlpatterns = [
     path('<int:pk>/', BookReviewListView.as_view(), name='reviews'),
     path(
         'user/<str:username>/',

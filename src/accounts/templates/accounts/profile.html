@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+    {{ user.first_name }}'s Profile
+{% endblock %}
+
+{% block content %}
+  <div class="flex justify-center items-center">
+    <div class="max-w-screen-xl rounded overflow-hidden shadow-lg md:mt-20">
+        <div class="px-6 py-4">
+          <img class="w-full" src="https://via.placeholder.com/150" alt="Profile Picture">
+        </div>
+        <div class="px-6 py-4">
+            <div class="font-bold text-4xl mb-2">{{ user.first_name }} {{ user.last_name }}</div>
+            <p class="text-gray-700 text-xl">
+              <strong>{% trans "Username" %}:</strong> {{ user.username }}<br>
+              <strong>{% trans "email address" %}:</strong> {{ user.email }}<br>
+              <strong>{% trans "Phone" %}:</strong> {{ user.phone }}
+            </p>
+            <div class="mt-4">
+              {% block profile_btns %}{% endblock profile_btns %}  
+              <a href="{% url "review:user-reviews" username=request.user.username %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                  {% trans "Reviews" %}
+              </a>
+            </div>
+        </div>
+    </div>
+  </div>
+{% endblock %}

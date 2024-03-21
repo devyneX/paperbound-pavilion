@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 13:39+0600\n"
+"POT-Creation-Date: 2024-03-21 18:53+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,65 +18,105 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/accounts/models.py:11
-#, fuzzy
-#| msgid "Address"
+#: src/accounts/models.py:11 src/accounts/templates/accounts/profile.html:17
 msgid "email address"
-msgstr "Address"
+msgstr "Email"
 
-#: src/accounts/templates/login.html:11
+#: src/accounts/templates/accounts/address-create.html:5
+#: src/accounts/templates/accounts/address-create.html:8
+msgid "AddAddress"
+msgstr "Add Address"
+
+#: src/accounts/templates/accounts/address-list.html:6
+#: src/accounts/templates/accounts/address-list.html:11
+#: src/core/templates/base.html:17
+#: src/shopping/templates/shopping/order-history.html:5
+#: src/shopping/templates/shopping/order-history.html:10
+msgid "OrderHistory"
+msgstr "Order History"
+
+#: src/accounts/templates/accounts/address-list.html:18
+#: src/accounts/templates/accounts/address-update.html:3
+#: src/accounts/templates/accounts/address-update.html:7
+msgid "UpdateAddress"
+msgstr "Update Address"
+
+#: src/accounts/templates/accounts/login.html:11
 msgid "SignInToYourAccount"
 msgstr "Sign in to your account"
 
-#: src/accounts/templates/login.html:18 src/accounts/templates/register.html:42
+#: src/accounts/templates/accounts/login.html:18
+#: src/accounts/templates/accounts/profile.html:16
+#: src/accounts/templates/accounts/register.html:42
 msgid "Username"
 msgstr "Username"
 
-#: src/accounts/templates/login.html:27 src/accounts/templates/register.html:58
+#: src/accounts/templates/accounts/login.html:27
+#: src/accounts/templates/accounts/register.html:58
 msgid "Password"
 msgstr "Password"
 
-#: src/accounts/templates/login.html:39
+#: src/accounts/templates/accounts/login.html:39
+#: src/core/templates/base.html:77
 msgid "LogIn"
 msgstr "Log In"
 
-#: src/accounts/templates/login.html:53
+#: src/accounts/templates/accounts/login.html:53
 msgid "RegisterPromt"
 msgstr "No account? Register here."
 
-#: src/accounts/templates/register.html:11
-msgid "CreateYourAccount"
-msgstr "tCreate your account"
+#: src/accounts/templates/accounts/profile-update.html:3
+#: src/accounts/templates/accounts/profile-update.html:6
+#: src/accounts/templates/accounts/self-profile.html:5
+msgid "UpdateProfile"
+msgstr "Update Profile"
 
-#: src/accounts/templates/register.html:18
-msgid "FirstName"
-msgstr "First Name"
-
-#: src/accounts/templates/register.html:26
-msgid "LastName"
-msgstr "Last Name"
-
-#: src/accounts/templates/register.html:34
-#: src/store_admin/templates/store_admin/users.html:26
-msgid "Email"
-msgstr "Email"
-
-#: src/accounts/templates/register.html:50
+#: src/accounts/templates/accounts/profile.html:18
+#: src/accounts/templates/accounts/register.html:50
 #: src/store_admin/templates/store_admin/users.html:27
 msgid "Phone"
 msgstr "Phone"
 
-#: src/accounts/templates/register.html:66
+#: src/accounts/templates/accounts/profile.html:23
+#: src/book_review/templates/review_list_book.html:11
+#: src/book_review/templates/review_list_user.html:11
+#: src/books/templates/book_details.html:22
+msgid "Reviews"
+msgstr "Reviews"
+
+#: src/accounts/templates/accounts/register.html:11
+msgid "CreateYourAccount"
+msgstr "Create your account"
+
+#: src/accounts/templates/accounts/register.html:18
+msgid "FirstName"
+msgstr "First Name"
+
+#: src/accounts/templates/accounts/register.html:26
+msgid "LastName"
+msgstr "Last Name"
+
+#: src/accounts/templates/accounts/register.html:34
+#: src/store_admin/templates/store_admin/users.html:26
+msgid "Email"
+msgstr "Email"
+
+#: src/accounts/templates/accounts/register.html:66
 msgid "ConfirmPassword"
 msgstr "Confirm Password"
 
-#: src/accounts/templates/register.html:77
+#: src/accounts/templates/accounts/register.html:77
+#: src/core/templates/base.html:78
 msgid "Register"
 msgstr "Register"
 
-#: src/accounts/templates/register.html:82
+#: src/accounts/templates/accounts/register.html:82
 msgid "LoginPromt"
 msgstr "Already have an account? Log in here."
+
+#: src/accounts/templates/accounts/self-profile.html:8
+msgid "Addresses"
+msgstr "Addresses"
 
 #: src/book_review/templates/create_review.html:35
 #: src/book_review/templates/update_review.html:13
@@ -84,18 +124,10 @@ msgstr "Already have an account? Log in here."
 #: src/store_admin/templates/store_admin/book-update.html:8
 #: src/store_admin/templates/store_admin/publisher-update.html:8
 #: src/store_admin/templates/store_admin/user-update.html:8
-#, fuzzy
-#| msgid "UpdateBook"
 msgid "Update"
 msgstr "Update Book"
 
-#: src/book_review/templates/review_list_book.html:11
-#: src/book_review/templates/review_list_book.html:15
-#: src/books/templates/book_details.html:22
-msgid "Reviews"
-msgstr "Reviews"
-
-#: src/book_review/templates/review_list_book.html:28
+#: src/book_review/templates/review_list_book.html:27
 #: src/books/templates/book_details.html:36
 msgid "AddAReview"
 msgstr "Add Review"
@@ -115,7 +147,7 @@ msgstr "Language"
 
 #: src/books/templates/book_details.html:14
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #: src/books/templates/book_details.html:15
 #: src/books/templates/book_list.html:18
@@ -155,12 +187,6 @@ msgstr "View"
 msgid "Books"
 msgstr "Books"
 
-#: src/core/templates/base.html:17
-#: src/shopping/templates/shopping/order-history.html:5
-#: src/shopping/templates/shopping/order-history.html:10
-msgid "OrderHistory"
-msgstr "Order History"
-
 #: src/core/templates/base.html:19
 msgid "FindBooks"
 msgstr "Find Books"
@@ -169,7 +195,7 @@ msgstr "Find Books"
 msgid "Search"
 msgstr "Search"
 
-#: src/core/templates/base.html:70
+#: src/core/templates/base.html:71
 msgid "Log out"
 msgstr "Log out"
 
@@ -196,11 +222,6 @@ msgstr "Most Popular Books"
 #: src/root/templates/home.html:41
 msgid "HighestRatedBooks"
 msgstr "Highest Rated Books"
-
-#: src/shopping/templates/shopping/address-create.html:5
-#: src/shopping/templates/shopping/address-create.html:8
-msgid "AddAddress"
-msgstr "Add Address"
 
 #: src/shopping/templates/shopping/cart-detail.html:4
 #: src/shopping/templates/shopping/cart-detail.html:9
@@ -277,8 +298,6 @@ msgstr "Create an author"
 #: src/store_admin/templates/store_admin/book-create.html:8
 #: src/store_admin/templates/store_admin/publisher-create.html:8
 #: src/store_admin/templates/store_admin/user-create.html:8
-#, fuzzy
-#| msgid "CreateBook"
 msgid "Create"
 msgstr "Create Book"
 
@@ -435,6 +454,3 @@ msgstr "Users List"
 #: src/store_admin/templates/store_admin/users.html:14
 msgid "CreateUserBtnText"
 msgstr "Create an user"
-
-#~ msgid "OrderHisoty"
-#~ msgstr "Order History"
