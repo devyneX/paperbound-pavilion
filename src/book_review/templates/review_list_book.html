@@ -1,29 +1,32 @@
-{% extends '_base.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
 <div class="min-h-screen flex justify-center items-center bg-gray-100">
   <div class="flex flex-col items-center">
-      <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
-        <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
-            <h2 class="text-xl font-semibold text-gray-800">{{ book_title}}</h2>
+    <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
+      <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
+            <h2 class="text-2xl font-semibold text-gray-800">{{ book.title}}</h2>
         </div>
         <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
-          <h3 class="font-semibold text-gray-800">{% trans 'AllReviews' %}</h3>
+          <h3 class="text-2xl font-semibold text-gray-800">{% trans 'Reviews' %}</h3>
       </div>
-        {% for r in reviews %}
-            <div class="bg-white border border-gray-200 shadow-md rounded-md p-4">
-                <h2>{{r.user.username}}</h2>
-                <p>{% trans 'Ratings'%}: {{r.ratings}}</p>
-                <p>{{r.comments}}</p>
-                {{curr_user}}
-                {% if user.username == r.user.username %}
-                <a href="{% url 'update-review' pk=r.pk %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-md text-sm">
-                  {% trans 'Update'%}
-                </a>
-                {% endif %}
+      <div class="p-4">
+        <div class="mb-4">
+          {% for r in reviews %}          
+            <div class="border border-gray-200 rounded-md p-2 mb-2">
+              <p class="text-lg font-semibold text-lime-500">{{ r.user.username }}</p>
+              <div class="mb-1">
+                {% for i in r.range %}
+                  &starf;
+                {% endfor %}
+              </div>
+              <p class="text-gray-700">{{ r.comments }}</p>
             </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
+        <a href="{% url 'create-review' pk=book.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm">{% trans 'AddAReview'%}</a>
       </div>
+    </div>
   </div>
 </div>
 {% endblock %}

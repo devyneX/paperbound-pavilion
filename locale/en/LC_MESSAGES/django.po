@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 12:46+0600\n"
+"POT-Creation-Date: 2024-03-21 13:39+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,8 +78,7 @@ msgstr "Register"
 msgid "LoginPromt"
 msgstr "Already have an account? Log in here."
 
-#: src/book_review/templates/create_review.html:36
-#: src/book_review/templates/review_list_book.html:21
+#: src/book_review/templates/create_review.html:35
 #: src/book_review/templates/update_review.html:13
 #: src/store_admin/templates/store_admin/author-update.html:8
 #: src/store_admin/templates/store_admin/book-update.html:8
@@ -91,12 +90,15 @@ msgid "Update"
 msgstr "Update Book"
 
 #: src/book_review/templates/review_list_book.html:11
-msgid "AllReviews"
-msgstr ""
+#: src/book_review/templates/review_list_book.html:15
+#: src/books/templates/book_details.html:22
+msgid "Reviews"
+msgstr "Reviews"
 
-#: src/book_review/templates/review_list_book.html:16
-msgid "Ratings"
-msgstr ""
+#: src/book_review/templates/review_list_book.html:28
+#: src/books/templates/book_details.html:36
+msgid "AddAReview"
+msgstr "Add Review"
 
 #: src/books/templates/book_details.html:12
 #: src/books/templates/book_list.html:17
@@ -132,17 +134,9 @@ msgstr "Price"
 msgid "AddToCartBtnText"
 msgstr "Add to Cart"
 
-#: src/books/templates/book_details.html:22
-msgid "Reviews"
-msgstr "Reviews"
-
 #: src/books/templates/book_details.html:35
 msgid "SeeAll"
 msgstr "See All"
-
-#: src/books/templates/book_details.html:36
-msgid "AddAReview"
-msgstr "Add Review"
 
 #: src/books/templates/book_list.html:15
 #: src/store_admin/templates/store_admin/books.html:26
