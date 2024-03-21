@@ -7,23 +7,28 @@ from src.core.models import BaseModel
 
 
 class User(AbstractUser):
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20,
+                             verbose_name=_('phone'))
     email = models.EmailField(_('email address'), unique=True)
 
 
 class Address(BaseModel):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='addresses'
+        User, on_delete=models.CASCADE,
+        related_name='addresses',
+        verbose_name=_('user')
     )
 
-    house = models.CharField()
-    street = models.CharField()
-    city = models.CharField()
-    state = models.CharField(blank=True, null=True)
+    house = models.CharField(verbose_name=_('house'))
+    street = models.CharField(verbose_name=_('street'))
+    city = models.CharField(verbose_name=_('city'))
+    state = models.CharField(blank=True, null=True, verbose_name=_('state'))
     country = models.CharField(
-        max_length=200, null=True, choices=CountryField().choices
+        max_length=200, null=True,
+        choices=CountryField().choices,
+        verbose_name=_('country')
     )
-    post_code = models.CharField()
+    post_code = models.CharField(verbose_name=_('post_code'))
 
     def __str__(self):
         return f'{self.house}, {self.street}, {self.get_country_display()}'

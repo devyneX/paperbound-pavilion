@@ -18,11 +18,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/accounts/models.py:11 src/accounts/templates/accounts/profile.html:17
-#, fuzzy
-#| msgid "Address"
+#: src/accounts/models.py:10
+msgid "phone"
+msgstr "ফোন"
+
+#: src/accounts/models.py:11
 msgid "email address"
-msgstr "ঠিকানা"
+msgstr "ইমেইল ঠিকানা"
+
+#: src/accounts/models.py:16 src/book_review/models.py:22
+#: src/shopping/models.py:19
+msgid "user"
+msgstr "ব্যবহারকারী"
+
+#: src/accounts/models.py:19
+msgid "house"
+msgstr "বাড়ি"
+
+#: src/accounts/models.py:20
+msgid "street"
+msgstr "রাস্তা"
+
+#: src/accounts/models.py:21
+msgid "city"
+msgstr "শহর"
+
+#: src/accounts/models.py:22
+msgid "state"
+msgstr "রাজ্য"
+
+#: src/accounts/models.py:24
+msgid "country"
+msgstr "দেশ"
+
+#: src/accounts/models.py:26
+msgid "post_code"
+msgstr "পোস্ট কোড"
 
 #: src/accounts/templates/accounts/address-create.html:5
 #: src/accounts/templates/accounts/address-create.html:8
@@ -120,21 +151,77 @@ msgstr "ইতিমধ্যে একটি অ্যাকাউন্ট আ
 msgid "Addresses"
 msgstr "ঠিকানা"
 
+#: src/book_review/models.py:14
+msgid "ratings"
+msgstr "রেটিংস"
+
+#: src/book_review/models.py:16
+msgid "comments"
+msgstr "মন্তব্য"
+
+#: src/book_review/models.py:29 src/shopping/models.py:27
+msgid "books"
+msgstr "বই"
+
 #: src/book_review/templates/create_review.html:35
 #: src/book_review/templates/update_review.html:13
 #: src/store_admin/templates/store_admin/author-update.html:8
 #: src/store_admin/templates/store_admin/book-update.html:8
 #: src/store_admin/templates/store_admin/publisher-update.html:8
 #: src/store_admin/templates/store_admin/user-update.html:8
-#, fuzzy
-#| msgid "UpdateBook"
 msgid "Update"
 msgstr "বই আপডেট করুন"
+
+#: src/book_review/templates/review_list_book.html:11
+#: src/book_review/templates/review_list_user.html:11
+#: src/books/templates/book_details.html:22
+msgid "Reviews"
+msgstr "পর্যালোচনা"
 
 #: src/book_review/templates/review_list_book.html:27
 #: src/books/templates/book_details.html:36
 msgid "AddAReview"
 msgstr "পর্যালোচনা করুন"
+
+#: src/books/models.py:11 src/books/models.py:25
+msgid "name"
+msgstr "নাম"
+
+#: src/books/models.py:26 src/shopping/models.py:20
+msgid "address"
+msgstr "ঠিকানা"
+
+#: src/books/models.py:36
+msgid "title"
+msgstr "শিরোনাম"
+
+#: src/books/models.py:37
+msgid "description"
+msgstr "বিবরণ"
+
+#: src/books/models.py:38 src/shopping/models.py:51
+msgid "price"
+msgstr "মূল্য"
+
+#: src/books/models.py:39 src/shopping/models.py:50
+msgid "quantity"
+msgstr "পরিমাণ"
+
+#: src/books/models.py:40
+msgid "language"
+msgstr "ভাষা"
+
+#: src/books/models.py:41
+msgid "genre"
+msgstr "জানর"
+
+#: src/books/models.py:47
+msgid "author"
+msgstr "লেখক"
+
+#: src/books/models.py:54
+msgid "publisher"
+msgstr "প্রকাশক"
 
 #: src/books/templates/book_details.html:12
 #: src/books/templates/book_list.html:17
@@ -151,7 +238,7 @@ msgstr "ভাষা"
 
 #: src/books/templates/book_details.html:14
 msgid "Description"
-msgstr ""
+msgstr "বিবরণ"
 
 #: src/books/templates/book_details.html:15
 #: src/books/templates/book_list.html:18
@@ -183,6 +270,19 @@ msgstr "লেখক"
 #: src/shopping/templates/shopping/order-history.html:18
 msgid "View"
 msgstr "দেখুন"
+
+#: src/core/models.py:12
+msgid "created_at"
+msgstr "তৈরির সময়"
+
+#: src/core/models.py:13
+msgid "deleted_at"
+msgstr "মুছে ফেলার সময়"
+
+#: src/core/models.py:14
+msgid "deleted"
+msgstr "মুছে ফেলা হয়েছে"
+
 
 #: src/core/templates/base.html:15
 #: src/shopping/templates/shopping/cart-detail.html:13
@@ -226,6 +326,27 @@ msgstr "সর্বাধিক জনপ্রিয় বই"
 #: src/root/templates/home.html:41
 msgid "HighestRatedBooks"
 msgstr "সর্বোচ্চ রেটেড বইগুলি"
+
+#: src/shopping/models.py:25
+msgid "status"
+msgstr "অবস্থা"
+
+#: src/shopping/models.py:41
+msgid "order"
+msgstr "অর্ডারগণ"
+
+#: src/shopping/models.py:48
+msgid "book"
+msgstr "বই"
+
+#: src/shopping/models.py:52
+msgid "out_of_stock"
+msgstr "স্টকে নেই"
+
+#: src/shopping/templates/shopping/address-create.html:5
+#: src/shopping/templates/shopping/address-create.html:8
+msgid "AddAddress"
+msgstr "ঠিকানা যোগ করুন"
 
 #: src/shopping/templates/shopping/cart-detail.html:4
 #: src/shopping/templates/shopping/cart-detail.html:9
@@ -302,8 +423,6 @@ msgstr "একজন লেখক তৈরি করুন"
 #: src/store_admin/templates/store_admin/book-create.html:8
 #: src/store_admin/templates/store_admin/publisher-create.html:8
 #: src/store_admin/templates/store_admin/user-create.html:8
-#, fuzzy
-#| msgid "CreateBook"
 msgid "Create"
 msgstr "বই তৈরি করুন"
 
@@ -461,5 +580,3 @@ msgstr "ব্যবহারকারীগণের তালিকা"
 msgid "CreateUserBtnText"
 msgstr "একজন ব্যবহারকারী তৈরি করুন"
 
-#~ msgid "OrderHisoty"
-#~ msgstr "অর্ডারের তালিকা"

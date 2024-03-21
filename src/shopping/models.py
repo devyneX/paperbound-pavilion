@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from src.accounts.models import Address, User
 from src.books.models import Book
@@ -15,14 +16,18 @@ class OrderStatusChoices(models.TextChoices):
 
 
 class Order(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             verbose_name=_('user'))
+    address = models.ForeignKey(Address, on_delete=models.CASCADE,
+                                verbose_name=_('address'))
     status = models.CharField(
         max_length=20,
         choices=OrderStatusChoices.choices,
-        default=OrderStatusChoices.PENDING
+        default=OrderStatusChoices.PENDING,
+        verbose_name=_('status')
     )
-    books = models.ManyToManyField(Book, through='OrderBook')
+    books = models.ManyToManyField(Book, through='OrderBook',
+                                   verbose_name=_('books'))
 
     def total_price(self):
         return self.orderbooks.filter(out_of_stock=False).aggregate(
@@ -35,17 +40,21 @@ class OrderBook(BaseModel):
         Order,
         on_delete=models.CASCADE,
         related_name='orderbooks',
-        related_query_name='orderbook'
+        related_query_name='orderbook',
+        verbose_name=_('order')
     )
     book = models.ForeignKey(
         Book,
         on_delete=models.CASCADE,
         related_name='orderbooks',
-        related_query_name='orderbook'
+        related_query_name='orderbook',
+        verbose_name=_('book')
     )
-    quantity = models.IntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    out_of_stock = models.BooleanField(default=False)
+    quantity = models.IntegerField(verbose_name=_('quantity'))
+    price = models.DecimalField(max_digits=10, decimal_places=2,
+                                verbose_name=_('price'))
+    out_of_stock = models.BooleanField(default=False,
+                                       verbose_name=_('out_of_stock'))
 
 
 class PaymentStatusChoices(models.TextChoices):
@@ -60,7 +69,7 @@ class Transaction(BaseModel):
         Order,
         on_delete=models.CASCADE,
         related_name='transaction',
-        related_query_name='transaction'
+        related_query_name='transaction',
     )
     transaction_id = models.CharField(max_length=50, primary_key=True)
     bank_tran_id = models.CharField(max_length=50, null=True, blank=True)
