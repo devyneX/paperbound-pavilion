@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 12:03+0600\n"
+"POT-Creation-Date: 2024-03-21 12:46+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,10 +129,8 @@ msgstr "মূল্য"
 
 #: src/books/templates/book_details.html:17
 #: src/books/templates/book_list.html:19
-#, fuzzy
-#| msgid "CreateBookBtnText"
 msgid "AddToCartBtnText"
-msgstr "নতুন বই তৈরি করুন"
+msgstr "কার্টে যোগ করুন"
 
 #: src/books/templates/book_details.html:22
 msgid "Reviews"
@@ -177,7 +175,7 @@ msgstr "বই সন্ধান"
 msgid "Search"
 msgstr "অনুসন্ধান করুন"
 
-#: src/core/templates/base.html:62
+#: src/core/templates/base.html:70
 msgid "Log out"
 msgstr "প্রস্থান"
 
