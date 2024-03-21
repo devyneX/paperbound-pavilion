@@ -58,7 +58,7 @@ class BookSearch(CachedViewMixin, View):
         # Search by book name using full-text search
         book_name_query = request.GET.get('book_name')
         if book_name_query:
-            books = books.annotate(book_name_search=SearchVector('name'),
+            books = books.annotate(book_name_search=SearchVector('title'),
                                    ).filter(book_name_search=book_name_query)
 
         # Search by publisher name using full-text search

@@ -10,6 +10,14 @@
         <div class="flex-shrink-0 flex items-center">
           <a href="/" class="text-white text-2xl font-bold">Paperbound Pavilion</a>
         </div>
+        <!-- Nav links -->
+        <div class="flex items-center">
+          <a href="{% url 'book-list' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{% trans "Books" %}</a>
+          {% if request.user.is_authenticated %}
+          <a href="{% url 'shopping:order-history' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{% trans "OrderHistory" %}</a>
+          {% endif %}
+          <a href="{% url 'book-search' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{% trans "FindBooks" %}</a>
+        </div>
         <!-- Search bar -->
         <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
           <div class="max-w-lg w-full lg:max-w-xs">
@@ -21,18 +29,19 @@
                   <path fill-rule="evenodd" d="M15.854 14.146a1 1 0 0 1-1.415 1.415l-3.792-3.792a6 6 0 1 1 1.415-1.415l3.792 3.792zM14 8a6 6 0 1 0-12 0 6 6 0 0 0 12 0z" clip-rule="evenodd" />
                 </svg>
               </div>
-              <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 sm:text-sm" placeholder="Search" type="search">
+              <form method="GET" action='{% url "book-search" %}'>
+                <input id="search" name="book_name" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 sm:text-sm" placeholder="Search" type="search">
+              </form>
             </div>
           </div>
         </div>
-        <!-- Books link -->
+
+        <!-- Nav links -->
         <div class="flex items-center">
-          <a href="{% url 'book-list' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{% trans "Books" %}</a>
+          <a href="{% url 'shopping:cart-detail' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fa-solid fa-cart-shopping"></i></a>
+          {% comment %} <a href="{% url 'book-search' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{% trans "FindBooks" %}</a> {% endcomment %}
         </div>
 
-
-        
-      
         <!-- LANGS -->
         {% get_current_language as CURRENT_LANGUAGE %}
         {% get_available_languages as AVAILABLE_LANGUAGES %}
