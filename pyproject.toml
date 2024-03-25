@@ -20,6 +20,7 @@ redis = "^5.0.3"
 reportlab = "^4.1.0"
 django-silk = "^5.1.0"
 django-redis = "^5.4.0"
+faker = "^24.3.0"
 
 
 [tool.poetry.group.dev.dependencies]
