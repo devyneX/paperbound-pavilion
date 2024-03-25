@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
 from django.db.utils import IntegrityError
@@ -51,9 +52,18 @@ class PlaceOrderView(LoginRequiredMixin, CreateView):
         kwargs['user_id'] = self.request.user.pk
         return kwargs
 
+    def get(self, request, *args, **kwargs):
+        if not self.request.session.get('cart') or len(
+            self.request.session['cart']
+        ) == 0:
+            messages.error(self.request, 'Your cart is empty')
+            return redirect('shopping:cart-detail')
+        return super().get(request, *args, **kwargs)
+
     def form_valid(self, form):
         cart = self.request.session.get('cart', {})
         if len(cart) == 0:
+            messages.error(self.request, 'Your cart is empty')
             return redirect('shopping:cart-detail')
 
         form.instance.user = self.request.user
