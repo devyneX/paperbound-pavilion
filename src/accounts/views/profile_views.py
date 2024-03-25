@@ -53,7 +53,7 @@ class AddressCreateView(LoginRequiredMixin, CreateView):
     model = Address
     fields = ['house', 'street', 'city', 'state', 'post_code', 'country']
     template_name = 'accounts/address-create.html'
-    success_url = reverse_lazy('shopping:checkout')
+    success_url = reverse_lazy('accounts:address-list')
 
     def get_success_url(self):
         next_url = self.request.GET.get('next')
