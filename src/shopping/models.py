@@ -34,6 +34,10 @@ class Order(BaseModel):
             total_price=models.Sum(models.F('quantity') * models.F('price'))
         )['total_price']
 
+    def __str__(self) -> str:
+        return f'<{self.user.username} - {str(self.address)}>' + \
+                ' <{self.created_at}>'
+
 
 class OrderBook(BaseModel):
     order = models.ForeignKey(

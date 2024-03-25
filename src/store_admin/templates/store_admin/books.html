@@ -14,10 +14,10 @@
             {% trans "CreateBookBtnText" %}
         </a>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="flex flex-col justify-center items-center w-full gap-4">
         {% for book in page_obj %}
-        <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
-            <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
+        <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden w-full">
+            <div class="bg-indigo-200 px-4 py-2 flex justify-between items-center gap-2">
                 <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
                 <a href="{% url 'admin-book-update' book.id %}"
                     class="text-blue-600 hover:text-blue-900 font-semibold">{% trans "Edit" %}</a>

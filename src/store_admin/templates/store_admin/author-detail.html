@@ -1,0 +1,21 @@
+{% extends 'store_admin/admin_base.html' %}
+{% load i18n %}
+
+{% block title %} {% trans "AuthorDetail" %} {%endblock %} 
+{% block header %} {% trans "AuthorDetailText" %} {% endblock %} 
+
+{% block content %}
+
+<div class="container mx-auto mt-8">
+    <h1 class="text-2xl font-bold mb-4">{% trans "AuthorDetail" %}</h1>
+    
+    <div class="bg-white p-4 shadow-md rounded-md">
+        <p class="text-gray-600 mb-2"><strong>{% trans "Name" %}:</strong> {{ object.name }}</p>
+
+
+        <a href="{% url 'admin-user-delete' object.pk %}" class="bg-red-500 text-white px-4 py-2 rounded-md inline-block mt-4">
+            {% trans "DeleteAuthor" %}</a>
+    </div>
+</div>
+
+{% endblock %}

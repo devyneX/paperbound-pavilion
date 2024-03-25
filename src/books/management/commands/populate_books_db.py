@@ -39,7 +39,7 @@ class Command(BaseCommand):
                 price=random.uniform(5, 100),
                 quantity=random.randint(1, 100),
                 language=random.choice(
-                    ['EN', 'FR', 'ES']
+                    ['en', 'fr', 'es']
                 ),  # Assuming LanguageChoices is defined accordingly
                 genre=random.choice([
                     'fiction', 'spiritual', 'sci-fi', 'horror'
