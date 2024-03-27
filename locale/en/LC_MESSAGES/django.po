@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 16:59+0600\n"
+"POT-Creation-Date: 2024-03-27 19:10+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,40 +18,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/accounts/models.py:10
+#: src/accounts/models.py:11
 msgid "phone"
 msgstr "Phone"
 
-#: src/accounts/models.py:11
+#: src/accounts/models.py:12
 msgid "email address"
 msgstr "Email Address"
 
-#: src/accounts/models.py:16 src/book_review/models.py:22
-#: src/shopping/models.py:19
+#: src/accounts/models.py:19 src/book_review/models.py:22
+#: src/shopping/models.py:20
 msgid "user"
 msgstr "User"
 
-#: src/accounts/models.py:19
+#: src/accounts/models.py:22
 msgid "house"
 msgstr "House"
 
-#: src/accounts/models.py:20
+#: src/accounts/models.py:23
 msgid "street"
 msgstr "Street"
 
-#: src/accounts/models.py:21
+#: src/accounts/models.py:24
 msgid "city"
 msgstr "City"
 
-#: src/accounts/models.py:22
+#: src/accounts/models.py:25
 msgid "state"
 msgstr "State"
 
-#: src/accounts/models.py:24
+#: src/accounts/models.py:29
 msgid "country"
 msgstr "Country"
 
-#: src/accounts/models.py:26
+#: src/accounts/models.py:31
 msgid "post_code"
 msgstr "Post Code"
 
@@ -60,6 +60,7 @@ msgid "SignInToYourAccount"
 msgstr "Sign in to your account"
 
 #: src/accounts/templates/login.html:18 src/accounts/templates/register.html:42
+#: src/store_admin/templates/store_admin/user/user-detail.html:23
 msgid "Username"
 msgstr "Username"
 
@@ -80,20 +81,24 @@ msgid "CreateYourAccount"
 msgstr "tCreate your account"
 
 #: src/accounts/templates/register.html:18
+#: src/store_admin/templates/store_admin/user/user-detail.html:17
 msgid "FirstName"
 msgstr "First Name"
 
 #: src/accounts/templates/register.html:26
+#: src/store_admin/templates/store_admin/user/user-detail.html:20
 msgid "LastName"
 msgstr "Last Name"
 
 #: src/accounts/templates/register.html:34
-#: src/store_admin/templates/store_admin/users.html:26
+#: src/store_admin/templates/store_admin/user/user-detail.html:29
+#: src/store_admin/templates/store_admin/user/users.html:30
 msgid "Email"
 msgstr "Email"
 
 #: src/accounts/templates/register.html:50
-#: src/store_admin/templates/store_admin/users.html:27
+#: src/store_admin/templates/store_admin/user/user-detail.html:26
+#: src/store_admin/templates/store_admin/user/users.html:31
 msgid "Phone"
 msgstr "Phone"
 
@@ -117,16 +122,16 @@ msgstr "Ratings"
 msgid "comments"
 msgstr "Comments"
 
-#: src/book_review/models.py:29 src/shopping/models.py:27
+#: src/book_review/models.py:29 src/shopping/models.py:30
 msgid "books"
 msgstr "Books"
 
 #: src/book_review/templates/create_review.html:35
 #: src/book_review/templates/update_review.html:13
-#: src/store_admin/templates/store_admin/author-update.html:8
-#: src/store_admin/templates/store_admin/book-update.html:8
-#: src/store_admin/templates/store_admin/publisher-update.html:8
-#: src/store_admin/templates/store_admin/user-update.html:8
+#: src/store_admin/templates/store_admin/author/author-update.html:8
+#: src/store_admin/templates/store_admin/book/book-update.html:8
+#: src/store_admin/templates/store_admin/publisher/publisher-update.html:8
+#: src/store_admin/templates/store_admin/user/user-update.html:8
 msgid "Update"
 msgstr "Update"
 
@@ -141,82 +146,78 @@ msgstr "Reviews"
 msgid "AddAReview"
 msgstr "Add Review"
 
-#: src/books/models.py:11 src/books/models.py:25
+#: src/books/models.py:12 src/books/models.py:26
 msgid "name"
 msgstr "Name"
 
-#: src/books/models.py:26 src/shopping/models.py:20
+#: src/books/models.py:27 src/shopping/models.py:22
 msgid "address"
 msgstr "Address"
 
-#: src/books/models.py:36
+#: src/books/models.py:37
 msgid "title"
 msgstr "Title"
 
-#: src/books/models.py:37
+#: src/books/models.py:38
 msgid "description"
 msgstr "Description"
 
-#: src/books/models.py:38 src/shopping/models.py:51
+#: src/books/models.py:40 src/shopping/models.py:59
 msgid "price"
 msgstr "Price"
 
-#: src/books/models.py:39 src/shopping/models.py:50
-#, fuzzy
-#| msgid "Quantity"
+#: src/books/models.py:42 src/shopping/models.py:57
 msgid "quantity"
 msgstr "Quantity"
 
-#: src/books/models.py:40
-#, fuzzy
-#| msgid "Language"
+#: src/books/models.py:44
 msgid "language"
 msgstr "Language"
 
-#: src/books/models.py:41
-#, fuzzy
-#| msgid "Genre"
+#: src/books/models.py:46
 msgid "genre"
 msgstr "Genre"
 
-#: src/books/models.py:47
-#, fuzzy
-#| msgid "Author"
+#: src/books/models.py:52
 msgid "author"
 msgstr "Author"
 
-#: src/books/models.py:54
-#, fuzzy
-#| msgid "Publisher"
+#: src/books/models.py:59
 msgid "publisher"
 msgstr "Publisher"
 
 #: src/books/templates/book_details.html:12
 #: src/books/templates/book_list.html:17
-#: src/store_admin/templates/store_admin/books.html:28
-#: src/store_admin/templates/store_admin/books.html:29
+#: src/store_admin/templates/store_admin/book/book-detail.html:29
+#: src/store_admin/templates/store_admin/book/books.html:32
 msgid "Genre"
 msgstr "Genre"
 
 #: src/books/templates/book_details.html:13
 #: src/books/templates/book_list.html:16
-#: src/store_admin/templates/store_admin/books.html:27
+#: src/store_admin/templates/store_admin/book/book-detail.html:26
+#: src/store_admin/templates/store_admin/book/books.html:31
 msgid "Language"
 msgstr "Language"
 
 #: src/books/templates/book_details.html:14
+#: src/store_admin/templates/store_admin/book/book-detail.html:20
 msgid "Description"
 msgstr "Description"
 
 #: src/books/templates/book_details.html:15
 #: src/books/templates/book_list.html:18
-#: src/store_admin/templates/store_admin/publishers.html:26
+#: src/store_admin/templates/store_admin/book/book-detail.html:38
+#: src/store_admin/templates/store_admin/book/books.html:33
+#: src/store_admin/templates/store_admin/publisher/publishers.html:30
 msgid "Publisher"
 msgstr "Publisher"
 
 #: src/books/templates/book_details.html:16
 #: src/shopping/templates/shopping/cart-detail.html:15
 #: src/shopping/templates/shopping/order-detail.html:17
+#: src/store_admin/templates/store_admin/book/book-detail.html:23
+#: src/store_admin/templates/store_admin/order/order-detail.html:25
 msgid "Price"
 msgstr "Price"
 
@@ -230,26 +231,30 @@ msgid "SeeAll"
 msgstr "See All"
 
 #: src/books/templates/book_list.html:15
-#: src/store_admin/templates/store_admin/books.html:26
+#: src/store_admin/templates/store_admin/book/book-detail.html:35
+#: src/store_admin/templates/store_admin/book/books.html:30
 msgid "Author"
 msgstr "Author"
 
 #: src/books/templates/book_list.html:20
 #: src/shopping/templates/shopping/order-history.html:18
+#: src/store_admin/templates/store_admin/author/authors.html:24
+#: src/store_admin/templates/store_admin/book/books.html:24
+#: src/store_admin/templates/store_admin/order/orders.html:20
+#: src/store_admin/templates/store_admin/publisher/publishers.html:24
+#: src/store_admin/templates/store_admin/user/users.html:24
 msgid "View"
 msgstr "View"
 
-#: src/core/models.py:12
-#, fuzzy
-#| msgid "CreateBook"
-msgid "created_at"
-msgstr "Create Book"
-
 #: src/core/models.py:13
+msgid "created_at"
+msgstr "Created at"
+
+#: src/core/models.py:15
 msgid "deleted_at"
 msgstr "Deleted At"
 
-#: src/core/models.py:14
+#: src/core/models.py:17
 msgid "deleted"
 msgstr "Deleted"
 
@@ -257,6 +262,7 @@ msgstr "Deleted"
 #: src/shopping/templates/shopping/cart-detail.html:13
 #: src/shopping/templates/shopping/order-detail.html:15
 #: src/store_admin/templates/store_admin/admin_base.html:9
+#: src/store_admin/templates/store_admin/order/order-detail.html:17
 msgid "Books"
 msgstr "Books"
 
@@ -302,21 +308,19 @@ msgstr "Most Popular Books"
 msgid "HighestRatedBooks"
 msgstr "Highest Rated Books"
 
-#: src/shopping/models.py:25
+#: src/shopping/models.py:27
 msgid "status"
 msgstr "Status"
 
-#: src/shopping/models.py:41
-#, fuzzy
-#| msgid "Orders"
+#: src/shopping/models.py:48
 msgid "order"
 msgstr "Order"
 
-#: src/shopping/models.py:48
+#: src/shopping/models.py:55
 msgid "book"
 msgstr "Books"
 
-#: src/shopping/models.py:52
+#: src/shopping/models.py:61
 msgid "out_of_stock"
 msgstr "Out of Stock"
 
@@ -332,8 +336,10 @@ msgstr "Cart"
 
 #: src/shopping/templates/shopping/cart-detail.html:14
 #: src/shopping/templates/shopping/order-detail.html:16
-#: src/store_admin/templates/store_admin/order-update.html:49
-#: src/store_admin/templates/store_admin/order-update.html:71
+#: src/store_admin/templates/store_admin/book/book-detail.html:32
+#: src/store_admin/templates/store_admin/order/order-detail.html:24
+#: src/store_admin/templates/store_admin/order/order-update.html:49
+#: src/store_admin/templates/store_admin/order/order-update.html:71
 msgid "Quantity"
 msgstr "Quantity"
 
@@ -350,6 +356,8 @@ msgstr "Checkout"
 
 #: src/shopping/templates/shopping/order-detail.html:5
 #: src/shopping/templates/shopping/order-detail.html:10
+#: src/store_admin/templates/store_admin/order/order-detail.html:4
+#: src/store_admin/templates/store_admin/order/order-detail.html:10
 msgid "OrderDetail"
 msgstr "Order Detail"
 
@@ -358,8 +366,10 @@ msgid "Date"
 msgstr "Date"
 
 #: src/shopping/templates/shopping/order-history.html:22
-#: src/store_admin/templates/store_admin/order-update.html:25
-#: src/store_admin/templates/store_admin/orders.html:22
+#: src/store_admin/templates/store_admin/order/order-detail.html:14
+#: src/store_admin/templates/store_admin/order/order-update.html:25
+#: src/store_admin/templates/store_admin/order/orders.html:26
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:20
 msgid "Address"
 msgstr "Address"
 
@@ -368,92 +378,160 @@ msgid "Admin"
 msgstr "Admin"
 
 #: src/store_admin/templates/store_admin/admin_base.html:8
-#: src/store_admin/templates/store_admin/users.html:5
+#: src/store_admin/templates/store_admin/user/users.html:5
 msgid "Users"
 msgstr "Users"
 
 #: src/store_admin/templates/store_admin/admin_base.html:10
-#: src/store_admin/templates/store_admin/authors.html:5
+#: src/store_admin/templates/store_admin/author/authors.html:5
 msgid "Authors"
 msgstr "Authors"
 
 #: src/store_admin/templates/store_admin/admin_base.html:11
-#: src/store_admin/templates/store_admin/publishers.html:5
+#: src/store_admin/templates/store_admin/publisher/publishers.html:5
 msgid "Publishers"
 msgstr "Publisher"
 
 #: src/store_admin/templates/store_admin/admin_base.html:12
-#: src/store_admin/templates/store_admin/orders.html:5
+#: src/store_admin/templates/store_admin/order/orders.html:5
 msgid "Orders"
 msgstr "Order"
 
-#: src/store_admin/templates/store_admin/author-create.html:4
-#: src/store_admin/templates/store_admin/author-create.html:8
+#: src/store_admin/templates/store_admin/author/author-confirm-delete.html:2
+#: src/store_admin/templates/store_admin/author/author-detail.html:17
+msgid "DeleteAuthor"
+msgstr "Delete Author"
+
+#: src/store_admin/templates/store_admin/author/author-create.html:4
+#: src/store_admin/templates/store_admin/author/author-create.html:8
 msgid "CreateAuthor"
 msgstr "Create Author"
 
-#: src/store_admin/templates/store_admin/author-create.html:5
+#: src/store_admin/templates/store_admin/author/author-create.html:5
 msgid "CreateAuthorText"
 msgstr "Create an author"
 
-#: src/store_admin/templates/store_admin/author-create.html:8
-#: src/store_admin/templates/store_admin/book-create.html:8
-#: src/store_admin/templates/store_admin/publisher-create.html:8
-#: src/store_admin/templates/store_admin/user-create.html:8
-#, fuzzy
-#| msgid "CreateBook"
+#: src/store_admin/templates/store_admin/author/author-create.html:8
+#: src/store_admin/templates/store_admin/book/book-create.html:8
+#: src/store_admin/templates/store_admin/publisher/publisher-create.html:8
+#: src/store_admin/templates/store_admin/user/user-create.html:8
 msgid "Create"
-msgstr "Create Book"
+msgstr "Create"
 
-#: src/store_admin/templates/store_admin/author-update.html:4
-#: src/store_admin/templates/store_admin/author-update.html:8
+#: src/store_admin/templates/store_admin/author/author-detail.html:4
+#: src/store_admin/templates/store_admin/author/author-detail.html:10
+msgid "AuthorDetail"
+msgstr "Author Detail"
+
+#: src/store_admin/templates/store_admin/author/author-detail.html:5
+msgid "AuthorDetailText"
+msgstr "Create new author"
+
+#: src/store_admin/templates/store_admin/author/author-detail.html:13
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:17
+msgid "Name"
+msgstr "Name"
+
+#: src/store_admin/templates/store_admin/author/author-update.html:4
+#: src/store_admin/templates/store_admin/author/author-update.html:8
 msgid "UpdateAuthor"
 msgstr "Update Author"
 
-#: src/store_admin/templates/store_admin/author-update.html:5
+#: src/store_admin/templates/store_admin/author/author-update.html:5
 msgid "UpdateAuthorText"
 msgstr "Update an author"
 
-#: src/store_admin/templates/store_admin/authors.html:4
-#: src/store_admin/templates/store_admin/authors.html:11
+#: src/store_admin/templates/store_admin/author/authors.html:4
+#: src/store_admin/templates/store_admin/author/authors.html:11
 msgid "AuthorsList"
 msgstr "Author list"
 
-#: src/store_admin/templates/store_admin/authors.html:14
+#: src/store_admin/templates/store_admin/author/authors.html:14
 msgid "CreateAuthorBtnText"
 msgstr "Create new author"
 
-#: src/store_admin/templates/store_admin/authors.html:23
-#: src/store_admin/templates/store_admin/books.html:23
-#: src/store_admin/templates/store_admin/orders.html:19
-#: src/store_admin/templates/store_admin/publishers.html:23
-#: src/store_admin/templates/store_admin/users.html:23
+#: src/store_admin/templates/store_admin/author/authors.html:26
+#: src/store_admin/templates/store_admin/book/books.html:26
+#: src/store_admin/templates/store_admin/order/orders.html:22
+#: src/store_admin/templates/store_admin/publisher/publishers.html:26
+#: src/store_admin/templates/store_admin/user/users.html:26
 msgid "Edit"
 msgstr "Edit"
 
-#: src/store_admin/templates/store_admin/book-create.html:4
-#: src/store_admin/templates/store_admin/book-create.html:8
+#: src/store_admin/templates/store_admin/author/authors.html:40
+#: src/store_admin/templates/store_admin/book/books.html:40
+#: src/store_admin/templates/store_admin/order/orders.html:36
+#: src/store_admin/templates/store_admin/publisher/publishers.html:40
+#: src/store_admin/templates/store_admin/user/users.html:38
+msgid "First"
+msgstr "First"
+
+#: src/store_admin/templates/store_admin/author/authors.html:41
+#: src/store_admin/templates/store_admin/book/books.html:41
+#: src/store_admin/templates/store_admin/order/orders.html:37
+#: src/store_admin/templates/store_admin/publisher/publishers.html:41
+#: src/store_admin/templates/store_admin/user/users.html:39
+msgid "Previous"
+msgstr "Previous"
+
+#: src/store_admin/templates/store_admin/author/authors.html:45
+#: src/store_admin/templates/store_admin/book/books.html:45
+#: src/store_admin/templates/store_admin/order/orders.html:41
+#: src/store_admin/templates/store_admin/publisher/publishers.html:45
+#: src/store_admin/templates/store_admin/user/users.html:43
+msgid "Next"
+msgstr "Next"
+
+#: src/store_admin/templates/store_admin/author/authors.html:46
+#: src/store_admin/templates/store_admin/book/books.html:46
+#: src/store_admin/templates/store_admin/order/orders.html:42
+#: src/store_admin/templates/store_admin/publisher/publishers.html:46
+#: src/store_admin/templates/store_admin/user/users.html:44
+msgid "Last"
+msgstr "Last"
+
+#: src/store_admin/templates/store_admin/book/book-confirm-delete.html:2
+#: src/store_admin/templates/store_admin/book/book-detail.html:41
+msgid "DeleteBook"
+msgstr "Delete Book"
+
+#: src/store_admin/templates/store_admin/book/book-create.html:4
+#: src/store_admin/templates/store_admin/book/book-create.html:8
 msgid "CreateBook"
 msgstr "Create Book"
 
-#: src/store_admin/templates/store_admin/book-create.html:5
+#: src/store_admin/templates/store_admin/book/book-create.html:5
 msgid "CreateBookText"
 msgstr "Create a book"
 
-#: src/store_admin/templates/store_admin/book-update.html:4
-#: src/store_admin/templates/store_admin/book-update.html:8
+#: src/store_admin/templates/store_admin/book/book-detail.html:5
+#: src/store_admin/templates/store_admin/book/book-detail.html:13
+msgid "BookDetail"
+msgstr ""
+
+#: src/store_admin/templates/store_admin/book/book-detail.html:8
+msgid "BookDetailText"
+msgstr ""
+
+#: src/store_admin/templates/store_admin/book/book-detail.html:17
+#: src/store_admin/templates/store_admin/order/order-detail.html:23
+msgid "Title"
+msgstr "Title"
+
+#: src/store_admin/templates/store_admin/book/book-update.html:4
+#: src/store_admin/templates/store_admin/book/book-update.html:8
 msgid "UpdateBook"
 msgstr "Update Book"
 
-#: src/store_admin/templates/store_admin/book-update.html:5
+#: src/store_admin/templates/store_admin/book/book-update.html:5
 msgid "UpdateBookText"
 msgstr "Update a book"
 
-#: src/store_admin/templates/store_admin/books.html:11
+#: src/store_admin/templates/store_admin/book/books.html:11
 msgid "BooksList"
 msgstr "Books List"
 
-#: src/store_admin/templates/store_admin/books.html:14
+#: src/store_admin/templates/store_admin/book/books.html:14
 msgid "CreateBookBtnText"
 msgstr "Create a book"
 
@@ -481,81 +559,126 @@ msgstr "Orders created in last 30 days"
 msgid "BooksAddedInLast30Days"
 msgstr "Books added in last 30 days"
 
-#: src/store_admin/templates/store_admin/order-update.html:4
-#: src/store_admin/templates/store_admin/order-update.html:94
+#: src/store_admin/templates/store_admin/order/order-confirm-delete.html:2
+#: src/store_admin/templates/store_admin/order/order-detail.html:37
+msgid "DeleteOrder"
+msgstr "Delete Order"
+
+#: src/store_admin/templates/store_admin/order/order-detail.html:5
+msgid "OrderDetailText"
+msgstr "Order Detail"
+
+#: src/store_admin/templates/store_admin/order/order-detail.html:13
+msgid "User"
+msgstr "Users"
+
+#: src/store_admin/templates/store_admin/order/order-detail.html:15
+msgid "Time"
+msgstr "Time"
+
+#: src/store_admin/templates/store_admin/order/order-update.html:4
+#: src/store_admin/templates/store_admin/order/order-update.html:94
 msgid "UpdateOrder"
 msgstr "Update Order"
 
-#: src/store_admin/templates/store_admin/order-update.html:5
+#: src/store_admin/templates/store_admin/order/order-update.html:5
 msgid "UpdateOrderText"
 msgstr "Update an order"
 
-#: src/store_admin/templates/store_admin/order-update.html:39
-#: src/store_admin/templates/store_admin/order-update.html:61
-#: src/store_admin/templates/store_admin/order-update.html:65
+#: src/store_admin/templates/store_admin/order/order-update.html:39
+#: src/store_admin/templates/store_admin/order/order-update.html:61
+#: src/store_admin/templates/store_admin/order/order-update.html:65
 msgid "SelectBook"
 msgstr "Select Book"
 
-#: src/store_admin/templates/store_admin/order-update.html:88
+#: src/store_admin/templates/store_admin/order/order-update.html:88
 msgid "AddAnotherBook"
 msgstr "Add another book"
 
-#: src/store_admin/templates/store_admin/orders.html:4
-#: src/store_admin/templates/store_admin/orders.html:11
+#: src/store_admin/templates/store_admin/order/orders.html:4
+#: src/store_admin/templates/store_admin/order/orders.html:11
 msgid "OrdersList"
 msgstr "Orders List"
 
-#: src/store_admin/templates/store_admin/publisher-create.html:4
-#: src/store_admin/templates/store_admin/publisher-create.html:8
+#: src/store_admin/templates/store_admin/publisher/publisher-confirm-delete.html:2
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:24
+msgid "DeletePublisher"
+msgstr "Delete Publisher"
+
+#: src/store_admin/templates/store_admin/publisher/publisher-create.html:4
+#: src/store_admin/templates/store_admin/publisher/publisher-create.html:8
 msgid "CreatePublisher"
 msgstr "Create Publisher"
 
-#: src/store_admin/templates/store_admin/publisher-create.html:5
+#: src/store_admin/templates/store_admin/publisher/publisher-create.html:5
 msgid "CreatePublisherText"
 msgstr "Create a publisher"
 
-#: src/store_admin/templates/store_admin/publisher-update.html:4
-#: src/store_admin/templates/store_admin/publisher-update.html:8
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:5
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:13
+msgid "PublisherDetail"
+msgstr "Publisher Detail"
+
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:8
+msgid "PublisherDetailText"
+msgstr "Create a publisher"
+
+#: src/store_admin/templates/store_admin/publisher/publisher-update.html:4
+#: src/store_admin/templates/store_admin/publisher/publisher-update.html:8
 msgid "UpdatePublisher"
 msgstr "Update Publisher"
 
-#: src/store_admin/templates/store_admin/publisher-update.html:5
+#: src/store_admin/templates/store_admin/publisher/publisher-update.html:5
 msgid "UpdatePublisherText"
 msgstr "Update a publisher"
 
-#: src/store_admin/templates/store_admin/publishers.html:4
-#: src/store_admin/templates/store_admin/publishers.html:11
+#: src/store_admin/templates/store_admin/publisher/publishers.html:4
+#: src/store_admin/templates/store_admin/publisher/publishers.html:11
 msgid "PublishersList"
 msgstr "Publishers list"
 
-#: src/store_admin/templates/store_admin/publishers.html:14
+#: src/store_admin/templates/store_admin/publisher/publishers.html:14
 msgid "CreatePublisherBtnText"
 msgstr "Create a publisher"
 
-#: src/store_admin/templates/store_admin/user-create.html:4
-#: src/store_admin/templates/store_admin/user-create.html:8
+#: src/store_admin/templates/store_admin/user/user-confirm-delete.html:2
+#: src/store_admin/templates/store_admin/user/user-detail.html:32
+msgid "DeleteUser"
+msgstr "Delete User"
+
+#: src/store_admin/templates/store_admin/user/user-create.html:4
+#: src/store_admin/templates/store_admin/user/user-create.html:8
 msgid "CreateUser"
 msgstr "Create User"
 
-#: src/store_admin/templates/store_admin/user-create.html:5
+#: src/store_admin/templates/store_admin/user/user-create.html:5
 msgid "CreateUserText"
 msgstr "Create a user"
 
-#: src/store_admin/templates/store_admin/user-update.html:4
-#: src/store_admin/templates/store_admin/user-update.html:8
+#: src/store_admin/templates/store_admin/user/user-detail.html:5
+#: src/store_admin/templates/store_admin/user/user-detail.html:13
+msgid "UserDetail"
+msgstr "User Detail"
+
+#: src/store_admin/templates/store_admin/user/user-detail.html:8
+msgid "UserDetailText"
+msgstr "User Detail"
+
+#: src/store_admin/templates/store_admin/user/user-update.html:4
+#: src/store_admin/templates/store_admin/user/user-update.html:8
 msgid "UpdateUser"
 msgstr "Update User"
 
-#: src/store_admin/templates/store_admin/user-update.html:5
+#: src/store_admin/templates/store_admin/user/user-update.html:5
 msgid "UpdateUserText"
 msgstr "Update an user"
 
-#: src/store_admin/templates/store_admin/users.html:4
-#: src/store_admin/templates/store_admin/users.html:11
+#: src/store_admin/templates/store_admin/user/users.html:4
+#: src/store_admin/templates/store_admin/user/users.html:11
 msgid "UsersList"
 msgstr "Users List"
 
-#: src/store_admin/templates/store_admin/users.html:14
+#: src/store_admin/templates/store_admin/user/users.html:14
 msgid "CreateUserBtnText"
 msgstr "Create an user"
 

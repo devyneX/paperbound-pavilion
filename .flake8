@@ -13,6 +13,3 @@ max-complexity = 12
 max-linenumber = 500
 max-line-length = 79
 multiline-quotes = double
-; per-file-ignores =
-;     thenewboston/project/settings/templates/settings.dev.py:F821
-;     thenewboston/project/settings/templates/settings.unittests.py:F821
