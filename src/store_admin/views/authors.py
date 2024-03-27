@@ -12,27 +12,27 @@ from ..forms import AuthorCreateForm
 # AUTHOR VIEWS
 class AuthorsList(SuperuserRequiredMixin, CachedViewMixin, ListView):
     model = Author
-    template_name = 'store_admin/authors.html'
+    template_name = 'store_admin/author/authors.html'
     paginate_by = 20
 
 
 class AuthorsCreate(SuperuserRequiredMixin, CachedViewMixin, CreateView):
     model = Author
     form_class = AuthorCreateForm
-    template_name = 'store_admin/author-create.html'
+    template_name = 'store_admin/author/author-create.html'
     success_url = reverse_lazy('admin-authors')
 
 
 class AuthorsUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
     model = Author
     form_class = AuthorCreateForm
-    template_name = 'store_admin/author-update.html'
+    template_name = 'store_admin/author/author-update.html'
     success_url = reverse_lazy('admin-authors')
 
 
 class AuthorDetailView(SuperuserRequiredMixin, CachedViewMixin, DetailView):
     model = Author
-    template_name = 'store_admin/author-detail.html'
+    template_name = 'store_admin/author/author-detail.html'
 
 
 class AuthorDelete(SuperuserRequiredMixin, CachedViewMixin, DeleteView):
@@ -40,4 +40,4 @@ class AuthorDelete(SuperuserRequiredMixin, CachedViewMixin, DeleteView):
     success_url = reverse_lazy(
         'admin-authors'
     )  # Redirect to admin authors list after deletion
-    template_name = 'store_admin/author-confirm-delete.html'
+    template_name = 'store_admin/author/author-confirm-delete.html'

@@ -14,14 +14,14 @@ from ..forms import OrderCreateForm
 # ORDER VIEWS
 class OrdersList(SuperuserRequiredMixin, CachedViewMixin, ListView):
     model = Order
-    template_name = 'store_admin/orders.html'
+    template_name = 'store_admin/order/orders.html'
     paginate_by = 20
 
 
 class OrdersUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
     model = Order
     form_class = OrderCreateForm
-    template_name = 'store_admin/order-update.html'
+    template_name = 'store_admin/order/order-update.html'
     success_url = reverse_lazy('admin-orders')
 
     def post(self, request, *args, **kwargs):
@@ -68,7 +68,7 @@ class OrdersUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
 
 class OrderDetailView(SuperuserRequiredMixin, CachedViewMixin, DetailView):
     model = Order
-    template_name = 'store_admin/order-detail.html'
+    template_name = 'store_admin/order/order-detail.html'
 
 
 class OrderDelete(SuperuserRequiredMixin, CachedViewMixin, DeleteView):
@@ -76,4 +76,4 @@ class OrderDelete(SuperuserRequiredMixin, CachedViewMixin, DeleteView):
     success_url = reverse_lazy(
         'admin-orders'
     )  # Redirect to admin orders list after deletion
-    template_name = 'store_admin/order-confirm-delete.html'
+    template_name = 'store_admin/order/order-confirm-delete.html'

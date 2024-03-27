@@ -12,27 +12,27 @@ from ..forms import PublisherCreateForm
 # PUBLISHER VIEWS
 class PublishersList(SuperuserRequiredMixin, CachedViewMixin, ListView):
     model = Publisher
-    template_name = 'store_admin/publishers.html'
+    template_name = 'store_admin/publisher/publishers.html'
     paginate_by = 20
 
 
 class PublishersCreate(SuperuserRequiredMixin, CachedViewMixin, CreateView):
     model = Publisher
     form_class = PublisherCreateForm
-    template_name = 'store_admin/publisher-create.html'
+    template_name = 'store_admin/publisher/publisher-create.html'
     success_url = reverse_lazy('admin-publishers')
 
 
 class PublishersUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
     model = Publisher
     form_class = PublisherCreateForm
-    template_name = 'store_admin/publisher-update.html'
+    template_name = 'store_admin/publisher/publisher-update.html'
     success_url = reverse_lazy('admin-publishers')
 
 
 class PublisherDetailView(SuperuserRequiredMixin, CachedViewMixin, DetailView):
     model = Publisher
-    template_name = 'store_admin/publisher-detail.html'
+    template_name = 'store_admin/publisher/publisher-detail.html'
 
 
 class PublisherDelete(SuperuserRequiredMixin, CachedViewMixin, DeleteView):
@@ -40,4 +40,4 @@ class PublisherDelete(SuperuserRequiredMixin, CachedViewMixin, DeleteView):
     success_url = reverse_lazy(
         'admin-publishers'
     )  # Redirect to admin publishers list after deletion
-    template_name = 'store_admin/publisher-confirm-delete.html'
+    template_name = 'store_admin/publisher/publisher-confirm-delete.html'

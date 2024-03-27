@@ -13,14 +13,14 @@ from ..forms import BookCreateForm
 # BOOK VIEWS
 class BooksList(SuperuserRequiredMixin, CachedViewMixin, ListView):
     model = Book
-    template_name = 'store_admin/books.html'
+    template_name = 'store_admin/book/books.html'
     paginate_by = 20
 
 
 class BooksCreate(SuperuserRequiredMixin, CachedViewMixin, CreateView):
     model = Book
     form_class = BookCreateForm
-    template_name = 'store_admin/book-create.html'
+    template_name = 'store_admin/book/book-create.html'
     success_url = reverse_lazy('admin-books')
 
     def get_context_data(self, **kwargs):
@@ -37,7 +37,7 @@ class BooksCreate(SuperuserRequiredMixin, CachedViewMixin, CreateView):
 
 class BookDetailView(SuperuserRequiredMixin, CachedViewMixin, DetailView):
     model = Book
-    template_name = 'store_admin/book-detail.html'
+    template_name = 'store_admin/book/book-detail.html'
 
 
 class BookDelete(SuperuserRequiredMixin, CachedViewMixin, DeleteView):
@@ -45,13 +45,13 @@ class BookDelete(SuperuserRequiredMixin, CachedViewMixin, DeleteView):
     success_url = reverse_lazy(
         'admin-books'
     )  # Redirect to admin users list after deletion
-    template_name = 'store_admin/book-confirm-delete.html'
+    template_name = 'store_admin/book/book-confirm-delete.html'
 
 
 class BooksUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
     model = Book
     form_class = BookCreateForm
-    template_name = 'store_admin/book-update.html'
+    template_name = 'store_admin/book/book-update.html'
     success_url = reverse_lazy('admin-books')
 
     def get_context_data(self, **kwargs):
