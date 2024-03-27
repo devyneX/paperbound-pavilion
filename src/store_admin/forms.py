@@ -9,32 +9,38 @@ class BookCreateForm(ModelForm):
 
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = [
+            'title', 'description', 'price', 'quantity', 'language', 'genre',
+            'author', 'publisher'
+        ]
 
 
 class AuthorCreateForm(ModelForm):
 
     class Meta:
         model = Author
-        fields = '__all__'
+        fields = ['name']
 
 
 class PublisherCreateForm(ModelForm):
 
     class Meta:
         model = Publisher
-        fields = '__all__'
+        fields = ['name', 'address']
 
 
 class OrderCreateForm(ModelForm):
 
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = ['user', 'address', 'status', 'books']
 
 
 class UserCreateForm(ModelForm):
 
     class Meta:
         model = User
-        fields = '__all__'
+        fields = [
+            'first_name', 'last_name', 'username', 'phone', 'email',
+            'password', 'user_permissions'
+        ]

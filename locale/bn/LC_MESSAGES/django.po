@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/accounts/models.py:11
+#: src/accounts/models.py:11
 msgid "phone"
 msgstr "ফোন"
 
@@ -28,29 +29,37 @@ msgstr "ইমেইল ঠিকানা"
 
 #: src/accounts/models.py:19 src/book_review/models.py:22
 #: src/shopping/models.py:20
+#: src/accounts/models.py:19 src/book_review/models.py:22
+#: src/shopping/models.py:20
 msgid "user"
 msgstr "ব্যবহারকারী"
 
+#: src/accounts/models.py:22
 #: src/accounts/models.py:22
 msgid "house"
 msgstr "বাড়ি"
 
 #: src/accounts/models.py:23
+#: src/accounts/models.py:23
 msgid "street"
 msgstr "রাস্তা"
 
+#: src/accounts/models.py:24
 #: src/accounts/models.py:24
 msgid "city"
 msgstr "শহর"
 
 #: src/accounts/models.py:25
+#: src/accounts/models.py:25
 msgid "state"
 msgstr "রাজ্য"
 
 #: src/accounts/models.py:29
+#: src/accounts/models.py:29
 msgid "country"
 msgstr "দেশ"
 
+#: src/accounts/models.py:31
 #: src/accounts/models.py:31
 msgid "post_code"
 msgstr "পোস্ট কোড"
@@ -155,15 +164,16 @@ msgid "comments"
 msgstr "মন্তব্য"
 
 #: src/book_review/models.py:29 src/shopping/models.py:30
+#: src/book_review/models.py:29 src/shopping/models.py:30
 msgid "books"
 msgstr "বই"
 
 #: src/book_review/templates/create_review.html:35
 #: src/book_review/templates/update_review.html:13
-#: src/store_admin/templates/store_admin/author-update.html:8
-#: src/store_admin/templates/store_admin/book-update.html:8
-#: src/store_admin/templates/store_admin/publisher-update.html:8
-#: src/store_admin/templates/store_admin/user-update.html:8
+#: src/store_admin/templates/store_admin/author/author-update.html:8
+#: src/store_admin/templates/store_admin/book/book-update.html:8
+#: src/store_admin/templates/store_admin/publisher/publisher-update.html:8
+#: src/store_admin/templates/store_admin/user/user-update.html:8
 msgid "Update"
 msgstr "বই আপডেট করুন"
 
@@ -183,13 +193,16 @@ msgid "name"
 msgstr "নাম"
 
 #: src/books/models.py:27 src/shopping/models.py:22
+#: src/books/models.py:27 src/shopping/models.py:22
 msgid "address"
 msgstr "ঠিকানা"
 
 #: src/books/models.py:37
+#: src/books/models.py:37
 msgid "title"
 msgstr "শিরোনাম"
 
+#: src/books/models.py:38
 #: src/books/models.py:38
 msgid "description"
 msgstr "বিবরণ"
@@ -203,41 +216,49 @@ msgid "quantity"
 msgstr "পরিমাণ"
 
 #: src/books/models.py:44
+#: src/books/models.py:44
 msgid "language"
 msgstr "ভাষা"
 
+#: src/books/models.py:46
 #: src/books/models.py:46
 msgid "genre"
 msgstr "জানর"
 
 #: src/books/models.py:52
+#: src/books/models.py:52
 msgid "author"
 msgstr "লেখক"
 
+#: src/books/models.py:59
 #: src/books/models.py:59
 msgid "publisher"
 msgstr "প্রকাশক"
 
 #: src/books/templates/book_details.html:12
 #: src/books/templates/book_list.html:17
-#: src/store_admin/templates/store_admin/books.html:28
-#: src/store_admin/templates/store_admin/books.html:29
+#: src/store_admin/templates/store_admin/book/book-detail.html:29
+#: src/store_admin/templates/store_admin/book/books.html:32
 msgid "Genre"
 msgstr "জানর"
 
 #: src/books/templates/book_details.html:13
 #: src/books/templates/book_list.html:16
-#: src/store_admin/templates/store_admin/books.html:27
+#: src/store_admin/templates/store_admin/book/book-detail.html:26
+#: src/store_admin/templates/store_admin/book/books.html:31
 msgid "Language"
 msgstr "ভাষা"
 
 #: src/books/templates/book_details.html:14
+#: src/store_admin/templates/store_admin/book/book-detail.html:20
 msgid "Description"
 msgstr "বিবরণ"
 
 #: src/books/templates/book_details.html:15
 #: src/books/templates/book_list.html:18
-#: src/store_admin/templates/store_admin/publishers.html:26
+#: src/store_admin/templates/store_admin/book/book-detail.html:38
+#: src/store_admin/templates/store_admin/book/books.html:33
+#: src/store_admin/templates/store_admin/publisher/publishers.html:30
 msgid "Publisher"
 msgstr "প্রকাশক"
 
@@ -257,23 +278,32 @@ msgid "SeeAll"
 msgstr "সব দেখুন"
 
 #: src/books/templates/book_list.html:15
-#: src/store_admin/templates/store_admin/books.html:26
+#: src/store_admin/templates/store_admin/book/book-detail.html:35
+#: src/store_admin/templates/store_admin/book/books.html:30
 msgid "Author"
 msgstr "লেখক"
 
 #: src/books/templates/book_list.html:20
 #: src/shopping/templates/shopping/order-history.html:18
+#: src/store_admin/templates/store_admin/author/authors.html:24
+#: src/store_admin/templates/store_admin/book/books.html:24
+#: src/store_admin/templates/store_admin/order/orders.html:20
+#: src/store_admin/templates/store_admin/publisher/publishers.html:24
+#: src/store_admin/templates/store_admin/user/users.html:24
 msgid "View"
 msgstr "দেখুন"
 
+#: src/core/models.py:13
 #: src/core/models.py:13
 msgid "created_at"
 msgstr "তৈরির সময়"
 
 #: src/core/models.py:15
+#: src/core/models.py:15
 msgid "deleted_at"
 msgstr "মুছে ফেলার সময়"
 
+#: src/core/models.py:17
 #: src/core/models.py:17
 msgid "deleted"
 msgstr "মুছে ফেলা হয়েছে"
@@ -282,6 +312,7 @@ msgstr "মুছে ফেলা হয়েছে"
 #: src/shopping/templates/shopping/cart-detail.html:13
 #: src/shopping/templates/shopping/order-detail.html:16
 #: src/store_admin/templates/store_admin/admin_base.html:9
+#: src/store_admin/templates/store_admin/order/order-detail.html:17
 msgid "Books"
 msgstr "বই"
 
@@ -328,6 +359,7 @@ msgid "HighestRatedBooks"
 msgstr "সর্বোচ্চ রেটেড বইগুলি"
 
 #: src/shopping/models.py:27
+#: src/shopping/models.py:27
 msgid "status"
 msgstr "অবস্থা"
 
@@ -368,6 +400,8 @@ msgstr "চেকআউট"
 
 #: src/shopping/templates/shopping/order-detail.html:5
 #: src/shopping/templates/shopping/order-detail.html:10
+#: src/store_admin/templates/store_admin/order/order-detail.html:4
+#: src/store_admin/templates/store_admin/order/order-detail.html:10
 msgid "OrderDetail"
 msgstr "অর্ডার বিবরণ"
 
@@ -381,8 +415,10 @@ msgid "Order Status"
 msgstr "অর্ডারের অবস্থা"
 
 #: src/shopping/templates/shopping/order-history.html:22
-#: src/store_admin/templates/store_admin/order-update.html:25
-#: src/store_admin/templates/store_admin/orders.html:22
+#: src/store_admin/templates/store_admin/order/order-detail.html:14
+#: src/store_admin/templates/store_admin/order/order-update.html:25
+#: src/store_admin/templates/store_admin/order/orders.html:26
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:20
 msgid "Address"
 msgstr "ঠিকানা"
 
@@ -391,90 +427,160 @@ msgid "Admin"
 msgstr "অ্যাডমিন"
 
 #: src/store_admin/templates/store_admin/admin_base.html:8
-#: src/store_admin/templates/store_admin/users.html:5
+#: src/store_admin/templates/store_admin/user/users.html:5
 msgid "Users"
 msgstr "ব্যবহারকারীগণ"
 
 #: src/store_admin/templates/store_admin/admin_base.html:10
-#: src/store_admin/templates/store_admin/authors.html:5
+#: src/store_admin/templates/store_admin/author/authors.html:5
 msgid "Authors"
 msgstr "লেখকগণ"
 
 #: src/store_admin/templates/store_admin/admin_base.html:11
-#: src/store_admin/templates/store_admin/publishers.html:5
+#: src/store_admin/templates/store_admin/publisher/publishers.html:5
 msgid "Publishers"
 msgstr "প্রকাশকগণ"
 
 #: src/store_admin/templates/store_admin/admin_base.html:12
-#: src/store_admin/templates/store_admin/orders.html:5
+#: src/store_admin/templates/store_admin/order/orders.html:5
 msgid "Orders"
 msgstr "অর্ডারগণ"
 
-#: src/store_admin/templates/store_admin/author-create.html:4
-#: src/store_admin/templates/store_admin/author-create.html:8
+#: src/store_admin/templates/store_admin/author/author-confirm-delete.html:2
+#: src/store_admin/templates/store_admin/author/author-detail.html:17
+msgid "DeleteAuthor"
+msgstr "লেখক মুছে ফেলুন"
+
+#: src/store_admin/templates/store_admin/author/author-create.html:4
+#: src/store_admin/templates/store_admin/author/author-create.html:8
 msgid "CreateAuthor"
 msgstr "লেখক তৈরি করুন"
 
-#: src/store_admin/templates/store_admin/author-create.html:5
+#: src/store_admin/templates/store_admin/author/author-create.html:5
 msgid "CreateAuthorText"
 msgstr "একজন লেখক তৈরি করুন"
 
-#: src/store_admin/templates/store_admin/author-create.html:8
-#: src/store_admin/templates/store_admin/book-create.html:8
-#: src/store_admin/templates/store_admin/publisher-create.html:8
-#: src/store_admin/templates/store_admin/user-create.html:8
+#: src/store_admin/templates/store_admin/author/author-create.html:8
+#: src/store_admin/templates/store_admin/book/book-create.html:8
+#: src/store_admin/templates/store_admin/publisher/publisher-create.html:8
+#: src/store_admin/templates/store_admin/user/user-create.html:8
 msgid "Create"
-msgstr "বই তৈরি করুন"
+msgstr "তৈরি করুন"
 
-#: src/store_admin/templates/store_admin/author-update.html:4
-#: src/store_admin/templates/store_admin/author-update.html:8
+#: src/store_admin/templates/store_admin/author/author-detail.html:4
+#: src/store_admin/templates/store_admin/author/author-detail.html:10
+msgid "AuthorDetail"
+msgstr "লেখক বিবরণ"
+
+#: src/store_admin/templates/store_admin/author/author-detail.html:5
+msgid "AuthorDetailText"
+msgstr "নতুন লেখক তৈরি করুন"
+
+#: src/store_admin/templates/store_admin/author/author-detail.html:13
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:17
+msgid "Name"
+msgstr "নাম"
+
+#: src/store_admin/templates/store_admin/author/author-update.html:4
+#: src/store_admin/templates/store_admin/author/author-update.html:8
 msgid "UpdateAuthor"
 msgstr "লেখক আপডেট করুন"
 
-#: src/store_admin/templates/store_admin/author-update.html:5
+#: src/store_admin/templates/store_admin/author/author-update.html:5
 msgid "UpdateAuthorText"
 msgstr "একজন লেখক আপডেট করুন"
 
-#: src/store_admin/templates/store_admin/authors.html:4
-#: src/store_admin/templates/store_admin/authors.html:11
+#: src/store_admin/templates/store_admin/author/authors.html:4
+#: src/store_admin/templates/store_admin/author/authors.html:11
 msgid "AuthorsList"
 msgstr "লেখকের তালিকা"
 
-#: src/store_admin/templates/store_admin/authors.html:14
+#: src/store_admin/templates/store_admin/author/authors.html:14
 msgid "CreateAuthorBtnText"
 msgstr "নতুন লেখক তৈরি করুন"
 
-#: src/store_admin/templates/store_admin/authors.html:23
-#: src/store_admin/templates/store_admin/books.html:23
-#: src/store_admin/templates/store_admin/orders.html:19
-#: src/store_admin/templates/store_admin/publishers.html:23
-#: src/store_admin/templates/store_admin/users.html:23
+#: src/store_admin/templates/store_admin/author/authors.html:26
+#: src/store_admin/templates/store_admin/book/books.html:26
+#: src/store_admin/templates/store_admin/order/orders.html:22
+#: src/store_admin/templates/store_admin/publisher/publishers.html:26
+#: src/store_admin/templates/store_admin/user/users.html:26
 msgid "Edit"
 msgstr "সম্পাদনা করুন"
 
-#: src/store_admin/templates/store_admin/book-create.html:4
-#: src/store_admin/templates/store_admin/book-create.html:8
+#: src/store_admin/templates/store_admin/author/authors.html:40
+#: src/store_admin/templates/store_admin/book/books.html:40
+#: src/store_admin/templates/store_admin/order/orders.html:36
+#: src/store_admin/templates/store_admin/publisher/publishers.html:40
+#: src/store_admin/templates/store_admin/user/users.html:38
+msgid "First"
+msgstr "প্রথম পাতা"
+
+#: src/store_admin/templates/store_admin/author/authors.html:41
+#: src/store_admin/templates/store_admin/book/books.html:41
+#: src/store_admin/templates/store_admin/order/orders.html:37
+#: src/store_admin/templates/store_admin/publisher/publishers.html:41
+#: src/store_admin/templates/store_admin/user/users.html:39
+msgid "Previous"
+msgstr "আগের পাতা"
+
+#: src/store_admin/templates/store_admin/author/authors.html:45
+#: src/store_admin/templates/store_admin/book/books.html:45
+#: src/store_admin/templates/store_admin/order/orders.html:41
+#: src/store_admin/templates/store_admin/publisher/publishers.html:45
+#: src/store_admin/templates/store_admin/user/users.html:43
+msgid "Next"
+msgstr "পরের পাতা"
+
+#: src/store_admin/templates/store_admin/author/authors.html:46
+#: src/store_admin/templates/store_admin/book/books.html:46
+#: src/store_admin/templates/store_admin/order/orders.html:42
+#: src/store_admin/templates/store_admin/publisher/publishers.html:46
+#: src/store_admin/templates/store_admin/user/users.html:44
+msgid "Last"
+msgstr "শেষ পাতা"
+
+#: src/store_admin/templates/store_admin/book/book-confirm-delete.html:2
+#: src/store_admin/templates/store_admin/book/book-detail.html:41
+msgid "DeleteBook"
+msgstr "বই মুছে ফেলুন"
+
+#: src/store_admin/templates/store_admin/book/book-create.html:4
+#: src/store_admin/templates/store_admin/book/book-create.html:8
 msgid "CreateBook"
 msgstr "বই তৈরি করুন"
 
-#: src/store_admin/templates/store_admin/book-create.html:5
+#: src/store_admin/templates/store_admin/book/book-create.html:5
 msgid "CreateBookText"
 msgstr "একটি বই তৈরি করুন"
 
-#: src/store_admin/templates/store_admin/book-update.html:4
-#: src/store_admin/templates/store_admin/book-update.html:8
+#: src/store_admin/templates/store_admin/book/book-detail.html:5
+#: src/store_admin/templates/store_admin/book/book-detail.html:13
+msgid "BookDetail"
+msgstr "বই বিবরণ"
+
+#: src/store_admin/templates/store_admin/book/book-detail.html:8
+msgid "BookDetailText"
+msgstr "বই বিবরণ"
+
+#: src/store_admin/templates/store_admin/book/book-detail.html:17
+#: src/store_admin/templates/store_admin/order/order-detail.html:23
+msgid "Title"
+msgstr "শিরোনাম"
+
+#: src/store_admin/templates/store_admin/book/book-update.html:4
+#: src/store_admin/templates/store_admin/book/book-update.html:8
 msgid "UpdateBook"
 msgstr "বই আপডেট করুন"
 
-#: src/store_admin/templates/store_admin/book-update.html:5
+#: src/store_admin/templates/store_admin/book/book-update.html:5
 msgid "UpdateBookText"
 msgstr "একটি বই আপডেট করুন"
 
-#: src/store_admin/templates/store_admin/books.html:11
+#: src/store_admin/templates/store_admin/book/books.html:11
 msgid "BooksList"
 msgstr "বইগুলির তালিকা"
 
-#: src/store_admin/templates/store_admin/books.html:14
+#: src/store_admin/templates/store_admin/book/books.html:14
 msgid "CreateBookBtnText"
 msgstr "নতুন বই তৈরি করুন"
 
@@ -502,80 +608,125 @@ msgstr "গত ৩০ দিনে অর্ডার"
 msgid "BooksAddedInLast30Days"
 msgstr "গত ৩০ দিনে বই যোগ করা হয়েছে"
 
-#: src/store_admin/templates/store_admin/order-update.html:4
-#: src/store_admin/templates/store_admin/order-update.html:94
+#: src/store_admin/templates/store_admin/order/order-confirm-delete.html:2
+#: src/store_admin/templates/store_admin/order/order-detail.html:37
+msgid "DeleteOrder"
+msgstr "অর্ডার মুছে ফেলুন"
+
+#: src/store_admin/templates/store_admin/order/order-detail.html:5
+msgid "OrderDetailText"
+msgstr "অর্ডার বিবরণ"
+
+#: src/store_admin/templates/store_admin/order/order-detail.html:13
+msgid "User"
+msgstr "ব্যবহারকারীগণ"
+
+#: src/store_admin/templates/store_admin/order/order-detail.html:15
+msgid "Time"
+msgstr "সময়"
+
+#: src/store_admin/templates/store_admin/order/order-update.html:4
+#: src/store_admin/templates/store_admin/order/order-update.html:94
 msgid "UpdateOrder"
 msgstr "অর্ডার আপডেট করুন"
 
-#: src/store_admin/templates/store_admin/order-update.html:5
+#: src/store_admin/templates/store_admin/order/order-update.html:5
 msgid "UpdateOrderText"
 msgstr "একটি অর্ডার আপডেট করুন"
 
-#: src/store_admin/templates/store_admin/order-update.html:39
-#: src/store_admin/templates/store_admin/order-update.html:61
-#: src/store_admin/templates/store_admin/order-update.html:65
+#: src/store_admin/templates/store_admin/order/order-update.html:39
+#: src/store_admin/templates/store_admin/order/order-update.html:61
+#: src/store_admin/templates/store_admin/order/order-update.html:65
 msgid "SelectBook"
 msgstr "বই নির্বাচন করুন"
 
-#: src/store_admin/templates/store_admin/order-update.html:88
+#: src/store_admin/templates/store_admin/order/order-update.html:88
 msgid "AddAnotherBook"
 msgstr "আরো একটি বই যোগ করুন"
 
-#: src/store_admin/templates/store_admin/orders.html:4
-#: src/store_admin/templates/store_admin/orders.html:11
+#: src/store_admin/templates/store_admin/order/orders.html:4
+#: src/store_admin/templates/store_admin/order/orders.html:11
 msgid "OrdersList"
 msgstr "অর্ডারের তালিকা"
 
-#: src/store_admin/templates/store_admin/publisher-create.html:4
-#: src/store_admin/templates/store_admin/publisher-create.html:8
+#: src/store_admin/templates/store_admin/publisher/publisher-confirm-delete.html:2
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:24
+msgid "DeletePublisher"
+msgstr "প্রকাশক মুছে ফেলুন"
+
+#: src/store_admin/templates/store_admin/publisher/publisher-create.html:4
+#: src/store_admin/templates/store_admin/publisher/publisher-create.html:8
 msgid "CreatePublisher"
 msgstr "প্রকাশক তৈরি করুন"
 
-#: src/store_admin/templates/store_admin/publisher-create.html:5
+#: src/store_admin/templates/store_admin/publisher/publisher-create.html:5
 msgid "CreatePublisherText"
 msgstr "একটি প্রকাশক তৈরি করুন"
 
-#: src/store_admin/templates/store_admin/publisher-update.html:4
-#: src/store_admin/templates/store_admin/publisher-update.html:8
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:5
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:13
+msgid "PublisherDetail"
+msgstr "প্রকাশক বিবরণ"
+
+#: src/store_admin/templates/store_admin/publisher/publisher-detail.html:8
+msgid "PublisherDetailText"
+msgstr "প্রকাশক বিবরণ"
+
+#: src/store_admin/templates/store_admin/publisher/publisher-update.html:4
+#: src/store_admin/templates/store_admin/publisher/publisher-update.html:8
 msgid "UpdatePublisher"
 msgstr "প্রকাশক আপডেট করুন"
 
-#: src/store_admin/templates/store_admin/publisher-update.html:5
+#: src/store_admin/templates/store_admin/publisher/publisher-update.html:5
 msgid "UpdatePublisherText"
 msgstr "একটি প্রকাশক আপডেট করুন"
 
-#: src/store_admin/templates/store_admin/publishers.html:4
-#: src/store_admin/templates/store_admin/publishers.html:11
+#: src/store_admin/templates/store_admin/publisher/publishers.html:4
+#: src/store_admin/templates/store_admin/publisher/publishers.html:11
 msgid "PublishersList"
 msgstr "প্রকাশকের তালিকা"
 
-#: src/store_admin/templates/store_admin/publishers.html:14
+#: src/store_admin/templates/store_admin/publisher/publishers.html:14
 msgid "CreatePublisherBtnText"
 msgstr "নতুন প্রকাশক তৈরি করুন"
 
-#: src/store_admin/templates/store_admin/user-create.html:4
-#: src/store_admin/templates/store_admin/user-create.html:8
+#: src/store_admin/templates/store_admin/user/user-confirm-delete.html:2
+#: src/store_admin/templates/store_admin/user/user-detail.html:32
+msgid "DeleteUser"
+msgstr "ব্যবহারকারী মুছে ফেলুন"
+
+#: src/store_admin/templates/store_admin/user/user-create.html:4
+#: src/store_admin/templates/store_admin/user/user-create.html:8
 msgid "CreateUser"
 msgstr "ব্যবহারকারী তৈরি করুন"
 
-#: src/store_admin/templates/store_admin/user-create.html:5
+#: src/store_admin/templates/store_admin/user/user-create.html:5
 msgid "CreateUserText"
 msgstr "একজন ব্যবহারকারী তৈরি করুন"
 
-#: src/store_admin/templates/store_admin/user-update.html:4
-#: src/store_admin/templates/store_admin/user-update.html:8
+#: src/store_admin/templates/store_admin/user/user-detail.html:5
+#: src/store_admin/templates/store_admin/user/user-detail.html:13
+msgid "UserDetail"
+msgstr "ব্যবহারকারী বিবরণ"
+
+#: src/store_admin/templates/store_admin/user/user-detail.html:8
+msgid "UserDetailText"
+msgstr "ব্যবহারকারী বিবরণ"
+
+#: src/store_admin/templates/store_admin/user/user-update.html:4
+#: src/store_admin/templates/store_admin/user/user-update.html:8
 msgid "UpdateUser"
 msgstr "ব্যবহারকারী আপডেট করুন"
 
-#: src/store_admin/templates/store_admin/user-update.html:5
+#: src/store_admin/templates/store_admin/user/user-update.html:5
 msgid "UpdateUserText"
 msgstr "একজন ব্যবহারকারী আপডেট করুন"
 
-#: src/store_admin/templates/store_admin/users.html:4
-#: src/store_admin/templates/store_admin/users.html:11
+#: src/store_admin/templates/store_admin/user/users.html:4
+#: src/store_admin/templates/store_admin/user/users.html:11
 msgid "UsersList"
 msgstr "ব্যবহারকারীগণের তালিকা"
 
-#: src/store_admin/templates/store_admin/users.html:14
+#: src/store_admin/templates/store_admin/user/users.html:14
 msgid "CreateUserBtnText"
 msgstr "একজন ব্যবহারকারী তৈরি করুন"

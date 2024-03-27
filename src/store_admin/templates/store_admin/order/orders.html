@@ -1,0 +1,46 @@
+{% extends 'store_admin/admin_base.html' %}
+{% load i18n %}
+
+{% block title %} {% trans "OrdersList" %} {% endblock %}
+{% block header %} {% trans "Orders" %} {% endblock %}
+
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <div class="flex gap-4 mb-2">
+        <h2 class="text-3xl font-semibold mb-4">{% trans "OrdersList" %}</h2>
+    </div>
+    <div class="flex flex-col justify-center items-center w-full gap-4">
+        {% for order in page_obj %}
+        <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden w-full">
+            <div class="bg-indigo-200 px-4 py-2 flex justify-between items-center gap-2">
+                <h3 class="text-xl font-semibold text-gray-800">Order by : {{ order.user }}</h3>
+                <div class="flex gap-2">
+                    <a href="{% url 'admin-order-detail' order.id %}"
+                        class="text-indigo-600 hover:text-indigo-900 font-semibold">{% trans "View" %}</a>
+                    <a href="{% url 'admin-order-update' order.id %}"
+                        class="text-blue-600 hover:text-blue-900 font-semibold">{% trans "Edit" %}</a>
+                </div>
+            </div>
+            <div class="p-4">
+                <p class="text-gray-600 mb-2"><strong>{% trans "Address" %}:</strong> {{ order.address }}</p>
+                <!-- <p class="text-gray-600 mb-2"><strong>Language:</strong> {{ order.get_language_display }}</p>
+                <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ order.get_genre_display }}</p>
+                <p class="text-gray-600 mb-2"><strong>Order:</strong> {{ order.order }}</p> -->
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="mt-4">
+        {% if page_obj.has_previous %}
+        <a href="?page=1" class="border border-gray-300 px-3 py-1 mr-2 rounded-md bg-white text-gray-700 hover:bg-gray-50">&laquo; {% trans "First" %}</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="border border-gray-300 px-3 py-1 mr-2 rounded-md bg-white text-gray-700 hover:bg-gray-50">&lsaquo; {% trans "Previous" %}</a>
+        {% endif %}
+        <span class="text-gray-700">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="border border-gray-300 px-3 py-1 ml-2 rounded-md bg-white text-gray-700 hover:bg-gray-50">{% trans "Next" %} &rsaquo;</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="border border-gray-300 px-3 py-1 ml-2 rounded-md bg-white text-gray-700 hover:bg-gray-50">{% trans "Last" %} &raquo;</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
