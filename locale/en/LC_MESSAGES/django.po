@@ -507,11 +507,11 @@ msgstr "Create a book"
 #: src/store_admin/templates/store_admin/book/book-detail.html:5
 #: src/store_admin/templates/store_admin/book/book-detail.html:13
 msgid "BookDetail"
-msgstr ""
+msgstr "Book Detail"
 
 #: src/store_admin/templates/store_admin/book/book-detail.html:8
 msgid "BookDetailText"
-msgstr ""
+msgstr "Book Detail"
 
 #: src/store_admin/templates/store_admin/book/book-detail.html:17
 #: src/store_admin/templates/store_admin/order/order-detail.html:23
