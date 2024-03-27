@@ -19,8 +19,12 @@
         <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden w-full">
             <div class="bg-indigo-200 px-4 py-2 flex justify-between items-center gap-2">
                 <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
-                <a href="{% url 'admin-book-update' book.id %}"
-                    class="text-blue-600 hover:text-blue-900 font-semibold">{% trans "Edit" %}</a>
+                <div class="flex gap-2">
+                    <a href="{% url 'admin-book-detail' book.id %}"
+                        class="text-indigo-600 hover:text-indigo-900 font-semibold">{% trans "View" %}</a>
+                    <a href="{% url 'admin-book-update' book.id %}"
+                        class="text-blue-600 hover:text-blue-900 font-semibold">{% trans "Edit" %}</a>
+                </div>
             </div>
             <div class="p-4">
                 <p class="text-gray-600 mb-2"><strong>{% trans "Author" %}:</strong> {{ book.author }}</p>

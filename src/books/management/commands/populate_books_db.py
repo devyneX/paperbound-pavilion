@@ -42,7 +42,7 @@ class Command(BaseCommand):
                     ['en', 'fr', 'es']
                 ),  # Assuming LanguageChoices is defined accordingly
                 genre=random.choice([
-                    'fiction', 'spiritual', 'sci-fi', 'horror'
+                    'fiction', 'spiritual', 'science_fiction', 'horror'
                 ]),  # Assuming GenreChoices is defined accordingly
                 author=author,
                 publisher=publisher
