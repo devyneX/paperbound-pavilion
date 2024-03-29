@@ -1,43 +1,85 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
-<div class="min-h-screen flex justify-center items-center bg-gray-100">
-  <div class="flex flex-col items-center">
-      <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
-        <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
-          <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
-      </div>
-        <div class="bg-white border border-gray-200 shadow-md rounded-md p-4">
-          <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ book.author }}</h3>
-          <p class="text-sm text-gray-700 mb-2"><strong>{% trans 'Genre'%}:</strong> {{ book.get_genre_display }}</p>
-          <p class="text-sm text-gray-700 mb-2"><strong>{% trans 'Language'%}:</strong> {{ book.get_language_display }}</p>
-          <p class="text-sm text-gray-700 mb-2"><strong>{% trans 'Description'%}:</strong> {{ book.description }}</p>
-          <p class="text-sm text-gray-700 mb-2"><strong>{% trans 'Publisher'%}:</strong> {{ book.publisher }}</p>
-          <p class="text-sm text-gray-700 mb-4"><strong>{% trans 'Price'%}:</strong> {{ book.price }}</p>
-          <a href="{% url 'shopping:add_to_cart' book.pk %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm md:mr-2">{% trans 'AddToCartBtnText' %}</a>
-      
-      
-          <div class="p-4">
-            <div class="mb-4">
-              <h3 class="text-2xl font-bold mb-2">{% trans 'Reviews'%}:</h3>
-              {% for r in reviews %}          
-                <div class="border border-gray-200 rounded-md p-2 mb-2">
-                  <p class="text-lg font-semibold text-lime-500">{{ r.user.username }}</p>
-                  <div class="mb-1">
-                    {% for i in r.range %}
-                      &starf;
-                    {% endfor %}
-                  </div>
-                  <p class="text-gray-700">{{ r.comments }}</p>
-                </div>
-              {% endfor %}
-            </div>
-            <a href="{% url 'review:reviews' pk=book.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm md:mr-2 mb-2 md:mb-0">{% trans 'SeeAll'%}</a>
-            <a href="{% url 'review:create-review' pk=book.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm">{% trans 'AddAReview'%}</a>
-          </div>
-        </div>
-      </div>
+<div class="content-container">
+  <div class="bg-gray-100 rounded-lg shadow-md">
+    <div class="bg-cyan-200 px-4 py-2">
+      <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
+    </div>
+    <div class="bg-white border border-gray-200 shadow-md rounded-md p-4">
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ book.author }}</h3>
+      <p class="text-sm text-gray-700 mb-2"><strong>{% trans 'Genre'%}:</strong> {{ book.get_genre_display }}</p>
+      <p class="text-sm text-gray-700 mb-2"><strong>{% trans 'Language'%}:</strong> {{ book.get_language_display }}</p>
+      <p class="text-sm text-gray-700 mb-2"><strong>{% trans 'Description'%}:</strong> {{ book.description }}</p>
+      <p class="text-sm text-gray-700 mb-2"><strong>{% trans 'Publisher'%}:</strong> {{ book.publisher }}</p>
+      <p class="text-sm text-gray-700 mb-4"><strong>{% trans 'Price'%}:</strong> {{ book.price }}</p>
+      <a href="{% url 'shopping:add_to_cart' book.pk %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm md:mr-2">
+        {% trans 'AddToCartBtnText' %}
+      </a>
 
+      <div class="p-4">
+        {% if reviews %}
+        <div class="mb-4">
+          <h3 class="text-2xl font-bold mb-2">{% trans 'Reviews'%}:</h3>
+          {% for r in reviews|slice:":3" %}          
+            <div class="border border-gray-200 rounded-md p-2 mb-2">
+              <p class="text-lg font-semibold text-lime-500">{{ r.user.username }}</p>
+              <div class="mb-1">
+                {% for i in r.range %}
+                  &starf;
+                {% endfor %}
+              </div>
+              <p class="text-gray-700">{{ r.comments }}</p>
+            </div>
+          {% endfor %}
+          <div id="hidden-reviews" style="display: none;">
+            {% for r in reviews|slice:"3:" %}
+              <div class="border border-gray-200 rounded-md p-2 mb-2">
+                <p class="text-lg font-semibold text-lime-500">{{ r.user.username }}</p>
+                <div class="mb-1">
+                  {% for i in r.range %}
+                    &starf;
+                  {% endfor %}
+                </div>
+                <p class="text-gray-700">{{ r.comments }}</p>
+              </div>
+            {% endfor %}
+          </div>
+          {% if reviews|length > 3 %}
+          <button onclick="toggleVisibility()" 
+                  class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm md:mr-2 mb-2 md:mb-0">
+            {% trans 'See Less'%}
+          </button>
+          {% endif %}
+        </div>
+        <a href="{% url 'review:create-review' pk=book.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm">
+          {% trans 'Add A Review'%}
+        </a>
+        {% else %}
+        <p class="text-gray-700">No reviews yet</p>
+        <a href="{% url 'review:create-review' pk=book.id %}" class="font-bold rounded-md text-sm">
+          {% trans 'Add A Review'%}
+        </a>
+        {% endif %}
+      </div>
+        
+    </div>
   </div>
 </div>
+<style>
+  .content-container {
+    width: 800px; /* Set the desired fixed width */
+    margin: 0 auto; /* Center the container horizontally */
+  }
+</style>
+<script>
+  function toggleVisibility() {
+    var x = document.getElementById("hidden-reviews");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+</script>
 {% endblock %}

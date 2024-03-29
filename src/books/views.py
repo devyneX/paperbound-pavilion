@@ -24,7 +24,7 @@ def get_username_by_id(user_id):
 
 class BookListView(ListView):
     model = Book
-    paginate_by = 30
+    paginate_by = 5
     context_object_name = 'book_list'
     template_name = 'book_list.html'
 
@@ -39,7 +39,7 @@ class BookDetailView(CachedViewMixin, DetailView):
         reviews = Review.objects.filter(books__id=pk)
         for review in reviews:
             review.range = range(review.ratings)
-        context = {'book': book, 'reviews': reviews[:3]}
+        context = {'book': book, 'reviews': reviews}
         return render(request, self.template_name, context)
 
 
