@@ -5,20 +5,18 @@ from .views import cart_views, order_views, payment_views
 app_name = 'shopping'
 
 urlpatterns = [
+    path('cart/add/', cart_views.AddToCartView.as_view(), name='add_to_cart'),
     path(
-        'cart/add/<int:book_id>/', cart_views.add_to_cart, name='add_to_cart'
-    ),
-    path(
-        'cart/remove/<int:book_id>/',
-        cart_views.remove_from_cart,
+        'cart/remove/',
+        cart_views.RemoveFromCartView.as_view(),
         name='remove_from_cart'
     ),
-    path('cart/', cart_views.cart_detail, name='cart-detail'),
     path(
-        'cart/delete/<int:book_id>/',
-        cart_views.delete_cart_item,
+        'cart/delete/',
+        cart_views.DeleteFromCartView.as_view(),
         name='delete_from_cart'
     ),
+    path('cart/', cart_views.cart_detail, name='cart-detail'),
     path(
         'orders/',
         order_views.OrderHistoryView.as_view(),
