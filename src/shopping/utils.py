@@ -1,3 +1,4 @@
+import json
 from decimal import Decimal
 from uuid import uuid4
 
@@ -60,3 +61,8 @@ def verify_payment(post_body):
 def validate_failure_response(post_body):
     sslcz = SSLCOMMERZ(settings.SSL_SESSIONS_CONFIG)
     return sslcz.hash_validate_ipn(post_body)
+
+
+def load_json_request(request):
+    data = request.body.decode('utf-8')
+    return json.loads(data)
