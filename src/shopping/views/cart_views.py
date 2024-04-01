@@ -19,7 +19,7 @@ class AddToCartView(View):
 
         if book.quantity < 1:
             return JsonResponse({'error': 'Sorry, this book is out of stock.'},
-                                status=200)
+                                status=400)
 
         if request.session.get('cart') is None:
             request.session['cart'] = {}
@@ -62,7 +62,7 @@ class RemoveFromCartView(View):
 
         return JsonResponse({
             'message': 'Book removed from cart successfully.',
-            'cart_count': cart[str(book.pk)]
+            'cart_count': cart.get(str(book.pk), 0)
         },
                             status=200)
 
