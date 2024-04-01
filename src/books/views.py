@@ -1,7 +1,7 @@
 from django.apps import apps
 from django.contrib.auth.models import User
 from django.contrib.postgres.search import SearchVector
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from django.views import View
 from django.views.generic import DetailView, ListView
 
@@ -28,19 +28,33 @@ class BookListView(ListView):
     context_object_name = 'book_list'
     template_name = 'book_list.html'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        cart = self.request.session.get('cart', {})
+        # annotate the queryset with the cart quantity
+        for book in queryset:
+            book.cart_quantity = cart.get(str(book.pk), 0)
+
+        return queryset
+
 
 class BookDetailView(CachedViewMixin, DetailView):
     model = Book
     context_object_name = 'book'
     template_name = 'book_details.html'
 
-    def get(self, request, pk):
-        book = get_object_or_404(Book, pk=pk)
-        reviews = Review.objects.filter(books__id=pk)
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        cart = self.request.session.get('cart', {})
+        context['book'].cart_quantity = cart.get(str(self.object.pk), 0)
+
+        reviews = Review.objects.filter(books__id=self.object.pk)
         for review in reviews:
             review.range = range(review.ratings)
-        context = {'book': book, 'reviews': reviews}
-        return render(request, self.template_name, context)
+
+        context['reviews'] = reviews
+
+        return context
 
 
 class BookSearch(CachedViewMixin, View):

@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
+{% block extra_scripts %}
+<script src="{% static 'shopping/script.js' %}" defer></script>
+{% endblock extra_scripts %}
+{% block title %}All Books{% endblock title %}
 {% block content %}
 <div class="container mx-auto p-4">
   <div class="flex gap-4 mb-2">
@@ -13,24 +18,40 @@
               <div class="flex gap-2">
                   <a href="{% url 'book-detail' book.pk %}"
                       class="text-indigo-600 hover:text-indigo-900 font-semibold">{% trans "View" %}</a>
-                  {% if book.quantity > 0 %}
-                  <a href="{% url 'shopping:add_to_cart' book.pk %}"
-                      class="text-indigo-600 hover:text-indigo-900 font-semibold">{% trans 'AddToCartBtnText' %}</a>
-                      {% else %}
-                        <p class="text-red-400 hover:text-indigo-900 font-semibold">Coming Soon</p>
-                  {% endif %}
+                  
               </div>
           </div>
-          <div class="p-4" onclick="location.href='{% url 'book-detail' book.pk %}'">
+          <div class="p-4">
               <p class="text-gray-600 mb-2"><strong>{% trans "Author" %}:</strong> {{ book.author }}</p>
               <p class="text-gray-600 mb-2"><strong>{% trans "Language" %}:</strong> {{ book.get_language_display }}</p>
               <p class="text-gray-600 mb-2"><strong>{% trans "Genre" %}:</strong> {{ book.get_genre_display }}</p>
               <p class="text-gray-600 mb-2"><strong>{% trans "Publisher" %}:</strong> {{ book.publisher }}</p>
-              {% if book.quantity > 0 %}
-                <p class="text-green-600 mb-2"><strong>Available</strong></p>
-              {% else %}
-                <p class="text-red-600 mb-2"><strong>Out of stock</strong></p>
-              {% endif %}
+              <div id="cart_div_{{ book.id }}">
+                {% if book.quantity > 0 %}
+                  <p class="text-green-600 mb-2"><strong>Available</strong></p>
+                  {% if not book.cart_quantity %}
+                    <button id="add_to_cart_btn{{ book.id }}" onclick="add_to_cart({{ book.id }}, `{% url 'shopping:add_to_cart' %}`, 'book')" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm md:mr-2">
+                      {% trans 'AddToCartBtnText' %}
+                    </button>
+                    <div id="cart_btns{{ book.id }}" class="hidden">
+                      <button class="text-blue-600 hover:text-blue-800" onclick="remove_from_cart({{ book.id }}, `{% url 'shopping:remove_from_cart' %}`, 'book')"><i class="fas fa-minus-circle"></i></button>
+                      <span id="cart_count{{ book.id }}">{{ book.cart_quantity }}</span>
+                      <button class="text-blue-600 hover:text-blue-800" onclick="add_to_cart({{ book.id }}, `{% url 'shopping:add_to_cart' %}`, 'book')"><i class="fas fa-plus-circle"></i></button>
+                    </div>
+                  {% else %}
+                    <button id="add_to_cart_btn{{ book.id }}" onclick="add_to_cart({{ book.id }}, `{% url 'shopping:add_to_cart' %}`, 'book')" class="hidden bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm md:mr-2">
+                      {% trans 'AddToCartBtnText' %}
+                    </button>
+                    <div id="cart_btns{{ book.id }}">
+                      <button class="text-blue-600 hover:text-blue-800" onclick="remove_from_cart({{ book.id }}, `{% url 'shopping:remove_from_cart' %}`, 'book')"><i class="fas fa-minus-circle"></i></button>
+                      <span id="cart_count{{ book.id }}">{{ book.cart_quantity }}</span>
+                      <button class="text-blue-600 hover:text-blue-800" onclick="add_to_cart({{ book.id }}, `{% url 'shopping:add_to_cart' %}`, 'book')"><i class="fas fa-plus-circle"></i></button>
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <p class="text-red-600 mb-2"><strong>Out of stock</strong></p>
+                {% endif %}
+                </div>
         </div>
         
         
