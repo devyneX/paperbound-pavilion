@@ -9,8 +9,8 @@
     <div class="flex gap-4 mb-2">
         <h2 class="text-3xl font-semibold mb-4">{% trans "OrderHistory" %}</h2>
     </div>
-    <div class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {% for order in orders %}
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {% for order in page_obj %}
         <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
             <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
                 <h3 class="text-xl font-semibold text-gray-800">{{ order.user.first_name }}</h3>
@@ -23,6 +23,17 @@
             </div>
         </div>
         {% endfor %}
+    </div>
+    <div class="mt-4">
+      {% if page_obj.has_previous %}
+        <a href="?page=1" class="border border-gray-300 px-3 py-1 mr-2 rounded-md bg-white text-gray-700 hover:bg-gray-50">&laquo; {% trans "First" %}</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="border border-gray-300 px-3 py-1 mr-2 rounded-md bg-white text-gray-700 hover:bg-gray-50">&lsaquo; {% trans "Previous" %}</a>
+      {% endif %}
+        <span class="text-gray-700">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="border border-gray-300 px-3 py-1 ml-2 rounded-md bg-white text-gray-700 hover:bg-gray-50">{% trans "Next" %} &rsaquo;</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="border border-gray-300 px-3 py-1 ml-2 rounded-md bg-white text-gray-700 hover:bg-gray-50">{% trans "Last" %} &raquo;</a>
+      {% endif %}
     </div>
 </div>
 {% endblock %}

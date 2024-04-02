@@ -17,6 +17,7 @@ class OrderHistoryView(LoginRequiredMixin, ListView):
     model = Order
     template_name = 'shopping/order-history.html'
     context_object_name = 'orders'
+    paginate_by = 10
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user
