@@ -29,7 +29,8 @@
                 {% endfor %}
             </select>
             <!-- <input type="text" name="publisher" id="publisher" class="p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter publisher name">
-            </div> -->
+            -->
+            </div> 
             <div>
             <label for="min_price" class="block text-sm font-medium text-gray-700">Min Price:</label>
             <input type="number" name="min_price" id="min_price" class="p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter min price" value="{% if params.min_price %}{{ params.min_price }}{% endif %}">
@@ -67,35 +68,36 @@
             </select>
             </div>
         </div>
-        <div class="mt-4">
-            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full text-center">
-                Search
-            </button>
-        </div>
+        <button type="submit" class="mt-4 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full max-w-56 text-center">
+            Search
+        </button>
+      
     </form>
 
     </div>
 
 
     <!-- SEARCH RESULTS -->
-    <div class="flex gap-4 mb-2">
-        <h2 class="text-3xl font-semibold mb-4">Search results</h2>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {% for book in books %}
-        <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
-            <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
-                <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
-            </div>
-            <div class="p-4">
-                <p class="text-gray-600 mb-2"><strong>Author:</strong> {{ book.author }}</p>
-                <p class="text-gray-600 mb-2"><strong>Language:</strong> {{ book.get_language_display }}</p>
-                <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ book.get_genre_display }}</p>
-                <p class="text-gray-600 mb-2"><strong>Publisher:</strong> {{ book.publisher }}</p>
-                <p class="text-gray-600 mb-2"><strong>Price:</strong> {{ book.price }}</p>
-            </div>
+    <div class="mt-8">
+        <div class="flex gap-4 mb-2">
+            <h2 class="text-3xl font-semibold mb-4">Search results</h2>
         </div>
-        {% endfor %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {% for book in books %}
+            <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
+                <div class="bg-cyan-200 px-4 py-2 flex justify-between items-center gap-2">
+                    <h3 class="text-xl font-semibold text-gray-800">{{ book.title }}</h3>
+                </div>
+                <div class="p-4">
+                    <p class="text-gray-600 mb-2"><strong>Author:</strong> {{ book.author }}</p>
+                    <p class="text-gray-600 mb-2"><strong>Language:</strong> {{ book.get_language_display }}</p>
+                    <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ book.get_genre_display }}</p>
+                    <p class="text-gray-600 mb-2"><strong>Publisher:</strong> {{ book.publisher }}</p>
+                    <p class="text-gray-600 mb-2"><strong>Price:</strong> {{ book.price }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}
