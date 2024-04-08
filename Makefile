@@ -58,5 +58,10 @@ shell:
 superuser:
 	poetry run python -m src.manage createsuperuser
 
+.PHONY: translate
+translate:
+	poetry run python -m src.manage makemessages --all
+	poetry run python -m src.manage compilemessages
+
 .PHONY: update
 update: install migrate install-pre-commit ;

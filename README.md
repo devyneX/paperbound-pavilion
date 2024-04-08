@@ -159,6 +159,9 @@ To add dev python package with poetry
 make add-lib-dev package_name
 ```
 
+### Translations
+- Run `make translations`
+
 ### Code Guidelines
 - Inherit models from `src.core.models.BaseModel`
 - Templates to be extend from 
