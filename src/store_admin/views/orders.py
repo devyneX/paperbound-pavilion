@@ -34,8 +34,6 @@ class OrdersUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
             book = Book.objects.get(pk=book_quantity[0])
 
             try:
-                import pdb
-                pdb.set_trace()
                 order_book = order.orderbooks.get(book=book)
                 order_book.quantity = book_quantity[1]
                 order_book.save()
