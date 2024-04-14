@@ -22,20 +22,19 @@ class Login(LoginView):
 
 
 class RegisterView(CreateView):
+    # TODO: Doesn't redirect authenticated users
     form_class = RegisterForm
     template_name = 'accounts/register.html'
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        # Hash the password before saving
         password = form.cleaned_data['password1']
         form.instance.set_password(password)
 
         form.save()
-        # get the username and password
         username = self.request.POST['username']
         password = self.request.POST['password1']
-        # authenticate user then login
+
         user = authenticate(username=username, password=password)
         login(self.request, user)
 
