@@ -16,8 +16,12 @@ class OrderStatusChoices(models.TextChoices):
 
 
 class Order(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE,
-                             verbose_name=_('user'))
+    user = models.ForeignKey(User,
+                             on_delete=models.CASCADE,
+                             verbose_name=_('user'),
+                             related_name='orders',
+                             related_query_name='order'
+                             )
     address = models.ForeignKey(Address, on_delete=models.CASCADE,
                                 verbose_name=_('address'))
     status = models.CharField(
