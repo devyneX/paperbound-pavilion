@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.db import models
-from django.urls import reverse
+from django.urls import path, reverse
 from django.utils.html import format_html
 from django.utils.http import urlencode
 
@@ -22,14 +22,17 @@ class TransactionInline(admin.StackedInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
+    list_per_page = 20
     list_display = (
-        'user', 'address_link', 'status', 'total_price', 'orderitem_count_link'
+        'user', 'created_at', 'address_link', 'status', 'total_price',
+        'orderitem_count_link'
     )
     search_fields = (
         'user__username', 'address__house', 'address__street', 'address__city',
         'address__state', 'address__country', 'address__post_code'
     )
     list_filter = ('status',)
+    actions = ['update_status']
     inlines = [TransactionInline, OrderBookInline]
 
     fieldsets = (
@@ -42,12 +45,17 @@ class OrderAdmin(admin.ModelAdmin):
     )
 
     def get_queryset(self, request):
-        queryset = super().get_queryset(request)
+        queryset = super().get_queryset(request).prefetch_related('address')
         queryset = queryset.annotate(
             orderitem_count=models.Count('orderbook', distinct=True)
-        )
+        ).order_by('created_at')
 
         return queryset
+
+    def get_readonly_fields(self, request, obj=None):
+        readonly_fields = ['created_at', 'updated_at', 'total_price']
+
+        return readonly_fields
 
     def address(self, obj):
         return obj.address
@@ -74,10 +82,20 @@ class OrderAdmin(admin.ModelAdmin):
     address_link.short_description = 'Address'  # type: ignore
     address_link.admin_order_field = 'address__house'  # type: ignore
 
-    def get_readonly_fields(self, request, obj=None):
-        readonly_fields = ['created_at', 'updated_at', 'total_price']
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('update-status/', self.update_status, name='update_status')
+        ]
 
-        return readonly_fields
+        return custom_urls + urls
+
+    def update_status(self, request, queryset):
+        for order in queryset:
+            order.status = order.get_next_status()
+            order.save()
+
+        self.message_user(request, 'Order status updated successfully')
 
 
 class OrderBookAdmin(admin.ModelAdmin):
@@ -105,6 +123,10 @@ class TransactionAdmin(admin.ModelAdmin):
     )
     search_fields = ('order__user__username', 'transaction_id')
     list_filter = ('status', 'currency')
+    readonly_fields = [
+        'transaction_id', 'created_at', 'updated_at', 'status', 'amount',
+        'currency', 'bank_tran_id', 'store_amount', 'order_link'
+    ]
 
     def order_link(self, obj):
         url = reverse('admin:shopping_order_change', args=[obj.order_id])
