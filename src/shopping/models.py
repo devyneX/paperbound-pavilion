@@ -14,6 +14,17 @@ class OrderStatusChoices(models.TextChoices):
     DELIVERED = 'DELIVERED', 'Delivered'
     CANCELLED = 'CANCELLED', 'Cancelled'
 
+    def next_state(self):
+        if self == OrderStatusChoices.PENDING:
+            return OrderStatusChoices.PROCESSING
+        if self == OrderStatusChoices.PROCESSING:
+            return OrderStatusChoices.CONFIRMED
+        if self == OrderStatusChoices.CONFIRMED:
+            return OrderStatusChoices.SHIPPED
+        if self == OrderStatusChoices.SHIPPED:
+            return OrderStatusChoices.DELIVERED
+        return self
+
 
 class Order(BaseModel):
     user = models.ForeignKey(User,
@@ -38,9 +49,12 @@ class Order(BaseModel):
             total_price=models.Sum(models.F('quantity') * models.F('price'))
         )['total_price']
 
+    def get_next_status(self):
+        return OrderStatusChoices.next_state(self.status)
+
     def __str__(self) -> str:
-        return f'<{self.user.username} - {str(self.address)} | \
-            created at : {self.created_at.strftime("%Y-%m-%d %H:%M:%S")}>'
+        return f'{self.user.username} -\
+            {self.created_at.strftime("%Y-%m-%d %H:%M:%S")}'
 
 
 class OrderBook(BaseModel):

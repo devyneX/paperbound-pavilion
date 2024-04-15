@@ -26,6 +26,10 @@ from src.root import urls as rooturls
 from src.shopping import urls as shopping_urls
 from src.store_admin import urls as admin_urls
 
+admin.site.site_header = 'Paperbound Pavilion Admin Portal'
+admin.site.site_title = 'Paperbound Pavilion Admin Portal'
+admin.site.index_title = 'Welcome to Paperbound Pavilion'
+
 urlpatterns = [
     path('djadmin/', admin.site.urls),
     path('accounts/', include(accounts_urls)),
