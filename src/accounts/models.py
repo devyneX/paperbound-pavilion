@@ -11,6 +11,9 @@ class User(AbstractUser):
                              verbose_name=_('phone'))
     email = models.EmailField(_('email address'), unique=True)
 
+    def __str__(self):
+        return self.username
+
 
 class Customer(User):
 
