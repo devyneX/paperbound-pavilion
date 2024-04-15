@@ -26,5 +26,5 @@ class Review(BaseModel):
         on_delete=models.CASCADE,
         related_name='reviews',
         related_query_name='review',
-        verbose_name=_('books')
+        verbose_name=_('book')
     )

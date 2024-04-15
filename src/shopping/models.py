@@ -39,8 +39,8 @@ class Order(BaseModel):
         )['total_price']
 
     def __str__(self) -> str:
-        return f'<{self.user.username} - {str(self.address)} | \
-            created at : {self.created_at.strftime("%Y-%m-%d %H:%M:%S")}>'
+        return f'{self.user.username} -\
+            {self.created_at.strftime("%Y-%m-%d %H:%M:%S")}'
 
 
 class OrderBook(BaseModel):

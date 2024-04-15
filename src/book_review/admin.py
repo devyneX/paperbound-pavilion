@@ -1,18 +1,18 @@
 from django.contrib import admin
+from django.urls import reverse
+from django.utils.html import format_html
 
 from src.book_review.models import Review
 
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('user', 'books', 'ratings', 'comments')
+    list_display = ('user', 'book_link', 'ratings', 'comments')
     search_fields = ('books__title', 'user__username')
     list_filter = ('ratings',)
 
-    def books(self, obj):
-        return obj.book.title
-
-    def user(self, obj):
-        return obj.user.username
+    def book_link(self, obj):
+        url = reverse('admin:books_book_change', args=[obj.books_id])
+        return format_html(f'<a href="{url}">{obj.books.title}</a>')
 
 
 admin.site.register(Review, ReviewAdmin)

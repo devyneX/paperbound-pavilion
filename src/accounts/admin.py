@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.http import urlencode
 
-from src.accounts.models import Address, Customer, Staff, User
+from src.accounts.models import Address, Customer, Staff
 
 
 class AddressInline(admin.StackedInline):
@@ -59,8 +59,6 @@ class CustomerAdmin(admin.ModelAdmin):
             review_count=models.Count('review', distinct=True)
         )
 
-        print(str(queryset.query))
-
         return queryset
 
     def address_count_link(self, obj):
@@ -113,7 +111,10 @@ class StaffAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('username, password',)
+            'fields': (
+                'username',
+                'password',
+            )
         }),
         (
             'Personal info', {
@@ -128,8 +129,11 @@ class StaffAdmin(admin.ModelAdmin):
         (
             'Permissions', {
                 'fields': (
-                    'is_active,\
-                          is_staff, is_superuser, groups, user_permissions',
+                    'is_active',
+                    'is_staff',
+                    'is_superuser',
+                    'groups',
+                    'user_permissions',
                 )
             }
         ),
@@ -150,11 +154,6 @@ class StaffAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request).filter(is_staff=True)
-        queryset = queryset.annotate(
-            address_count=models.Count('addresses'),
-            order_count=models.Count('order'),
-            review_count=models.Count('review')
-        )
 
         return queryset
 
@@ -181,7 +180,7 @@ class AddressAdmin(admin.ModelAdmin):
     list_filter = ('country',)
 
 
-admin.site.register(User)
+# admin.site.register(User)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Staff, StaffAdmin)
 admin.site.register(Address, AddressAdmin)
