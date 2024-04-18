@@ -114,16 +114,16 @@
     });
 </script>
 <script>
-    var genre_data = JSON.parse('{{ author_data|escapejs }}');
-    var genres = genre_data.map(item => item.author);
-    var soldQuantities = genre_data.map(item => item.total_sold);
+    var author_data = JSON.parse('{{ author_data|escapejs }}');
+    var authors = author_data.map(item => item.author__name);
+    var soldQuantities = author_data.map(item => item.total_sold);
 
     var genreSalesChart = new Chart(document.getElementById('author-sales-chart'), {
         type: 'bar',
         data: {
-            labels: genres,
+            labels: authors,
             datasets: [{
-                label: 'Sales by Genre',
+                label: 'Sales by Author',
                 data: soldQuantities,
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
