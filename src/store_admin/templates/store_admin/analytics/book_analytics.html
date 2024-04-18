@@ -1,0 +1,145 @@
+{% extends 'store_admin/admin_base.html' %}
+{% load i18n %}
+{% block title %} {% trans "AdminDashboard" %} {% endblock title %}
+{% block content %}
+{% include 'store_admin/analytics/analytics_navbar.html'%}
+
+<div class="container mx-auto px-4 py-8">
+    <span class="header">{% trans "Books Analytics" %}</span>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Total Books -->
+        <div class="bg-cyan-500 rounded-lg p-4 text-white">
+            <h2 class="text-lg font-semibold mb-2">{% trans "Total Books" %}</h2>
+            <p class="text-4xl font-bold">{{ total_books }}</p>
+        </div>
+        <div class="bg-cyan-500 rounded-lg p-4 text-white">
+            <h2 class="text-lg font-semibold mb-2">{% trans "Total Authors" %}</h2>
+            <p class="text-4xl font-bold">{{ total_authors }}</p>
+        </div>
+        <!-- Total Orders -->
+        
+
+        <!-- Books Added in Last 30 Days -->
+        <div class="bg-cyan-500 rounded-lg p-4 text-white">
+            <h2 class="text-lg font-semibold mb-2">{% trans "BooksAddedInLast30Days" %}</h2>
+            <p class="text-4xl font-bold">{{ books_last_30_days }}</p>
+        </div>
+    </div>
+    
+</div>
+
+<div class="container sales-container">
+    <div class="chart-wrapper">
+        <span class="header">{% trans "Top Genre" %}</span>
+        <canvas id="genre-sales-chart" width="800" height="400"></canvas>
+    </div>
+    <div class="chart-wrapper">
+        <span class="header">{% trans "Top Author" %}</span>
+        <canvas id="author-sales-chart" width="800" height="400"></canvas>
+    </div>
+</div>
+
+<div class="container mx-auto px-4 py-8">
+    <div class="container mx-auto px-4 py-8">
+        <div class="mb-8">
+            <span class="header">{% trans "Most Sold Books" %}</span>
+            <div class="flex overflow-x-auto scrolling-wrapper">
+                {% for book in most_sold_books %}
+                <div class="max-w-xs mx-2 bg-cyan-500 text-white shadow-md rounded-lg p-4">
+                    <h3 class="text-lg font-semibold">{{ book.title }}</h3>
+                    <h3 class="text-black text-lg font-semibold">Sold: {{ book.total_quantity_sold }}</h3>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .header {
+        padding: 5px;
+        padding-bottom: 20px;
+        font-size: 40px;
+    }
+
+    .sales-container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1600px; /* Adjust as needed */
+        margin: 0 auto;
+    }
+
+    .chart-wrapper {
+        flex: 1;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .chart-container {
+        margin-top: 20px;
+    }
+</style>
+
+<script>
+    // Extracting labels (genres) and data (total quantity sold)
+    var genre_data = JSON.parse('{{ genre_data|escapejs }}');
+    var genres = genre_data.map(item => item.genre);
+    var soldQuantities = genre_data.map(item => item.total_sold);
+
+    var genreSalesChart = new Chart(document.getElementById('genre-sales-chart'), {
+        type: 'bar',
+        data: {
+            labels: genres,
+            datasets: [{
+                label: 'Sales by Genre',
+                data: soldQuantities,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+<script>
+    var genre_data = JSON.parse('{{ author_data|escapejs }}');
+    var genres = genre_data.map(item => item.author);
+    var soldQuantities = genre_data.map(item => item.total_sold);
+
+    var genreSalesChart = new Chart(document.getElementById('author-sales-chart'), {
+        type: 'bar',
+        data: {
+            labels: genres,
+            datasets: [{
+                label: 'Sales by Genre',
+                data: soldQuantities,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+{% endblock content %}

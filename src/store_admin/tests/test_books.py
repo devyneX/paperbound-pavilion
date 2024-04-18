@@ -1,13 +1,17 @@
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 from django.urls import reverse
+
 from src.accounts.models import User
-from src.books.models import Book, Author, Publisher
+from src.books.models import Author, Book, Publisher
 
 
 class TestBookViews(TestCase):
+
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create_superuser(username='admin', email='admin@example.com', password='password')
+        self.user = User.objects.create_superuser(
+            username='admin', email='admin@example.com', password='password'
+        )
         self.client.login(username='admin', password='password')
 
         # Creating sample author and publisher
@@ -44,20 +48,28 @@ class TestBookViews(TestCase):
         self.assertTemplateUsed(response, 'store_admin/book/books.html')
 
     def test_books_create_view(self):
-        response = self.client.post(reverse('admin-book-create'), data=self.book_data)
-        self.assertEqual(response.status_code, 200) 
+        response = self.client.post(
+            reverse('admin-book-create'), data=self.book_data
+        )
+        self.assertEqual(response.status_code, 200)
 
         # created_book = Book.objects.get(title='Test Book')
         # self.assertEqual(created_book.description, 'This is a test book')
 
     def test_book_detail_view(self):
-        response = self.client.get(reverse('admin-book-detail', kwargs={'pk': self.book_instance.pk}))
+        response = self.client.get(
+            reverse('admin-book-detail', kwargs={'pk': self.book_instance.pk})
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'store_admin/book/book-detail.html')
 
     def test_book_delete_view(self):
-        response = self.client.post(reverse('admin-book-delete', kwargs={'pk': self.book_instance.pk}))
-        self.assertEqual(response.status_code, 302)  # Should redirect after successful deletion
+        response = self.client.post(
+            reverse('admin-book-delete', kwargs={'pk': self.book_instance.pk})
+        )
+        self.assertEqual(
+            response.status_code, 302
+        )  # Should redirect after successful deletion
 
         with self.assertRaises(Book.DoesNotExist):
             Book.objects.get(pk=self.book_instance.pk)
@@ -73,8 +85,11 @@ class TestBookViews(TestCase):
             'author': self.author.id,
             'publisher': self.publisher.id
         }
-        response = self.client.post(reverse('admin-book-update', kwargs={'pk': self.book_instance.pk}), data=updated_data)
-        self.assertEqual(response.status_code, 200) 
+        response = self.client.post(
+            reverse('admin-book-update', kwargs={'pk': self.book_instance.pk}),
+            data=updated_data
+        )
+        self.assertEqual(response.status_code, 200)
 
         # updated_book = Book.objects.get(pk=self.book_instance.pk)
         # self.assertEqual(updated_book.title, 'Updated Book')

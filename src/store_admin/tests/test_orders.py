@@ -1,15 +1,17 @@
+from django.test import Client, TestCase
+from django.urls import reverse
 
 from src.accounts.models import User
-
-from django.test import TestCase, Client
-from django.urls import reverse
-from src.shopping.models import Order, OrderStatusChoices, Address
+from src.shopping.models import Address, Order, OrderStatusChoices
 
 
 class TestOrderViews(TestCase):
+
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create_superuser(username='admin', email='admin@example.com', password='password')
+        self.user = User.objects.create_superuser(
+            username='admin', email='admin@example.com', password='password'
+        )
         self.client.login(username='admin', password='password')
 
         # Creating sample address
@@ -35,9 +37,13 @@ class TestOrderViews(TestCase):
         self.assertTemplateUsed(response, 'store_admin/order/orders.html')
 
     def test_orders_update_view(self):
-        response = self.client.get(reverse('admin-order-update', kwargs={'pk': self.order.pk}))
+        response = self.client.get(
+            reverse('admin-order-update', kwargs={'pk': self.order.pk})
+        )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'store_admin/order/order-update.html')
+        self.assertTemplateUsed(
+            response, 'store_admin/order/order-update.html'
+        )
 
         # Test updating order with valid data
         updated_data = {
@@ -46,20 +52,33 @@ class TestOrderViews(TestCase):
             'status': OrderStatusChoices.PROCESSING,
             'books': '[]'
         }
-        response = self.client.post(reverse('admin-order-update', kwargs={'pk': self.order.pk}), data=updated_data)
-        self.assertEqual(response.status_code, 302)  # Should redirect after successful update
+        response = self.client.post(
+            reverse('admin-order-update', kwargs={'pk': self.order.pk}),
+            data=updated_data
+        )
+        self.assertEqual(
+            response.status_code, 302
+        )  # Should redirect after successful update
 
         # updated_order = Order.objects.get(pk=self.order.pk)
         # self.assertEqual(updated_order.status, OrderStatusChoices.PROCESSING)
 
     def test_order_detail_view(self):
-        response = self.client.get(reverse('admin-order-detail', kwargs={'pk': self.order.pk}))
+        response = self.client.get(
+            reverse('admin-order-detail', kwargs={'pk': self.order.pk})
+        )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'store_admin/order/order-detail.html')
+        self.assertTemplateUsed(
+            response, 'store_admin/order/order-detail.html'
+        )
 
     def test_order_delete_view(self):
-        response = self.client.post(reverse('admin-order-delete', kwargs={'pk': self.order.pk}))
-        self.assertEqual(response.status_code, 302)  # Should redirect after successful deletion
+        response = self.client.post(
+            reverse('admin-order-delete', kwargs={'pk': self.order.pk})
+        )
+        self.assertEqual(
+            response.status_code, 302
+        )  # Should redirect after successful deletion
 
         with self.assertRaises(Order.DoesNotExist):
             Order.objects.get(pk=self.order.pk)
