@@ -38,9 +38,10 @@ class AdminBookDashboard(SuperuserRequiredMixin, TemplateView):
         author_data = (
             Book.objects.annotate(
                 total_quantity_sold=Sum('orderbook__quantity')
-            ).exclude(total_quantity_sold=None).values('author').annotate(
-                total_sold=Sum('orderbook__quantity')
-            ).order_by('-total_sold')[:7]  # Limiting to top 7 genres
+            ).exclude(total_quantity_sold=None
+                      ).values('author__name').annotate(
+                          total_sold=Sum('orderbook__quantity')
+                      ).order_by('-total_sold')[:7]  # Limiting to top 7 genres
         )
         author_data = json.dumps(list(author_data))
         context.update({
