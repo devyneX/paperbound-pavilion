@@ -1,20 +1,12 @@
 {% extends 'store_admin/admin_base.html' %}
 {% load i18n %}
 {% block title %} {% trans "AdminDashboard" %} {% endblock title %}
-
 {% block content %}
+{% include 'store_admin/analytics/analytics_navbar.html'%}
 
 <div class="container mx-auto px-4 py-8">
-    <!-- <h1 class="text-3xl font-bold text-center mb-8">Admin Dashboard</h1> -->
-    <span class="header">Books Analytics</span>
+    <span class="header">Sales Analytics</span>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Total Books -->
-        <div class="bg-cyan-500 rounded-lg p-4 text-white">
-            <h2 class="text-lg font-semibold mb-2">{% trans "TotalBooks" %}</h2>
-            <p class="text-4xl font-bold">{{ total_books }}</p>
-        </div>
-
-        <!-- Total Orders -->
         <div class="bg-indigo-500 rounded-lg p-4 text-white">
             <h2 class="text-lg font-semibold mb-2">{% trans "TotalOrders" %}</h2>
             <p class="text-4xl font-bold">{{ total_orders }}</p>
@@ -31,19 +23,31 @@
             <h2 class="text-lg font-semibold mb-2"> {% trans "OrdersInLast30Days" %}</h2>
             <p class="text-4xl font-bold">{{ orders_last_30_days }}</p>
         </div>
-
-        <!-- Books Added in Last 30 Days -->
         <div class="bg-cyan-500 rounded-lg p-4 text-white">
-            <h2 class="text-lg font-semibold mb-2">{% trans "BooksAddedInLast30Days" %}</h2>
-            <p class="text-4xl font-bold">{{ books_last_30_days }}</p>
+            <h2 class="text-lg font-semibold mb-2">{% trans "Total Sales" %}</h2>
+            <p class="text-4xl font-bold">{{ total_sales }}</p>
         </div>
+        <div class="bg-cyan-500 rounded-lg p-4 text-white">
+            <h2 class="text-lg font-semibold mb-2">{% trans "Total Revenue" %}</h2>
+            <p class="text-4xl font-bold">{{ total_revenue }}</p>
+        </div>
+        <!-- <div class="bg-cyan-500 rounded-lg p-4 text-white">
+            <h2 class="text-lg font-semibold mb-2">{% trans "AvgorderValue" %}</h2>
+            <p class="text-4xl font-bold">{{ avg_order_value }}</p>
+        </div> -->
     </div>
+    <!-- Sales Analytics Chart -->
     
     <div class="container sales-container">
+        <span class="header">Sales status</span>
+        <!-- Sales by Status Chart -->
         <div class="chart-container">
             <canvas id="sales-by-status-chart" width="400" height="200"></canvas>
         </div>
     </div>
+    
+    
+
 </div>
 
 <style>
@@ -73,7 +77,7 @@
     var statusLabels = salesByStatusData.map(item => item.status);
     var statusCounts = salesByStatusData.map(item => item.count);
     var statusChart = new Chart(document.getElementById('sales-by-status-chart'), {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: statusLabels,
             datasets: [{
@@ -93,4 +97,5 @@
         }
     });
 </script>
+
 {% endblock content %}

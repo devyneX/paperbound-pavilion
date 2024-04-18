@@ -1,0 +1,71 @@
+<!-- {% extends 'store_admin/admin_base.html' %}
+{% load i18n %}
+{% block title %} {% trans "AdminDashboard" %} {% endblock title %}
+ 
+{% block content %}
+<nav class="navbar bg-white py-4">
+    <div class="container mx-auto">
+        <div class="flex justify-center">
+            <div class="inline-flex">
+                <a href="#" id="booksButton" style="border: 2px solid indigo; border-radius: 5px;" class="btn btn-outline-secondary bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
+                    Books
+                </a>
+                <a href="#" id="salesButton" class="btn btn-outline-secondary bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                    Sales
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<script id="bookTemplate" type="text/template">
+    {% include 'store_admin/analytics/book_analytics.html'%}
+</script>
+
+<div id="contentContainer"></div>
+
+<script>
+    function loadBookContent() {
+        var template = document.getElementById('bookTemplate').innerHTML;
+        document.getElementById('contentContainer').innerHTML = template;
+    }
+    // Load book content initially
+    loadBookContent();
+</script>
+
+<script id="salesTemplate" type="text/template">
+    {% include 'store_admin/analytics/sale_analytics.html'%}
+</script>
+
+<script>
+    // Function to load book content
+    function loadBookContent() {
+        var template = document.getElementById('bookTemplate').innerHTML;
+        document.getElementById('contentContainer').innerHTML = template;
+    }
+
+    // Function to load sales content
+    function loadSalesContent() {
+        var template = document.getElementById('salesTemplate').innerHTML;
+        document.getElementById('contentContainer').innerHTML = template;
+    }
+
+    // Event listeners for button clicks
+    document.getElementById('booksButton').addEventListener('click', function(event) {
+        event.preventDefault();
+        loadBookContent();
+        this.style.border = "2px solid indigo"; 
+        this.style.borderRadius = "5px";
+        document.getElementById('salesButton').style.border ="none"
+    });
+
+    document.getElementById('salesButton').addEventListener('click', function(event) {
+        event.preventDefault();
+        loadSalesContent();
+        this.style.border = "2px solid indigo"; 
+        this.style.borderRadius = "5px";
+        document.getElementById('booksButton').style.border ="none"
+    });
+</script>
+{% endblock content %} -->
