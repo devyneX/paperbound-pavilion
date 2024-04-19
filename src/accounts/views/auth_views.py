@@ -1,5 +1,7 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
+from django.core.exceptions import BadRequest
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -22,28 +24,25 @@ class Login(LoginView):
 
 
 class RegisterView(CreateView):
-    # TODO: Doesn't redirect authenticated users
     form_class = RegisterForm
     template_name = 'accounts/register.html'
     success_url = reverse_lazy('home')
 
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('home')
+        return super().get(self, request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            raise BadRequest
+
+        return super().post(self, request, *args, **kwargs)
+
     def form_valid(self, form):
-        password = form.cleaned_data['password1']
-        form.instance.set_password(password)
-
-        form.save()
-        username = self.request.POST['username']
-        password = self.request.POST['password1']
-
-        user = authenticate(username=username, password=password)
-        login(self.request, user)
-
-        return super().form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form_initial_data'] = self.request.POST
-        return context
+        response = super().form_valid(form)
+        login(self.request, form.instance)
+        return response
 
 
 class Logout(LogoutView):

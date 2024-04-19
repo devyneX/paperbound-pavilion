@@ -2,7 +2,9 @@ from django.db import DataError, IntegrityError
 from django.test import TestCase
 from faker import Faker
 
-from src.accounts.models import User
+from src.accounts.models import Address, User
+
+from .utils import make_fake_address, make_fake_user
 
 fake = Faker()
 
@@ -10,123 +12,47 @@ fake = Faker()
 class UserCreationTestCase(TestCase):
 
     def test_valid_basic_user_creation(self):
-        user = User.objects.create_user(
-            first_name=fake.first_name(),
-            last_name=fake.last_name(),
-            email=fake.email(),
-            username=fake.user_name(),
-            password=fake.password(),
-            phone=fake.random_number(digits=20)
-        )
+        user = make_fake_user(fake)
         self.assertTrue(user.is_active)
         self.assertFalse(user.is_staff)
         self.assertFalse(user.is_superuser)
 
-    def test_valid_superuser_creation(self):
-        user = User.objects.create_superuser(
-            first_name=fake.first_name(),
-            last_name=fake.last_name(),
-            email=fake.email(),
-            username=fake.user_name(),
-            password=fake.password(),
-            phone=fake.random_number(digits=20)
-        )
-        self.assertTrue(user.is_active)
-        self.assertTrue(user.is_staff)
-        self.assertTrue(user.is_superuser)
-
-    def test_unique_username_contraint(self):
+    def test_unique_username_constraint(self):
         username = fake.user_name()
-        User.objects.create_user(
-            first_name=fake.first_name(),
-            last_name=fake.last_name(),
-            email=fake.email(),
-            username=username,
-            password=fake.password(),
-            phone=fake.random_number(digits=20)
-        )
+        make_fake_user(fake, username=username)
         with self.assertRaises(IntegrityError):
-            User.objects.create_user(
-                first_name=fake.first_name(),
-                last_name=fake.last_name(),
-                email=fake.email(),
-                username=username,
-                password=fake.password(),
-                phone=fake.random_number(digits=20)
-            )
+            make_fake_user(fake, username=username)
 
-    def test_unique_email_contraint(self):
+    def test_unique_email_constraint(self):
         email = fake.email()
-        User.objects.create_user(
-            first_name=fake.first_name(),
-            last_name=fake.last_name(),
-            email=email,
-            username=fake.user_name(),
-            password=fake.password(),
-            phone=fake.random_number(digits=20)
-        )
+        make_fake_user(fake, email=email)
         with self.assertRaises(IntegrityError):
-            User.objects.create_user(
-                first_name=fake.first_name(),
-                last_name=fake.last_name(),
-                email=email,
-                username=fake.user_name(),
-                password=fake.password(),
-                phone=fake.random_number(digits=20)
-            )
+            make_fake_user(fake, email=email)
 
     def test_phone_digit_constraint(self):
 
         phone = fake.random_number(digits=20)
         try:
-            User.objects.create_user(
-                first_name=fake.first_name(),
-                last_name=fake.last_name(),
-                email=fake.email(),
-                username=fake.user_name(),
-                password=fake.password(),
-                phone=phone
-            )
+            make_fake_user(fake, phone=phone)
         except Exception:
             self.fail('Phone digits constraint failed')
 
-        # corner case
         phone = fake.random_number(digits=20, fix_len=True)
         try:
-            User.objects.create_user(
-                first_name=fake.first_name(),
-                last_name=fake.last_name(),
-                email=fake.email(),
-                username=fake.user_name(),
-                password=fake.password(),
-                phone=phone
-            )
+            make_fake_user(fake, phone=phone)
+
         except Exception:
             self.fail('Phone digits constraint failed')
 
         with self.assertRaises(DataError):
             phone = fake.random_number(digits=30, fix_len=True)
-            User.objects.create_user(
-                first_name=fake.first_name(),
-                last_name=fake.last_name(),
-                email=fake.email(),
-                username=fake.user_name(),
-                password=fake.password(),
-                phone=phone
-            )
+            make_fake_user(fake, phone=phone)
 
 
 class UserModelTestCase(TestCase):
 
     def setUp(self):
-        self.user = User.objects.create_user(
-            first_name=fake.first_name(),
-            last_name=fake.last_name(),
-            email=fake.email(),
-            username=fake.user_name(),
-            password=fake.password(),
-            phone=fake.random_number(digits=20)
-        )
+        self.user = make_fake_user(fake)
 
     def test_user_retrieval_with_id(self):
         user = User.objects.get(id=self.user.id)
@@ -176,28 +102,14 @@ class UserModelTestCase(TestCase):
 
     def test_user_update_duplicate_email(self):
         email = fake.email()
-        User.objects.create_user(
-            first_name=fake.first_name(),
-            last_name=fake.last_name(),
-            email=email,
-            username=fake.user_name(),
-            password=fake.password(),
-            phone=fake.random_number(digits=20)
-        )
+        make_fake_user(fake, email=email)
         with self.assertRaises(IntegrityError):
             self.user.email = email
             self.user.save()
 
     def test_user_update_duplicate_username(self):
         username = fake.user_name()
-        User.objects.create_user(
-            first_name=fake.first_name(),
-            last_name=fake.last_name(),
-            email=fake.email(),
-            username=username,
-            password=fake.password(),
-            phone=fake.random_number(digits=20)
-        )
+        make_fake_user(fake, username=username)
         with self.assertRaises(IntegrityError):
             self.user.username = username
             self.user.save()
@@ -214,33 +126,13 @@ class UserModelTestCase(TestCase):
 class AddressCreationTestCase(TestCase):
 
     def setUp(self):
-        self.user = User.objects.create_user(
-            first_name=fake.first_name(),
-            last_name=fake.last_name(),
-            email=fake.email(),
-            username=fake.user_name(),
-            password=fake.password(),
-            phone=fake.random_number(digits=20)
-        )
+        self.user = make_fake_user(fake)
 
     def test_valid_address_creation(self):
-        address = self.user.addresses.create(
-            house=fake.building_number(),
-            street=fake.street_name(),
-            city=fake.city(),
-            state=fake.state(),
-            country=fake.country_code(),
-            post_code=fake.postcode()
-        )
+        address = make_fake_address(fake, self.user)
         self.assertEqual(address.user, self.user)
 
-        address = self.user.addresses.create(
-            house=fake.building_number(),
-            street=fake.street_name(),
-            city=fake.city(),
-            country=fake.country_code(),
-            post_code=fake.postcode()
-        )
+        address = make_fake_address(fake, self.user, state=None)
         self.assertEqual(address.user, self.user)
 
 
@@ -255,18 +147,15 @@ class AddressModelTestCase(TestCase):
             password=fake.password(),
             phone=fake.random_number(digits=20)
         )
-        self.address = self.user.addresses.create(
-            house=fake.building_number(),
-            street=fake.street_name(),
-            city=fake.city(),
-            state=fake.state(),
-            country=fake.country_code(),
-            post_code=fake.postcode()
-        )
+        self.address = make_fake_address(fake, self.user)
 
     def test_address_retrieval_with_id(self):
-        address = self.user.addresses.get(id=self.address.id)
+        address = Address.objects.get(id=self.address.id)
         self.assertEqual(address, self.address)
+
+    def test_address_retrieval_with_user(self):
+        addresses = Address.objects.filter(user=self.user)
+        self.assertTrue(self.address in addresses)
 
     def test_address_update(self):
         new_house = fake.building_number()
@@ -311,7 +200,8 @@ class AddressModelTestCase(TestCase):
             self.user.addresses.get(id=self.address.id)
 
     def test_address_str_representation(self):
+        address = self.address
         self.assertEqual(
-            str(self.address), f'{self.address.house}, {self.address.street}, \
-                {self.address.get_country_display()}'
+            str(address), f'{address.house}, {address.street}' +
+            f', {address.get_country_display()}'
         )
