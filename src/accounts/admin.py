@@ -20,6 +20,7 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display_links = ('name', 'username')
     search_fields = ('username', 'email', 'phone')
     list_filter = ('is_active',)
+    filter_horizontal = ('groups', 'user_permissions')
     inlines = [AddressInline]
 
     fieldsets = (
@@ -108,6 +109,7 @@ class StaffAdmin(admin.ModelAdmin):
         'is_active',
         'groups',
     )
+    filter_horizontal = ('groups', 'user_permissions')
 
     fieldsets = (
         (None, {

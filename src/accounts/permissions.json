@@ -1,0 +1,44 @@
+{
+  "owner": "__all__",
+  "user_admin": [
+    { "content_type": "Accounts | User", "codename": "add_user", "description": "Can add user" },
+    { "content_type": "Accounts | User", "codename": "change_user", "description": "Can change user" },
+    { "content_type": "Accounts | User", "codename": "delete_user", "description": "Can delete user" },
+    { "content_type": "Accounts | User", "codename": "view_user", "description": "Can view user" }
+  ],
+  "finance": [
+    { "content_type": "Shopping | order", "codename": "add_order", "description": "Can add order" },
+    { "content_type": "Shopping | order", "codename": "change_order", "description": "Can change order" },
+    { "content_type": "Shopping | order", "codename": "delete_order", "description": "Can delete order" },
+    { "content_type": "Shopping | order", "codename": "view_order", "description": "Can view order" },
+    { "content_type": "Shopping | order book", "codename": "add_orderbook", "description": "Can add order book" },
+    { "content_type": "Shopping | order book", "codename": "change_orderbook", "description": "Can change order book" },
+    { "content_type": "Shopping | order book", "codename": "delete_orderbook", "description": "Can delete order book" },
+    { "content_type": "Shopping | order book", "codename": "view_orderbook", "description": "Can view order book" },
+    { "content_type": "Shopping | transaction", "codename": "add_transaction", "description": "Can add transaction" },
+    { "content_type": "Shopping | transaction", "codename": "change_transaction", "description": "Can change transaction" },
+    { "content_type": "Shopping | transaction", "codename": "delete_transaction", "description": "Can delete transaction" },
+    { "content_type": "Shopping | transaction", "codename": "view_transaction", "description": "Can view transaction" }
+  ],
+  "store_admin": [
+    { "content_type": "Books | author", "codename": "add_author", "description": "Can add author" },
+    { "content_type": "Books | author", "codename": "change_author", "description": "Can change author" },
+    { "content_type": "Books | author", "codename": "delete_author", "description": "Can delete author" },
+    { "content_type": "Books | author", "codename": "view_author", "description": "Can view author" },
+    { "content_type": "Books | book", "codename": "add_book", "description": "Can add book" },
+    { "content_type": "Books | book", "codename": "change_book", "description": "Can change book" },
+    { "content_type": "Books | book", "codename": "delete_book", "description": "Can delete book" },
+    { "content_type": "Books | book", "codename": "view_book", "description": "Can view book" },
+    { "content_type": "Books | publisher", "codename": "add_publisher", "description": "Can add publisher" },
+    { "content_type": "Books | publisher", "codename": "change_publisher", "description": "Can change publisher" },
+    { "content_type": "Books | publisher", "codename": "delete_publisher", "description": "Can delete publisher" },
+    { "content_type": "Books | publisher", "codename": "view_publisher", "description": "Can view publisher" }
+  ],
+  "base_user": [
+    { "content_type": "Books | book", "codename": "view_book", "description": "Can view book" },
+    { "content_type": "Books | publisher", "codename": "view_publisher", "description": "Can view publisher" },
+    { "content_type": "Shopping | order", "codename": "view_order", "description": "Can view order" },
+    { "content_type": "Shopping | order book", "codename": "view_orderbook", "description": "Can view order book" },
+    { "content_type": "Shopping | transaction", "codename": "view_transaction", "description": "Can view transaction" }
+  ]
+}
