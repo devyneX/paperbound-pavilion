@@ -3,7 +3,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
 
-from src.accounts.managers import UserManager
 from src.core.models import BaseModel
 
 
@@ -11,7 +10,6 @@ class User(AbstractUser):
     phone = models.CharField(max_length=20,
                              verbose_name=_('phone'))
     email = models.EmailField(_('email address'), unique=True)
-    objects = UserManager()
 
 
 class Customer(User):
