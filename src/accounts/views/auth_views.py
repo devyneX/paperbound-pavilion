@@ -1,5 +1,7 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -35,10 +37,13 @@ class RegisterView(CreateView):
         username = self.request.POST['username']
         password = self.request.POST['password1']
 
+        group = Group.objects.get(name='base_user')
+        form.instance.groups.add(group)
+
         user = authenticate(username=username, password=password)
         login(self.request, user)
 
-        return super().form_valid(form)
+        return redirect(self.success_url)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

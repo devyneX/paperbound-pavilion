@@ -4,11 +4,10 @@ from django.contrib.auth.models import Group
 
 class UserManager(BaseUserManager):
 
-    def create(self, **kwargs):
-        user = super().create(self, **kwargs)
-        if not user.is_staff:
-            group = Group.objects.get(name='base_user')
-            user.groups.add(group)
+    def create(self, username, email, password, **extra_fields):
+        user = super().create_user(
+            username=username, email=email, password=password, **extra_fields
+        )
         return user
 
     def create_user(self, username, email, password=None, **extra_fields):
@@ -17,6 +16,9 @@ class UserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(username=username, email=email, **extra_fields)
         user.set_password(password)
+        if not user.is_superuser:
+            group = Group.objects.get(name='base_user')
+            user.groups.add(group)
         user.save(using=self._db)
         return user
 
