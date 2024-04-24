@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView, DeleteView, DetailView, ListView, UpdateView
@@ -5,23 +6,24 @@ from django.views.generic import (
 
 from src.books.choices import GenreChoices, LanguageChoices
 from src.books.models import Author, Book, Publisher
-from src.core.mixins import CachedViewMixin, SuperuserRequiredMixin
 
 from ..forms import BookCreateForm
 
 
 # BOOK VIEWS
-class BooksList(SuperuserRequiredMixin, CachedViewMixin, ListView):
+class BooksList(PermissionRequiredMixin, ListView):
     model = Book
     template_name = 'store_admin/book/books.html'
     paginate_by = 20
+    permission_required = ('books.view_book',)
 
 
-class BooksCreate(SuperuserRequiredMixin, CachedViewMixin, CreateView):
+class BooksCreate(PermissionRequiredMixin, CreateView):
     model = Book
     form_class = BookCreateForm
     template_name = 'store_admin/book/book-create.html'
     success_url = reverse_lazy('admin-books')
+    permission_required = ('books.add_book',)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -35,24 +37,27 @@ class BooksCreate(SuperuserRequiredMixin, CachedViewMixin, CreateView):
         return context
 
 
-class BookDetailView(SuperuserRequiredMixin, CachedViewMixin, DetailView):
+class BookDetailView(PermissionRequiredMixin, DetailView):
     model = Book
     template_name = 'store_admin/book/book-detail.html'
+    permission_required = ('books.view_book',)
 
 
-class BookDelete(SuperuserRequiredMixin, CachedViewMixin, DeleteView):
+class BookDelete(PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy(
         'admin-books'
     )  # Redirect to admin users list after deletion
     template_name = 'store_admin/book/book-confirm-delete.html'
+    permission_required = ('books.delete_book',)
 
 
-class BooksUpdate(SuperuserRequiredMixin, CachedViewMixin, UpdateView):
+class BooksUpdate(PermissionRequiredMixin, UpdateView):
     model = Book
     form_class = BookCreateForm
     template_name = 'store_admin/book/book-update.html'
     success_url = reverse_lazy('admin-books')
+    permission_required = ('books.change_book',)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

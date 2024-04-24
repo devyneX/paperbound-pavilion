@@ -28,3 +28,10 @@ class Review(BaseModel):
         related_query_name='review',
         verbose_name=_('book')
     )
+
+    class Meta:
+        permissions = (
+            ('add_own_review', 'Can add own review'),
+            ('change_own_review', 'Can change own review'),
+            ('delete_own_review', 'Can delete own review'),
+        )

@@ -1,19 +1,18 @@
 import json
 
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import Count, Sum
 from django.utils import timezone
 from django.views.generic import TemplateView
 
 from src.accounts.models import User
 from src.books.models import Author, Book
-from src.core.mixins import SuperuserRequiredMixin
 from src.shopping.models import Order, Transaction
 
 
-class AdminBookDashboard(SuperuserRequiredMixin, TemplateView):
+class AdminBookDashboard(PermissionRequiredMixin, TemplateView):
     template_name = 'store_admin/analytics/book_analytics.html'
-
-    # template_name = 'store_admin/dashboard.html'
+    permission_required = ('store_admin.view_dashboard',)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -56,8 +55,9 @@ class AdminBookDashboard(SuperuserRequiredMixin, TemplateView):
         return context
 
 
-class AdminSaleDashboard(SuperuserRequiredMixin, TemplateView):
+class AdminSaleDashboard(PermissionRequiredMixin, TemplateView):
     template_name = 'store_admin/analytics/sale_analytics.html'
+    permission_required = ('store_admin.view_dashboard',)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

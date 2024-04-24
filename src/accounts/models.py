@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
 
-from src.accounts.managers import UserManager
+from src.accounts.managers import CustomerManager, StaffManager, UserManager
 from src.core.models import BaseModel
 
 
@@ -13,8 +13,15 @@ class User(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     objects = UserManager()
 
+    class Meta:
+        permissions = (
+            ('view_profile', 'Can view profile'),
+            ('change_own_profile', 'Can change own profile'),
+        )
+
 
 class Customer(User):
+    objects = CustomerManager()
 
     class Meta:
         proxy = True
@@ -23,6 +30,7 @@ class Customer(User):
 
 
 class Staff(User):
+    objects = StaffManager()
 
     class Meta:
         proxy = True
@@ -52,6 +60,11 @@ class Address(BaseModel):
     class Meta:
         verbose_name = _('address')
         verbose_name_plural = _('addresses')
+        permissions = (
+            ('add_own_address', 'Can add own address'),
+            ('view_own_address', 'Can view own address'),
+            ('change_own_address', 'Can change own address'),
+        )
 
     def __str__(self):
         return f'{self.house}, {self.street}, {self.get_country_display()}'

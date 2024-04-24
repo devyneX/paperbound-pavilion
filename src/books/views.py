@@ -1,16 +1,12 @@
-from django.apps import apps
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import DetailView, ListView
 
-from src.core.mixins import CachedViewMixin
-
-from .choices import GenreChoices, LanguageChoices
-from .models import Author, Book, Publisher
-from .view_helpers import books_general_search, books_search
-
-Review = apps.get_model('book_review', 'Review')
+from src.book_review.models import Review
+from src.books.choices import GenreChoices, LanguageChoices
+from src.books.models import Author, Book, Publisher
+from src.books.view_helpers import books_general_search, books_search
 
 
 def get_username_by_id(user_id):
@@ -38,7 +34,7 @@ class BookListView(ListView):
         return queryset
 
 
-class BookDetailView(CachedViewMixin, DetailView):
+class BookDetailView(DetailView):
     model = Book
     context_object_name = 'book'
     template_name = 'book_details.html'
@@ -57,7 +53,7 @@ class BookDetailView(CachedViewMixin, DetailView):
         return context
 
 
-class BookSearch(CachedViewMixin, View):
+class BookSearch(View):
 
     def get(self, request, *args, **kwargs):
         books = None
@@ -68,14 +64,13 @@ class BookSearch(CachedViewMixin, View):
         else:
             books = books_search(request)
 
-        context = {}
-        context['books'] = books
-        context['genres'] = GenreChoices.choices
-        context['languages'] = LanguageChoices.choices
-        # Add authors to the context
-        context['authors'] = Author.objects.all()
-        # Add publishers to the context
-        context['publishers'] = Publisher.objects.all()
-        context['params'] = request.GET
+        context = {
+            'books': books,
+            'genres': GenreChoices.choices,
+            'languages': LanguageChoices.choices,
+            'authors': Author.objects.all(),
+            'publishers': Publisher.objects.all(),
+            'params': request.GET
+        }
 
         return render(request, 'book_search_result.html', context)
