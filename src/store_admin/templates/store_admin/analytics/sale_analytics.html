@@ -27,7 +27,7 @@
             <h2 class="text-lg font-semibold mb-2">{% trans "Total Sales" %}</h2>
             <p class="text-4xl font-bold">{{ total_sales }}</p>
         </div>
-        <div class="bg-cyan-500 rounded-lg p-4 text-white">
+        <div class="bg-indigo-500 rounded-lg p-4 text-white">
             <h2 class="text-lg font-semibold mb-2">{% trans "Total Revenue" %}</h2>
             <p class="text-4xl font-bold">{{ total_revenue }}</p>
         </div>
@@ -40,7 +40,6 @@
     
     <div class="container sales-container">
         <span class="header">Sales status</span>
-        <!-- Sales by Status Chart -->
         <div class="chart-container">
             <canvas id="sales-by-status-chart" width="400" height="200"></canvas>
         </div>

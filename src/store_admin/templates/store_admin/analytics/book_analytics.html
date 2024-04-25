@@ -12,14 +12,10 @@
             <h2 class="text-lg font-semibold mb-2">{% trans "Total Books" %}</h2>
             <p class="text-4xl font-bold">{{ total_books }}</p>
         </div>
-        <div class="bg-cyan-500 rounded-lg p-4 text-white">
+        <div class="bg-indigo-500 rounded-lg p-4 text-white">
             <h2 class="text-lg font-semibold mb-2">{% trans "Total Authors" %}</h2>
             <p class="text-4xl font-bold">{{ total_authors }}</p>
         </div>
-        <!-- Total Orders -->
-        
-
-        <!-- Books Added in Last 30 Days -->
         <div class="bg-cyan-500 rounded-lg p-4 text-white">
             <h2 class="text-lg font-semibold mb-2">{% trans "BooksAddedInLast30Days" %}</h2>
             <p class="text-4xl font-bold">{{ books_last_30_days }}</p>
@@ -29,15 +25,19 @@
 </div>
 
 <div class="container sales-container">
-    <div class="chart-wrapper">
-        <span class="header">{% trans "Top Genre" %}</span>
-        <canvas id="genre-sales-chart" width="800" height="400"></canvas>
-    </div>
-    <div class="chart-wrapper">
-        <span class="header">{% trans "Top Author" %}</span>
-        <canvas id="author-sales-chart" width="800" height="400"></canvas>
+    <span class="header">{% trans "Top Genre" %}</span>
+    <div class="chart-container">
+        
+        <canvas id="genre-sales-chart" width="400" height="200"></canvas>
     </div>
 </div>
+<div class="container sales-container">
+    <span class="header">{% trans "Top Author" %}</span>
+    <div class="chart-container">
+        <canvas id="author-sales-chart" width="400" height="200"></canvas>
+    </div>
+</div>
+
 
 <div class="container mx-auto px-4 py-8">
     <div class="container mx-auto px-4 py-8">
@@ -65,20 +65,13 @@
     }
 
     .sales-container {
-        display: flex;
-        justify-content: space-between;
-        max-width: 1600px; /* Adjust as needed */
+        max-width: 800px;
         margin: 0 auto;
-    }
-
-    .chart-wrapper {
-        flex: 1;
         padding: 20px;
         background-color: #fff;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-
     .chart-container {
         margin-top: 20px;
     }
