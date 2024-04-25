@@ -3,11 +3,12 @@ from django.db import models
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.http import urlencode
+from unfold.admin import ModelAdmin, StackedInline
 
 from src.books.models import Author, Book, Publisher
 
 
-class BookAdmin(admin.ModelAdmin):
+class BookAdmin(ModelAdmin):
     list_display = (
         'title', 'author_link', 'publisher_link', 'price', 'quantity',
         'review_count_link'
@@ -56,12 +57,12 @@ class BookAdmin(admin.ModelAdmin):
     review_count_link.admin_order_field = 'review_count'  # type: ignore
 
 
-class BookInline(admin.StackedInline):
+class BookInline(StackedInline):
     model = Book
     extra = 1
 
 
-class AuthorAdmin(admin.ModelAdmin):
+class AuthorAdmin(ModelAdmin):
     list_display = ('name', 'book_count_link')
     inlines = [BookInline]
 
@@ -84,7 +85,7 @@ class AuthorAdmin(admin.ModelAdmin):
     book_count_link.admin_order_field = 'book_count'  # type: ignore
 
 
-class PublisherAdmin(admin.ModelAdmin):
+class PublisherAdmin(ModelAdmin):
     list_display = ('name', 'address', 'book_count_link')
     inlines = [BookInline]
 

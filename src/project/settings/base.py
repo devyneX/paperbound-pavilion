@@ -6,7 +6,10 @@ ALLOWED_HOSTS: list[str] = []
 # Application definition
 
 INSTALLED_APPS = [
+    # third-party apps
     'unfold',
+
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -16,6 +19,7 @@ INSTALLED_APPS = [
 
     # third-party apps
     'silk',
+
     # local apps
     'src.core',
     'src.root',

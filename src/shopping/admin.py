@@ -3,16 +3,17 @@ from django.db import models
 from django.urls import path, reverse
 from django.utils.html import format_html
 from django.utils.http import urlencode
+from unfold.admin import ModelAdmin, StackedInline, TabularInline
 
 from .models import Order, OrderBook, Transaction
 
 
-class OrderBookInline(admin.TabularInline):
+class OrderBookInline(TabularInline):
     model = OrderBook
     extra = 1
 
 
-class TransactionInline(admin.StackedInline):
+class TransactionInline(StackedInline):
     model = Transaction
     extra = 0
     readonly_fields = [
@@ -21,7 +22,7 @@ class TransactionInline(admin.StackedInline):
     ]
 
 
-class OrderAdmin(admin.ModelAdmin):
+class OrderAdmin(ModelAdmin):
     list_per_page = 20
     list_display = (
         'user', 'created_at', 'address_link', 'status', 'total_price',
@@ -98,7 +99,7 @@ class OrderAdmin(admin.ModelAdmin):
         self.message_user(request, 'Order status updated successfully')
 
 
-class OrderBookAdmin(admin.ModelAdmin):
+class OrderBookAdmin(ModelAdmin):
     list_display = ('order', 'book_link', 'quantity', 'price')
     search_fields = ('order__user__username', 'book__title')
     list_filter = ('order__status',)
@@ -108,6 +109,12 @@ class OrderBookAdmin(admin.ModelAdmin):
 
         return readonly_fields
 
+    def total_price(self, obj):
+        return obj.quantity * obj.price
+
+    total_price.short_description = 'Total Price'  # type: ignore
+    total_price.admin_order_field = 'total_price'  # type: ignore
+
     def book_link(self, obj):
         url = reverse('admin:books_book_change', args=[obj.book_id])
         return format_html(f'<a href="{url}">{obj.book.title}</a>')
@@ -116,7 +123,7 @@ class OrderBookAdmin(admin.ModelAdmin):
     book_link.admin_order_field = 'book__title'  # type: ignore
 
 
-class TransactionAdmin(admin.ModelAdmin):
+class TransactionAdmin(ModelAdmin):
     list_display = (
         'transaction_id', 'order_link', 'status', 'amount', 'store_amount',
         'currency'
