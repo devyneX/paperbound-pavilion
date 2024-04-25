@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}Book Search Result{% endblock %}
 
 
@@ -94,6 +94,9 @@
                     <p class="text-gray-600 mb-2"><strong>Genre:</strong> {{ book.get_genre_display }}</p>
                     <p class="text-gray-600 mb-2"><strong>Publisher:</strong> {{ book.publisher }}</p>
                     <p class="text-gray-600 mb-2"><strong>Price:</strong> {{ book.price }}</p>
+
+                    <a href="{% url 'book-detail' book.pk %}"
+                    class="text-indigo-600 hover:text-indigo-900 font-semibold">{% trans "View" %}</a>
                 </div>
             </div>
             {% endfor %}
