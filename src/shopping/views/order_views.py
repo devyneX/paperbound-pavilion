@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db import models
 from django.db.utils import IntegrityError
 from django.shortcuts import redirect
@@ -9,25 +9,31 @@ from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
 from src.books.models import Book
+from src.core.mixins import OwnerRequiredMixin
 from src.shopping.forms import OrderForm
 from src.shopping.models import Order, OrderBook
 
 
-class OrderHistoryView(LoginRequiredMixin, ListView):
+class OrderHistoryView(PermissionRequiredMixin, ListView):
     model = Order
     template_name = 'shopping/order-history.html'
     context_object_name = 'orders'
     paginate_by = 10
+    permission_required = ('shopping.view_own_order',)
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user
                                     ).order_by('-created_at')
 
 
-class OrderDetailView(LoginRequiredMixin, DetailView):
+class OrderDetailView(OwnerRequiredMixin, DetailView):
     model = Order
     template_name = 'shopping/order-detail.html'
     context_object_name = 'order'
+    permission_required = ('shopping.view_own_order',)
+
+    def is_owner(self, request):
+        return self.get_object().user == request.user
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -39,10 +45,11 @@ class OrderDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-class PlaceOrderView(LoginRequiredMixin, CreateView):
+class PlaceOrderView(PermissionRequiredMixin, CreateView):
     model = Order
     template_name = 'shopping/checkout.html'
     form_class = OrderForm
+    permission_required = ('shopping.place_order',)
 
     def get_success_url(self):
         pk = self.object.pk

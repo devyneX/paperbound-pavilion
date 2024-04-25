@@ -43,11 +43,11 @@
     { "content_type": "Shopping | order", "codename": "place_order", "description": "Can place order" },
     { "content_type": "Accounts | User", "codename": "view_profile", "description": "Can view profile" },
     { "content_type": "Accounts | User", "codename": "change_own_profile", "description": "Can change own profile" },
-    { "content_type": "Accounts | address", "codename": "view_own_address", "description": "Can view own address" },
-    { "content_type": "Accounts | address", "codename": "add_own_address", "description": "Can add own address" },
-    { "content_type": "Accounts | address", "codename": "change_own_address", "description": "Can change own address" },
-    { "content_type": "BookReview | review", "codename": "add_own_review", "description": "Can add own review" },
-    { "content_type": "BookReview | review", "codename": "change_own_review", "description": "Can change own review" },
-    { "content_type": "BookReview | review", "codename": "view_own_review", "description": "Can view own review" }
+    { "content_type": "Accounts | Address", "codename": "view_own_address", "description": "Can view own address" },
+    { "content_type": "Accounts | Address", "codename": "add_own_address", "description": "Can add own address" },
+    { "content_type": "Accounts | Address", "codename": "change_own_address", "description": "Can change own address" },
+    { "content_type": "Book_Review | review", "codename": "add_own_review", "description": "Can add own review" },
+    { "content_type": "Book_Review | review", "codename": "change_own_review", "description": "Can change own review" },
+    { "content_type": "Book_Review | review", "codename": "view_own_review", "description": "Can view own review" }
   ]
 }

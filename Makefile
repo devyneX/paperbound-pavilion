@@ -9,9 +9,17 @@ add-lib:
 add-lib-dev:
 	poetry add $(filter-out $@,$(MAKECMDGOALS)) --group dev
 
-.PHONY: manage
-manage:
-	poetry run python -m src.manage $(filter-out $@,$(MAKECMDGOALS))
+.PHONY: add-roles
+add-roles:
+	poetry run python -m src.manage add_default_roles src/accounts/permissions.json
+
+.PHONY: del-add-dummy
+del-add-dummy:
+	poetry run python -m src.manage add-dummy-data --delete
+
+.PHONY: add-dummy
+add-dummy:
+	poetry run python -m src.manage add-dummy-data
 
 .PHONY: install
 install:

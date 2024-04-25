@@ -33,5 +33,5 @@ class Review(BaseModel):
         permissions = (
             ('add_own_review', 'Can add own review'),
             ('change_own_review', 'Can change own review'),
-            ('delete_own_review', 'Can delete own review'),
+            ('view_own_review', 'Can view own review'),
         )
