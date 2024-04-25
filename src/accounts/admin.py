@@ -3,16 +3,17 @@ from django.db import models
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.http import urlencode
+from unfold.admin import ModelAdmin, StackedInline
 
 from src.accounts.models import Address, Customer, Staff
 
 
-class AddressInline(admin.StackedInline):
+class AddressInline(StackedInline):
     model = Address
     extra = 1
 
 
-class CustomerAdmin(admin.ModelAdmin):
+class CustomerAdmin(ModelAdmin):
     list_display = (
         'name', 'username', 'email', 'phone', 'is_active',
         'address_count_link', 'order_count_link', 'review_count_link'
@@ -101,7 +102,7 @@ class CustomerAdmin(admin.ModelAdmin):
             obj.save()
 
 
-class StaffAdmin(admin.ModelAdmin):
+class StaffAdmin(ModelAdmin):
     list_display = ('name', 'username', 'email', 'phone', 'is_active')
     list_display_links = ('name', 'username')
     search_fields = ('username', 'email', 'phone', 'groups__name')
@@ -171,7 +172,7 @@ class StaffAdmin(admin.ModelAdmin):
             obj.save()
 
 
-class AddressAdmin(admin.ModelAdmin):
+class AddressAdmin(ModelAdmin):
     list_display = (
         'user', 'house', 'street', 'city', 'state', 'country', 'post_code'
     )
