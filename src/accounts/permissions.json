@@ -1,10 +1,14 @@
 {
   "owner": "__all__",
   "user_admin": [
-    { "content_type": "Accounts | User", "codename": "add_user", "description": "Can add user" },
-    { "content_type": "Accounts | User", "codename": "change_user", "description": "Can change user" },
-    { "content_type": "Accounts | User", "codename": "delete_user", "description": "Can delete user" },
-    { "content_type": "Accounts | User", "codename": "view_user", "description": "Can view user" }
+    { "content_type": "Accounts | customer", "codename": "add_customer", "description": "Can add customer" },
+    { "content_type": "Accounts | customer", "codename": "change_customer", "description": "Can change customer" },
+    { "content_type": "Accounts | customer", "codename": "delete_customer", "description": "Can delete customer" },
+    { "content_type": "Accounts | customer", "codename": "view_customer", "description": "Can view customer" },
+    { "content_type":  "Accounts | address", "codename": "add_address", "description": "Can add address" },
+    { "content_type":  "Accounts | address", "codename": "change_address", "description": "Can change address" },
+    { "content_type":  "Accounts | address", "codename": "delete_address", "description": "Can delete address" },
+    { "content_type":  "Accounts | address", "codename": "view_address", "description": "Can view address" }
   ],
   "finance": [
     { "content_type": "Shopping | order", "codename": "add_order", "description": "Can add order" },
@@ -35,10 +39,15 @@
     { "content_type": "Books | publisher", "codename": "view_publisher", "description": "Can view publisher" }
   ],
   "base_user": [
-    { "content_type": "Books | book", "codename": "view_book", "description": "Can view book" },
-    { "content_type": "Books | publisher", "codename": "view_publisher", "description": "Can view publisher" },
-    { "content_type": "Shopping | order", "codename": "view_order", "description": "Can view order" },
-    { "content_type": "Shopping | order book", "codename": "view_orderbook", "description": "Can view order book" },
-    { "content_type": "Shopping | transaction", "codename": "view_transaction", "description": "Can view transaction" }
+    { "content_type": "Shopping | order", "codename": "view_own_order", "description": "Can view own order" },
+    { "content_type": "Shopping | order", "codename": "place_order", "description": "Can place order" },
+    { "content_type": "Accounts | User", "codename": "view_profile", "description": "Can view profile" },
+    { "content_type": "Accounts | User", "codename": "change_own_profile", "description": "Can change own profile" },
+    { "content_type": "Accounts | Address", "codename": "view_own_address", "description": "Can view own address" },
+    { "content_type": "Accounts | Address", "codename": "add_own_address", "description": "Can add own address" },
+    { "content_type": "Accounts | Address", "codename": "change_own_address", "description": "Can change own address" },
+    { "content_type": "Book_Review | review", "codename": "add_own_review", "description": "Can add own review" },
+    { "content_type": "Book_Review | review", "codename": "change_own_review", "description": "Can change own review" },
+    { "content_type": "Book_Review | review", "codename": "view_own_review", "description": "Can view own review" }
   ]
 }

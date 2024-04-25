@@ -53,7 +53,7 @@ class CustomerAdmin(admin.ModelAdmin):
         return readonly_fields
 
     def get_queryset(self, request):
-        queryset = super().get_queryset(request).filter(is_staff=False)
+        queryset = super().get_queryset(request)
         queryset = queryset.annotate(
             address_count=models.Count('address', distinct=True),
             order_count=models.Count('order', distinct=True),
@@ -155,7 +155,7 @@ class StaffAdmin(admin.ModelAdmin):
         return readonly_fields
 
     def get_queryset(self, request):
-        queryset = super().get_queryset(request).filter(is_staff=True)
+        queryset = super().get_queryset(request)
 
         return queryset
 

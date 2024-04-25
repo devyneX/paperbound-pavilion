@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from src.accounts.forms import CustomAuthenticationForm, RegisterForm
+from src.accounts.mixins import UnauthenticatedRequiredMixin
 
 
 class Login(LoginView):
@@ -23,8 +24,7 @@ class Login(LoginView):
             return super().get_success_url()
 
 
-class RegisterView(CreateView):
-    # TODO: Doesn't redirect authenticated users
+class RegisterView(UnauthenticatedRequiredMixin, CreateView):
     form_class = RegisterForm
     template_name = 'accounts/register.html'
     success_url = reverse_lazy('home')

@@ -21,10 +21,12 @@
                 {% endfor %}
               </div>
               <p class="text-gray-700">{{ r.comments }}</p>
+              <div>
+                <a href="{% url 'review:update-review' pk=r.books.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm">{% trans 'Update'%}</a>
+              </div>
             </div>
           {% endfor %}
         </div>
-        <a href="{% url 'review:update-review' pk=book.id %}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-sm">{% trans 'UpdateReview'%}</a>
       </div>
     </div>
   </div>

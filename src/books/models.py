@@ -11,15 +11,8 @@ class Author(BaseModel):
     name = models.CharField(max_length=255,
                             verbose_name=_('name'))
 
-    # image = models.ImageField(
-    #     upload_to='authors/images/', null=True, blank=True
-    # )
-
     def __str__(self):
         return self.name
-
-    # def total_books(self):
-    #     return self.books.coun
 
 
 class Publisher(BaseModel):
@@ -28,9 +21,6 @@ class Publisher(BaseModel):
 
     def __str__(self):
         return self.name
-
-    # def total_books(self):
-    #     return self.books.count()
 
 
 class Book(BaseModel):

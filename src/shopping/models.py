@@ -44,6 +44,12 @@ class Order(BaseModel):
     books = models.ManyToManyField(Book, through='OrderBook',
                                    verbose_name=_('books'))
 
+    class Meta:
+        permissions = (
+            ('view_own_order', 'Can view own order'),
+            ('place_order', 'Can place order'),
+        )
+
     def total_price(self):
         return self.orderbooks.filter(out_of_stock=False).aggregate(
             total_price=models.Sum(models.F('quantity') * models.F('price'))

@@ -1,9 +1,25 @@
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import (
+    PermissionRequiredMixin, UserPassesTestMixin
+)
 from django.core.cache import cache
 from django.http import HttpRequest, HttpResponse
 
 # from django.utils.decorators import method_decorator
 # from django.views.decorators.cache import cache_page
+
+
+class OwnerRequiredMixin(PermissionRequiredMixin):
+
+    def is_owner(self, request):
+        raise NotImplementedError(
+            f'{self.__class__.__name__} must implement is_owner()'
+        )
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.is_owner(request):
+            return self.handle_no_permission()
+
+        return super().dispatch(request, *args, **kwargs)
 
 
 # Custom mixin to check if the user is a superuser

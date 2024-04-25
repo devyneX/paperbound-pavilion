@@ -16,10 +16,10 @@ class UserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(username=username, email=email, **extra_fields)
         user.set_password(password)
+        user.save(using=self._db)
         if not user.is_superuser:
             group = Group.objects.get(name='base_user')
             user.groups.add(group)
-        user.save(using=self._db)
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
@@ -35,3 +35,17 @@ class UserManager(BaseUserManager):
             raise ValueError('Superuser must have is_active=True')
 
         return self.create_user(email, password, **extra_fields)
+
+
+class CustomerManager(UserManager):
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(is_staff=False)
+        return queryset
+
+
+class StaffManager(UserManager):
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(is_staff=True)
+        return queryset
