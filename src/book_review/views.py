@@ -4,9 +4,10 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 
-from ..core.mixins import OwnerRequiredMixin
 from .forms import ReviewForm
 from .models import Book, Review
+
+app_name = 'accounts'
 
 
 class BookReviewListView(ListView):
@@ -54,12 +55,20 @@ class UserReviewListView(PermissionRequiredMixin, ListView):
         return Review.objects.filter(user=self.request.user)
 
 
-class ReviewUpdateView(OwnerRequiredMixin, UpdateView):
+class ReviewUpdateView(PermissionRequiredMixin, UpdateView):
     model = Review
     form_class = ReviewForm
     template_name = 'update_review.html'
-    success_url = reverse_lazy('book-list')
     permission_required = ('book_review.change_own_review',)
+    success_url = reverse_lazy('book-list')
+
+    # def get_success_url(self):
+    #     return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['review'] = Review.objects.get(pk=self.kwargs.get('pk'))
+        return context
 
     def is_owner(self, request):
         return self.get_object().user == request.user
