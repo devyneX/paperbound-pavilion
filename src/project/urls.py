@@ -19,25 +19,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from src.accounts import urls as accounts_urls
-from src.book_review import urls as review_urls
-from src.books.urls import booksurlpatterns
-from src.root import urls as rooturls
-from src.shopping import urls as shopping_urls
-from src.store_admin import urls as admin_urls
-
 admin.site.site_header = 'Paperbound Pavilion Admin Portal'
 admin.site.site_title = 'Paperbound Pavilion Admin Portal'
 admin.site.index_title = 'Welcome to Paperbound Pavilion'
 
 urlpatterns = [
     path('djadmin/', admin.site.urls),
-    path('accounts/', include(accounts_urls)),
-    path('shopping/', include(shopping_urls)),
-    path('admin/', include(admin_urls)),
-    path('books/', include(booksurlpatterns)),
-    path('reviews/', include(review_urls)),
-    path('', include(rooturls)),
+    path('accounts/', include('src.accounts.urls')),
+    path('shopping/', include('src.shopping.urls')),
+    path('admin/', include('src.store_admin.urls')),
+    path('books/', include('src.books.urls')),
+    path('reviews/', include('src.book_review.urls')),
+    path('', include('src.root.urls')),
 ]
 urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
 
