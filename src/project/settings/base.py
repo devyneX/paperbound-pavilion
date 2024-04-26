@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'src.shopping',
     'src.book_review',
     'src.store_admin',
+    'src.djadmin_customization',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +50,13 @@ ROOT_URLCONF = 'src.project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.normpath(  # type: ignore # noqa
+                os.path.join(  # type: ignore # noqa
+                    BASE_DIR, 'src', 'djadmin_customization', 'templates'  # type: ignore # noqa
+                )
+            ),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
