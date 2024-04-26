@@ -60,14 +60,17 @@ class ReviewUpdateView(PermissionRequiredMixin, UpdateView):
     form_class = ReviewForm
     template_name = 'update_review.html'
     permission_required = ('book_review.change_own_review',)
-    success_url = reverse_lazy('book-list')
 
-    # def get_success_url(self):
-    #     return redirect(self.request.META.get('HTTP_REFERER', '/'))
+    def get_success_url(self):
+        return reverse_lazy(
+            'review:user-reviews',
+            kwargs={'username': self.request.user.username}
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['review'] = Review.objects.get(pk=self.kwargs.get('pk'))
+        context['url'] = self.request.META.get('HTTP_REFERER')
         return context
 
     def is_owner(self, request):
