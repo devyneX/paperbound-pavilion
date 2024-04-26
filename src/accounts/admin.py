@@ -25,25 +25,31 @@ class CustomerAdmin(ModelAdmin):
     inlines = [AddressInline]
 
     fieldsets = (
-        (None, {
-            'fields': ('username', 'password')
-        }),
+        (
+            None, {
+                'fields': (
+                    'username',
+                    'password',
+                    'date_joined',
+                    'last_login',
+                )
+            }
+        ),
         (
             'Personal info', {
+                'classes': ['tab'],
                 'fields': ('first_name', 'last_name', 'email', 'phone')
             }
         ),
         (
             'Permissions', {
+                'classes': ['tab'],
                 'fields': (
                     'is_active', 'is_staff', 'is_superuser', 'groups',
                     'user_permissions'
                 )
             }
         ),
-        ('Important dates', {
-            'fields': ('last_login', 'date_joined')
-        }),
     )
 
     def get_readonly_fields(self, request, obj=None):
@@ -113,14 +119,19 @@ class StaffAdmin(ModelAdmin):
     filter_horizontal = ('groups', 'user_permissions')
 
     fieldsets = (
-        (None, {
-            'fields': (
-                'username',
-                'password',
-            )
-        }),
+        (
+            None, {
+                'fields': (
+                    'username',
+                    'password',
+                    'last_login',
+                    'date_joined',
+                )
+            }
+        ),
         (
             'Personal info', {
+                'classes': ['tab'],
                 'fields': (
                     'first_name',
                     'last_name',
@@ -131,6 +142,7 @@ class StaffAdmin(ModelAdmin):
         ),
         (
             'Permissions', {
+                'classes': ['tab'],
                 'fields': (
                     'is_active',
                     'is_staff',
@@ -140,12 +152,6 @@ class StaffAdmin(ModelAdmin):
                 )
             }
         ),
-        ('Important dates', {
-            'fields': (
-                'last_login',
-                'date_joined',
-            )
-        }),
     )
 
     def get_readonly_fields(self, request, obj=None):
